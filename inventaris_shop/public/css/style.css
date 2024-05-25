@@ -13,7 +13,11 @@
     --light-warning: #FFF2C6;
     --success: #388E3C;
     --light-success: #BBF7D0;
+<<<<<<< HEAD
     --black : #0000;
+=======
+    --pinky : #ca4c97;
+>>>>>>> b79306fad03205e3a7ff5fa19b288110d4693dce
 }
 
 *{
@@ -86,7 +90,11 @@ body{
 }
 
 .sidebar .logo  span{
+<<<<<<< HEAD
     color: var(--light-success);
+=======
+    color: var(--dark);
+>>>>>>> b79306fad03205e3a7ff5fa19b288110d4693dce
 }
 body.dark-mode .sidebar .logo span {
     color: var(--light);

@@ -136,15 +136,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const themeToggle = document.querySelector('#theme-toggle');
     const logoSpan = document.querySelector('.sidebar .logo span');
 
+    // Check the current theme on page load
+    const isDarkMode = localStorage.getItem('theme') === 'dark';
+    themeToggle.checked = isDarkMode;
+
+    if (isDarkMode) {
+        document.body.classList.add('dark-mode');
+        logoSpan.style.color = 'var(--light)';
+    } else {
+        document.body.classList.remove('dark-mode');
+        logoSpan.style.color = 'var(--dark)';
+    }
+
     themeToggle.addEventListener('change', function() {
         if (this.checked) {
             // Dark mode
             document.body.classList.add('dark-mode');
-            logoSpan.style.color = 'var(--dark)';
+            logoSpan.style.color = 'var(--light)';
+            localStorage.setItem('theme', 'dark');
         } else {
             // Light mode
             document.body.classList.remove('dark-mode');
             logoSpan.style.color = 'var(--dark)';
+<<<<<<< HEAD
         }
     });
 
@@ -156,6 +170,11 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('dark-mode');
         logoSpan.style.color = 'var(--dark)';
     }
+=======
+            localStorage.setItem('theme', 'light');
+        }
+    });
+>>>>>>> b79306fad03205e3a7ff5fa19b288110d4693dce
 });
 
 
