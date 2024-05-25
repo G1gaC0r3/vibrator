@@ -85,10 +85,10 @@ body{
 }
 
 .sidebar .logo  span{
-    color: var(--pinky);
+    color: var(--dark);
 }
 body.dark-mode .sidebar .logo span {
-    color: var(--dark);
+    color: var(--light);
 }
 
 .sidebar .logo .bx{
