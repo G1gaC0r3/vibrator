@@ -14,7 +14,8 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-            <div class="logo"><span>Inventaris</span></div>
+        <img src="" alt="">
+            <div class="logo-name"><span>Inventaris</span></div>
         <ul class="side-menu">
             <li><a href="stok.blade.php"><i class='bx bxs-dashboard'></i>Stok Barang</a></li>
             <li><a href="masuk.blade.php"><i class='bx bx-arrow-to-left'></i>Barang Masuk</a></li>

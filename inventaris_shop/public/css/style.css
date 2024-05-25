@@ -79,7 +79,7 @@ body{
     color: var(--primary);
     z-index: 500;
     padding-bottom: 20px;
-    padding-left: 50px;
+    /* padding-left: 50px; */
     box-sizing: content-box;
 }
 
