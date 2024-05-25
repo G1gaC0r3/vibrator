@@ -9,7 +9,6 @@ sideLinks.forEach(item => {
         li.classList.add('active');
     })
 });
-
 const menuBar = document.querySelector('.content nav .bx.bx-menu');
 const sideBar = document.querySelector('.sidebar');
 
@@ -23,7 +22,7 @@ const searchForm = document.querySelector('.content nav form');
 
 searchBtn.addEventListener('click', function (e) {
     if (window.innerWidth < 576) {
-        e.preventDefault;
+        e.preventDefault();
         searchForm.classList.toggle('show');
         if (searchForm.classList.contains('show')) {
             searchBtnIcon.classList.replace('bx-search', 'bx-x');
