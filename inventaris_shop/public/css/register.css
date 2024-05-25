@@ -1,6 +1,11 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f0f0f0;
+    background-image: url('../images/shipping.jpg');
+    background-size: cover;
+    background-position: center;
+    margin: 0; 
+    height: 100vh; 
+    overflow: hidden; 
 }
 
 .register-container {
@@ -38,7 +43,7 @@ label {
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-    width: 91%;
+    width: 92%;
     padding: 12px;
     border: 2px solid #ddd;
     border-radius: 5px;

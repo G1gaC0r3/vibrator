@@ -1,20 +1,23 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-image: url('{{ asset('images/baskground.png') }}'); 
+    background-image: url('../images/shipping.jpg'); 
     background-size: cover;
     background-position: center;
+    margin: 0; 
+    height: 100vh; 
+    overflow: hidden; 
 }
 
 .login-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100vh; 
 }
 
 .login-form {
     background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
@@ -39,7 +42,7 @@ label {
 
 input[type="email"],
 input[type="password"] {
-    width: 91%;
+    width: 93%;
     padding: 12px;
     border: 2px solid #ddd;
     border-radius: 5px;
