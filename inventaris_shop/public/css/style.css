@@ -90,11 +90,7 @@ body{
 }
 
 .sidebar .logo  span{
-<<<<<<< HEAD
     color: var(--light-success);
-=======
-    color: var(--dark);
->>>>>>> b79306fad03205e3a7ff5fa19b288110d4693dce
 }
 body.dark-mode .sidebar .logo span {
     color: var(--light);

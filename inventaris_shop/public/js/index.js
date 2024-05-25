@@ -158,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
             // Light mode
             document.body.classList.remove('dark-mode');
             logoSpan.style.color = 'var(--dark)';
-<<<<<<< HEAD
         }
     });
 
@@ -170,11 +169,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.classList.remove('dark-mode');
         logoSpan.style.color = 'var(--dark)';
     }
-=======
-            localStorage.setItem('theme', 'light');
-        }
-    });
->>>>>>> b79306fad03205e3a7ff5fa19b288110d4693dce
 });
 
 
