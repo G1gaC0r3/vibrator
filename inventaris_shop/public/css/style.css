@@ -86,6 +86,9 @@ body{
 .sidebar .logo  span{
     color: var(--light);
 }
+body.dark-mode .sidebar .logo span {
+    color: var(--dark);
+}
 
 .sidebar .logo .bx{
     min-width: 60px;

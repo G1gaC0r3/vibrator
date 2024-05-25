@@ -130,21 +130,46 @@ if (modal !== null) {
       }
     }
 }
-document.addEventListener('DOMContentLoaded', function() {
-    const currentPath = window.location.pathname;
-    const menuItems = document.querySelectorAll('.side-menu li a');
 
-    // Hapus kelas 'active' dari semua elemen <li>
-    menuItems.forEach(item => {
-        item.parentElement.classList.remove('active');
+
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.querySelector('#theme-toggle');
+    const logoSpan = document.querySelector('.sidebar .logo span');
+
+    themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            // Dark mode
+            document.body.classList.add('dark-mode');
+            logoSpan.style.color = 'var(--dark)';
+        } else {
+            // Light mode
+            document.body.classList.remove('dark-mode');
+            logoSpan.style.color = 'var(--light)';
+        }
     });
 
-    // Tetapkan kelas 'active' hanya ke item menu yang sesuai dengan path URL saat ini
+    // Check the current theme on page load and set the color accordingly
+    if (themeToggle.checked) {
+        document.body.classList.add('dark-mode');
+        logoSpan.style.color = 'var(--dark)';
+    } else {
+        document.body.classList.remove('dark-mode');
+        logoSpan.style.color = 'var(--light)';
+    }
+});
+
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const currentRoute = window.location.pathname.split('/').pop(); // Ambil bagian terakhir dari URL
+    const menuItems = document.querySelectorAll('.menu-item');
+
     menuItems.forEach(item => {
-        if (item.getAttribute('href') === currentPath) {
+        if (item.dataset.route === currentRoute) {
             item.parentElement.classList.add('active');
         }
     });
 });
+
 
 
