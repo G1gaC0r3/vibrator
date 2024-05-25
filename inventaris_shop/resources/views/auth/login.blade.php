@@ -28,8 +28,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                    <label for="remember">Remember Me</label>
+                    <a href="{{ route('password.request') }}">Forgot Password</a>
                 </div>
                 <button type="submit" class="btn-login">Login</button>
             </form>
