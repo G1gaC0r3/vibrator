@@ -142,13 +142,11 @@
                 <br>
                 <input type="text" name="namabarang" placeholder="Nama Barang" class="form-control" required>
                 <br>
-                <input type="file" name="kodebarang" placeholder="Gambar" class="form-control" required>
-                <br>
                 <input type="text" name="deskripsi" placeholder="Deskripsi" class="form-control" required>
                 <br>
-                <input type="text" name="harga" placeholder="Harga" class="form-control" required>
-                <br>
                 <input type="number" name="jumlah" placeholder="Jumlah" class="form-control" required>
+                <br>
+                <input type="text" name="Penerima" placeholder="Penerima" class="form-control" required>
                 <br>
                 <button type="submit" class="btn btn-primary" name="addnewbarang">Tambah</button>
               </div>

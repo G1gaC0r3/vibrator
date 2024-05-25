@@ -18,7 +18,7 @@
         <ul class="side-menu">
             <li><a href="{{route('dashboard')}}"><i class='bx bxs-dashboard'></i>Stok Barang</a></li>
             <li><a href="{{route('masuk')}}"><i class='bx bx-arrow-to-left'></i>Barang Masuk</a></li>
-            <li ><a href="#"><i class='bx bx-arrow-to-right'></i>Barang Keluar</a></li>
+            <li ><a href="{{route('keluar')}}"><i class='bx bx-arrow-to-right'></i>Barang Keluar</a></li>
             <li><a href="#"><i class='bx bx-group'></i>Users</a></li>
         </ul>
         <ul class="side-menu">
