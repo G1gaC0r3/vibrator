@@ -14,7 +14,7 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-            <div class="logo">Inv<span>entaris</span></div>
+            <div class="logo">Inv<span class="logo1">entaris</span></div>
         {{-- <ul class="side-menu">
             <li><a href="{{route('dashboard')}}"><i class='bx bxs-dashboard'></i>Stok Barang</a></li>
             <li><a href="{{route('masuk')}}"><i class='bx bx-arrow-to-left'></i>Barang Masuk</a></li>

@@ -13,6 +13,7 @@
     --light-warning: #FFF2C6;
     --success: #388E3C;
     --light-success: #BBF7D0;
+    --black : #0000;
 }
 
 *{
@@ -38,10 +39,11 @@ html{
     overflow-x: hidden;
 }
 
-body.dark{
+body.dark-mode {
     --light: #181a1e;
     --grey: #25252c;
-    --dark: #fbfbfb
+    --dark: #fbfbfb;
+    --black: #fff;
 }
 
 body{
@@ -84,10 +86,10 @@ body{
 }
 
 .sidebar .logo  span{
-    color: var(--light);
+    color: var(--light-success);
 }
 body.dark-mode .sidebar .logo span {
-    color: var(--dark);
+    color: var(--light);
 }
 
 .sidebar .logo .bx{

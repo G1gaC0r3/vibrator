@@ -144,7 +144,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             // Light mode
             document.body.classList.remove('dark-mode');
-            logoSpan.style.color = 'var(--light)';
+            logoSpan.style.color = 'var(--dark)';
         }
     });
 
@@ -154,9 +154,10 @@ document.addEventListener('DOMContentLoaded', function() {
         logoSpan.style.color = 'var(--dark)';
     } else {
         document.body.classList.remove('dark-mode');
-        logoSpan.style.color = 'var(--light)';
+        logoSpan.style.color = 'var(--dark)';
     }
 });
+
 
 
 
