@@ -10,15 +10,15 @@
                 height: 100%;
                 margin: 0;
                 font-family: 'Orbitron', sans-serif;
-                background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+                background: radial-gradient(circle, rgba(238,174,202,0.5) 0%, rgba(148,187,233,0.5) 100%);
             }
             .bg {
-                background-image: url('https://source.unsplash.com/1600x900/?futuristic,technology');
+                background-image: url('{{ asset('images/baskground.png') }}');
                 height: 100%;
                 background-position: center;
                 background-repeat: no-repeat;
                 background-size: cover;
-                filter: brightness(80%);
+                filter: brightness(75%);
             }
             .centered {
                 position: absolute;
@@ -29,16 +29,16 @@
                 color: #ffffff;
             }
             .btn {
-                padding: 12px 24px;
-                margin: 10px;
-                background-color: #1e90ff;
+                padding: 15px 30px;
+                margin: 15px;
+                background-color: #007BFF;
                 color: white;
                 text-decoration: none;
                 border: none;
-                border-radius: 5px;
-                font-size: 16px;
-                transition: background-color 0.3s, transform 0.3s;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                border-radius: 8px;
+                font-size: 18px;
+                transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+                box-shadow: 0 6px 8px rgba(0,0,0,0.15);
             }
             .btn:hover {
                 background-color: #4682b4;
@@ -77,3 +77,4 @@
         </div>
     </body>
 </html>
+

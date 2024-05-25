@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     background-color: #f0f0f0;
 }
 
@@ -11,16 +11,19 @@ body {
 }
 
 .register-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    background-color: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    width: 350px;
 }
 
 h2 {
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     text-align: center;
+    color: #333;
+    font-size: 24px;
 }
 
 .form-group {
@@ -29,27 +32,36 @@ h2 {
 
 label {
     font-weight: bold;
+    color: #555;
 }
 
 input[type="text"],
 input[type="email"],
 input[type="password"] {
-    width: 90%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    width: 91%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: #0056b3;
 }
 
 .btn-register {
     display: block;
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 3px;
+    border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 15px;
+    transition: background-color 0.3s;
 }
 
 .btn-register:hover {
@@ -57,12 +69,12 @@ input[type="password"] {
 }
 
 .error-message {
-    color: red;
-    font-size: 12px;
+    color: #ff3860;
+    font-size: 14px;
 }
 
 .alert-success {
-    color: green;
-    font-size: 14px;
-    margin-bottom: 15px;
+    color: #23d160;
+    font-size: 16px;
+    margin-bottom: 20px;
 }
