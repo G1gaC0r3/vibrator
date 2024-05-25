@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (isDarkMode) {
         document.body.classList.add('dark-mode');
-        logoSpan.style.color = 'var(--light)';
+        logoSpan.style.color = 'var(--dark)';
     } else {
         document.body.classList.remove('dark-mode');
         logoSpan.style.color = 'var(--dark)';
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (this.checked) {
             // Dark mode
             document.body.classList.add('dark-mode');
-            logoSpan.style.color = 'var(--light)';
+            logoSpan.style.color = 'var(--dark)';
             localStorage.setItem('theme', 'dark');
         } else {
             // Light mode
