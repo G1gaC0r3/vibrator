@@ -135,12 +135,11 @@
             <!-- Modal body -->
             <form action="" method="post">
               <div class="modal-body">
-                <select name="barang" id="">
+                <select name="Nama Barang" id="" class="form-control">
                     {{-- gunakan logika php here --}}
-                    <option value=""></option>
+                    <option value="">iphone</option>
+                    <option value="">Samsung</option>
                 </select>
-                <br>
-                <input type="text" name="namabarang" placeholder="Nama Barang" class="form-control" required>
                 <br>
                 <input type="text" name="deskripsi" placeholder="Deskripsi" class="form-control" required>
                 <br>
@@ -161,7 +160,7 @@
         </div>
       </div>
     
-    <script src="index.js"></script>
+      <script src="{{asset('js/index.js')}}"></script>
 </body>
 
 </html>
