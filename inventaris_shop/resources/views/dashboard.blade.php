@@ -14,14 +14,27 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <img src="logo.jpg" alt="">
-            <div class="logo-name"><span>Inventaris</span></div>
-        <ul class="side-menu">
+            <div class="logo">Inv<span>entaris</span></div>
+        {{-- <ul class="side-menu">
             <li><a href="{{route('dashboard')}}"><i class='bx bxs-dashboard'></i>Stok Barang</a></li>
             <li><a href="{{route('masuk')}}"><i class='bx bx-arrow-to-left'></i>Barang Masuk</a></li>
             <li ><a href="{{route('keluar')}}"><i class='bx bx-arrow-to-right'></i>Barang Keluar</a></li>
             <li><a href="#"><i class='bx bx-group'></i>Users</a></li>
-        </ul>
+        </ul> --}}
+        <ul class="side-menu">
+            <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <a href="{{ route('dashboard') }}"><i class='bx bxs-dashboard'></i>Stok Barang</a>
+            </li>
+            <li class="{{ request()->routeIs('masuk') ? 'active' : '' }}">
+                <a href="{{ route('masuk') }}"><i class='bx bx-arrow-to-left'></i>Barang Masuk</a>
+            </li>
+            <li class="{{ request()->routeIs('keluar') ? 'active' : '' }}">
+                <a href="{{ route('keluar') }}"><i class='bx bx-arrow-to-right'></i>Barang Keluar</a>
+            </li>
+            <li class="{{ request()->routeIs('users') ? 'active' : '' }}">
+                <a href="#"><i class='bx bx-group'></i>Users</a>
+            </li>
+        </ul>        
         <ul class="side-menu">
             <li>
                 <a href="#" class="logout">

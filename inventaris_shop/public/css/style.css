@@ -83,7 +83,10 @@ body{
     box-sizing: content-box;
 }
 
-.sidebar .logo .logo-name span{
+.sidebar .logo  span{
+    color: var(--light);
+}
+body.dark-mode .sidebar .logo span {
     color: var(--dark);
 }
 

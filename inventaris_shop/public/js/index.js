@@ -9,40 +9,55 @@ sideLinks.forEach(item => {
         li.classList.add('active');
     })
 });
-const menuBar = document.querySelector('.content nav .bx.bx-menu');
-const sideBar = document.querySelector('.sidebar');
 
-menuBar.addEventListener('click', () => {
-    sideBar.classList.toggle('close');
-});
+document.addEventListener('DOMContentLoaded', (event) => {
+    const menuBar = document.querySelector('.content nav .bx.bx-menu');
+    const sideBar = document.querySelector('.sidebar');
 
-const searchBtn = document.querySelector('.content nav form .form-input button');
-const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
-const searchForm = document.querySelector('.content nav form');
-
-searchBtn.addEventListener('click', function (e) {
-    if (window.innerWidth < 576) {
-        e.preventDefault();
-        searchForm.classList.toggle('show');
-        if (searchForm.classList.contains('show')) {
-            searchBtnIcon.classList.replace('bx-search', 'bx-x');
-        } else {
-            searchBtnIcon.classList.replace('bx-x', 'bx-search');
-        }
-    }
-});
-
-window.addEventListener('resize', () => {
-    if (window.innerWidth < 768) {
+    // Check localStorage for sidebar state
+    if (localStorage.getItem('sidebarState') === 'close') {
         sideBar.classList.add('close');
-    } else {
-        sideBar.classList.remove('close');
     }
-    if (window.innerWidth > 576) {
-        searchBtnIcon.classList.replace('bx-x', 'bx-search');
-        searchForm.classList.remove('show');
-    }
+
+    menuBar.addEventListener('click', () => {
+        sideBar.classList.toggle('close');
+        // Save the state in localStorage
+        if (sideBar.classList.contains('close')) {
+            localStorage.setItem('sidebarState', 'close');
+        } else {
+            localStorage.removeItem('sidebarState');
+        }
+    });
+
+    const searchBtn = document.querySelector('.content nav form .form-input button');
+    const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
+    const searchForm = document.querySelector('.content nav form');
+
+    searchBtn.addEventListener('click', function (e) {
+        if (window.innerWidth < 576) {
+            e.preventDefault();
+            searchForm.classList.toggle('show');
+            if (searchForm.classList.contains('show')) {
+                searchBtnIcon.classList.replace('bx-search', 'bx-x');
+            } else {
+                searchBtnIcon.classList.replace('bx-x', 'bx-search');
+            }
+        }
+    });
+
+    window.addEventListener('resize', () => {
+        if (window.innerWidth < 768) {
+            sideBar.classList.add('close');
+        } else {
+            sideBar.classList.remove('close');
+        }
+        if (window.innerWidth > 576) {
+            searchBtnIcon.classList.replace('bx-x', 'bx-search');
+            searchForm.classList.remove('show');
+        }
+    });
 });
+
 
 // Mengatur tampilan layar
 
@@ -115,21 +130,46 @@ if (modal !== null) {
       }
     }
 }
-document.addEventListener('DOMContentLoaded', function() {
-    const currentPath = window.location.pathname;
-    const menuItems = document.querySelectorAll('.side-menu li a');
 
-    // Hapus kelas 'active' dari semua elemen <li>
-    menuItems.forEach(item => {
-        item.parentElement.classList.remove('active');
+
+document.addEventListener('DOMContentLoaded', function() {
+    const themeToggle = document.querySelector('#theme-toggle');
+    const logoSpan = document.querySelector('.sidebar .logo span');
+
+    themeToggle.addEventListener('change', function() {
+        if (this.checked) {
+            // Dark mode
+            document.body.classList.add('dark-mode');
+            logoSpan.style.color = 'var(--dark)';
+        } else {
+            // Light mode
+            document.body.classList.remove('dark-mode');
+            logoSpan.style.color = 'var(--light)';
+        }
     });
 
-    // Tetapkan kelas 'active' hanya ke item menu yang sesuai dengan path URL saat ini
+    // Check the current theme on page load and set the color accordingly
+    if (themeToggle.checked) {
+        document.body.classList.add('dark-mode');
+        logoSpan.style.color = 'var(--dark)';
+    } else {
+        document.body.classList.remove('dark-mode');
+        logoSpan.style.color = 'var(--light)';
+    }
+});
+
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const currentRoute = window.location.pathname.split('/').pop(); // Ambil bagian terakhir dari URL
+    const menuItems = document.querySelectorAll('.menu-item');
+
     menuItems.forEach(item => {
-        if (item.getAttribute('href') === currentPath) {
+        if (item.dataset.route === currentRoute) {
             item.parentElement.classList.add('active');
         }
     });
 });
+
 
 
