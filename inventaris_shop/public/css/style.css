@@ -13,6 +13,7 @@
     --light-warning: #FFF2C6;
     --success: #388E3C;
     --light-success: #BBF7D0;
+    --pinky : #ca4c97;
 }
 
 *{
@@ -84,7 +85,7 @@ body{
 }
 
 .sidebar .logo  span{
-    color: var(--light);
+    color: var(--pinky);
 }
 body.dark-mode .sidebar .logo span {
     color: var(--dark);
