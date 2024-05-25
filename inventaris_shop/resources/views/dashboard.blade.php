@@ -26,6 +26,7 @@
                 <a href="#" class="logout">
                     <i class='bx bx-log-out-circle'></i>
                     Logout
+                    @include('components.logout-button')
                 </a>
             </li>
         </ul>
