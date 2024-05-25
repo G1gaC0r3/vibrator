@@ -16,8 +16,8 @@
     <div class="sidebar">
             <div class="logo"><span>Inventaris</span></div>
         <ul class="side-menu">
-            <li><a href="stok.blade.php"><i class='bx bxs-dashboard'></i>Stok Barang</a></li>
-            <li><a href="masuk.blade.php"><i class='bx bx-arrow-to-left'></i>Barang Masuk</a></li>
+            <li><a href="{{route('dashboard')}}"><i class='bx bxs-dashboard'></i>Stok Barang</a></li>
+            <li><a href="{{route('masuk')}}"><i class='bx bx-arrow-to-left'></i>Barang Masuk</a></li>
             <li ><a href="#"><i class='bx bx-arrow-to-right'></i>Barang Keluar</a></li>
             <li><a href="#"><i class='bx bx-group'></i>Users</a></li>
         </ul>
@@ -160,7 +160,7 @@
         </div>
       </div>
     
-    <script src="index.js"></script>
+    <script src="{{asset('js/index.js')}}"></script>
 </body>
 
 </html>
