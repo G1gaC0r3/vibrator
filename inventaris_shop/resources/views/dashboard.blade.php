@@ -86,7 +86,7 @@
                     <i class='bx bx-arrow-to-right' style="color: rgb(24, 141, 180);"></i>
                     <span class="info">
                         <h3>
-                            41
+                            {{ $totalJumlah }}
                         </h3>
                         <p>Total Barang Masuk</p>
                     </span>

@@ -21,14 +21,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [BarangController::class ,'index'])
+Route::get('/dashboard', [BarangController::class ,'index1'])
 ->name('dashboard')->middleware(['auth', 'verified']);
 
 
 Route::get('/masuk', [BarangController::class ,'index'])
 ->name('masuk')->middleware(['auth', 'verified']);
 
-Route::get('/keluar', [BarangController::class ,'index'])
+Route::get('/keluar', [BarangController::class ,'index2'])
 ->name('keluar')->middleware(['auth', 'verified']);
 
 Route::get('/users', function () {
@@ -41,8 +41,6 @@ Route::post('login', [LoginController::class, 'login']);
 
 //Data Table
 Route::post('masuk', [BarangController::class,'store'])->name('masuk');
-
-
 
 
 Route::middleware('auth')->group(function () {
