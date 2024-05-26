@@ -109,27 +109,26 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Kode Barang</th>
+                                <th>ID Barang</th>
                                 <th>Nama Barang</th>
+                                <th>Jenis Barang</th>
                                 <th>Gambar</th>
-                                <th>Deskripsi</th>
                                 <th>Jumlah</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>231</td>
-                                <td>Iphone</td>
-                                <td></td>
-                                <td>Kurang Bagus</td>
-                                <td>53</td>
-                            </tr>
+                            @foreach($barangs as $barang)
+                                <tr>
+                                    <td>{{ $barang->id_barang }}</td>
+                                    <td>{{ $barang->nama_barang }}</td>
+                                    <td>{{ $barang->jenis_barang }}</td>
+                                    <td><img src="{{ asset('images/' . $barang->gambar_barang) }}" alt="{{ $barang->nama_barang }}" width="100"></td>
+                                    <td>{{ $barang->jumlah_barang }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
-
-               
-
             </div>
 
         </main>
@@ -146,23 +145,37 @@
             </div>
     
             <!-- Modal body -->
-            <form action="" method="post">
-              <div class="modal-body">
-                <input type="text" name="kodebarang" placeholder="Kode Barang" class="form-control" required>
+            <form action="{{ route('masuk') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="form-group">
+                    <label for="nama_barang">Nama Barang</label>
+                    <input type="text" name="nama_barang" placeholder="Nama Barang" class="form-control" required>
+                </div>
                 <br>
-                <input type="text" name="namabarang" placeholder="Nama Barang" class="form-control" required>
+                <div class="form-group">
+                    <label for="jenis_barang">Jenis Barang</label>
+                    <select name="jenis_barang" class="form-control" required>
+                        <option value="" disabled selected>Pilih Jenis Barang</option>
+                        <option value="Pack">Pack</option>
+                        <option value="Botol">Botol</option>
+                        <option value="Kaleng">Kaleng</option>
+                        <option value="Saset">Saset</option>
+                    </select>
+                </div>
                 <br>
-                <input type="file" name="kodebarang" placeholder="Gambar" class="form-control" required>
+                <div class="form-group">
+                    <label for="gambar_barang">Gambar Barang</label>
+                    <input type="file" name="gambar_barang" class="form-control" required>
+                </div>
                 <br>
-                <input type="text" name="deskripsi" placeholder="Deskripsi" class="form-control" required>
+                <div class="form-group">
+                    <label for="jumlah_barang">Jumlah Barang</label>
+                    <input type="number" name="jumlah_barang" placeholder="Jumlah Barang" class="form-control" required>
+                </div>
                 <br>
-                <input type="text" name="harga" placeholder="Harga" class="form-control" required>
-                <br>
-                <input type="number" name="jumlah" placeholder="Jumlah" class="form-control" required>
-                <br>
-                <button type="submit" class="btn btn-primary" name="addnewbarang">Tambah</button>
-              </div>
+                <button type="submit" class="btn btn-primary">Tambah</button>
             </form>
+            
     
             <!-- Modal footer -->
             <div class="modal-footer">

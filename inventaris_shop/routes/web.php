@@ -25,9 +25,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/masuk', function () {
-    return view('masuk'); 
-})->middleware(['auth','verified'])->name('masuk');
+
+Route::get('/masuk', [BarangController::class ,'index'])
+->name('masuk')->middleware(['auth', 'verified']);
 
 Route::get('/keluar', function () {
     return view('keluar'); 
@@ -41,11 +41,15 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 
+//Data Table
+Route::post('masuk', [BarangController::class,'store'])->name('masuk');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 }); 
+
+Route::get('/dashboard-data', 'BarangController@index') ->name('dash');
 
 require __DIR__.'/auth.php';
