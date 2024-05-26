@@ -41,6 +41,9 @@ Route::post('login', [LoginController::class, 'login']);
 
 //Data Table
 Route::post('masuk', [BarangController::class,'store'])->name('masuk');
+Route::get('/barang/{id}/edit', [BarangController::class, 'edit'])->name('barang.edit');
+Route::put('/barang/{id}', [BarangController::class, 'update'])->name('barang.update');
+
 
 
 Route::middleware('auth')->group(function () {

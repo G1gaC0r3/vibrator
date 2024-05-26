@@ -149,21 +149,28 @@
     
             <!-- Modal body -->
             <form action="" method="post">
+                @csrf
               <div class="modal-body">
-                <select name="Nama Barang" id="" class="form-control">
-                    {{-- gunakan logika php here --}}
-                    <option value="">iphone</option>
-                    <option value="">Samsung</option>
+                <select name="Nama Barang" id="nama_barang" class="form-control">
+                    @foreach($barangs as $barang)
+                        <option value="{{ $barang->id_barang }}">{{ $barang->nama_barang }}</option>
+                    @endforeach
                 </select>
                 <br>
-                <input type="text" name="deskripsi" placeholder="Deskripsi" class="form-control" required>
+                    <select name="jenis_barang" id="jenis_barang" class="form-control" required>
+                        <option value="Pack">Pack</option>
+                        <option value="Botol">Botol</option>
+                        <option value="Kaleng">Kaleng</option>
+                        <option value="Saset">Saset</option>
+                    </select>
                 <br>
-                <input type="number" name="jumlah" placeholder="Jumlah" class="form-control" required>
+                    <input type="number" name="jumlah_barang" placeholder="Jumlah" class="form-control" required>
                 <br>
-                <input type="text" name="Penerima" placeholder="Penerima" class="form-control" required>
+                <label for="gambar_barang">Change Image:</label>
+                <input type="file" name="gambar_barang" id="gambar_barang" class="form-control">
                 <br>
                 <button type="submit" class="btn btn-primary" name="addnewbarang">Edit</button>
-              </div>
+            </div>
             </form>
     
             <!-- Modal footer -->

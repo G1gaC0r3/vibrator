@@ -92,37 +92,25 @@ public function index2()
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
+{
     $barang = Barang::findOrFail($id);
+    return view('barang.edit', compact('barang'));
+}
 
-    // Handle file upload
-    if ($request->hasFile('gambar_barang')) {
-        $image = $request->file('gambar_barang');
-        $imageName = time() . '.' . $image->extension();
-        $image->move(public_path('images'), $imageName);
-        $barang->gambar_barang = $imageName;
-    }
+public function update(Request $request, $id)
+{
+    $barang = Barang::findOrFail($id);
 
     $barang->nama_barang = $request->input('nama_barang');
     $barang->jenis_barang = $request->input('jenis_barang');
     $barang->jumlah_barang = $request->input('jumlah_barang');
+    // Handle image upload if needed
 
     $barang->save();
 
     return redirect()->route('keluar')->with('success', 'Barang updated successfully');
-    }
+}
+
 
 
     /**
