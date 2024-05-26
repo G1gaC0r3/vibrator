@@ -38,15 +38,17 @@
             </li>
         </ul>        
         <ul class="side-menu">
-            <div class="logout-container">
-                <form id="logout-form" method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="logout-link">
-                        <i class='bx bx-log-out-circle'></i>
-                        <span class="logout-text">Logout</span>
-                    </button>
-                </form>
-            </div>
+            <li>
+                <div class="logout-container">
+                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="logout-link">
+                            <i class='bx bx-log-out-circle'></i>
+                            <span class="logout-text">Logout</span>
+                        </button>
+                    </form>
+                </div>
+            </li>
         </ul>
     </div>
     <!-- End of Sidebar -->
