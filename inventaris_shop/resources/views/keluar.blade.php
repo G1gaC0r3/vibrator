@@ -26,7 +26,7 @@
                 <a href="{{ route('keluar') }}"><i class='bx bx-arrow-to-right'></i>Barang Keluar</a>
             </li>
             <li class="{{ request()->routeIs('users') ? 'active' : '' }}">
-                <a href="#"><i class='bx bx-group'></i>Users</a>
+                <a href="{{ route('users') }}"><i class='bx bx-group'></i>Users</a>
             </li>
         </ul>        
         <ul class="side-menu">

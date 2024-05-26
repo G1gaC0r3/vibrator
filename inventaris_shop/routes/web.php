@@ -32,6 +32,10 @@ Route::get('/keluar', function () {
     return view('keluar'); 
 })->middleware(['auth','verified'])->name('keluar');
 
+Route::get('/users', function () {
+    return view('users'); 
+})->middleware(['auth','verified'])->name('users');
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
