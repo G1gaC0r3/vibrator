@@ -800,6 +800,7 @@ body.dark-mode .sidebar .logo span {
     margin-right: auto;
     gap: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
 
 .update-profile h2 {
     color: var(--primary);

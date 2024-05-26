@@ -104,7 +104,7 @@
         const imagePreviewDefaultText = document.querySelector('.image-preview__default-text');
 
         profilePictureInput.addEventListener('change', function() {
-            const file = this.files[0];
+            the file = this.files[0];
             if (file) {
                 const reader = new FileReader();
                 imagePreviewDefaultText.style.display = 'none';
