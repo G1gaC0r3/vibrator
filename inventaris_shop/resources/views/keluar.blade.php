@@ -97,84 +97,51 @@
 
             <div class="bottom-data">
                 <div class="orders">
-                    <div class="header">
-                        <i class='bx bx-receipt'></i>
-                        <h3>Daftar Barang</h3>
-                        <i class='bx bx-filter'></i>
-                        <i class='bx bx-search'></i>
-                    </div>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
-                        Tambah Barang
-                      </button>
-                      <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>ID Barang</th>
-                                <th>Nama Barang</th>
-                                <th>Jenis Barang</th>
-                                <th>Gambar</th>
-                                <th>Jumlah</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($barangs as $barang)
-                                <tr>
-                                    <td>{{ $barang->id_barang }}</td>
-                                    <td>{{ $barang->nama_barang }}</td>
-                                    <td>{{ $barang->jenis_barang }}</td>
-                                    <td><img src="{{ asset('images/' . $barang->gambar_barang) }}" alt="{{ $barang->nama_barang }}" width="100"></td>
-                                    <td>{{ $barang->jumlah_barang }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-
-               
-
-            </div>
-
-        </main>
-
-    </div>
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-    
-            <!-- Modal Header -->
+                    <div class="container">
+                        <h1>Daftar Barang</h1>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editBarangModal" id="openEditModalButton">
+                            Edit Barang
+                        </button>                    
+                       <!-- Modal -->
+<div class="modal fade" id="editBarangModal" tabindex="-1" aria-labelledby="editBarangModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Tambahkan Barang</h4>
-              <!-- <button type="button" class="btn-close" id="closeModalButton">&times;</button> -->
+                <h5 class="modal-title" id="editBarangModalLabel">Edit Barang</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-    
-            <!-- Modal body -->
-            <form action="" method="post">
-              <div class="modal-body">
-                <select name="Nama Barang" id="" class="form-control">
-                    {{-- gunakan logika php here --}}
-                    <option value="">iphone</option>
-                    <option value="">Samsung</option>
-                </select>
-                <br>
-                <input type="text" name="deskripsi" placeholder="Deskripsi" class="form-control" required>
-                <br>
-                <input type="number" name="jumlah" placeholder="Jumlah" class="form-control" required>
-                <br>
-                <input type="text" name="Penerima" placeholder="Penerima" class="form-control" required>
-                <br>
-                <button type="submit" class="btn btn-primary" name="addnewbarang">Tambah</button>
-              </div>
-            </form>
-    
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary btn-close" id="closeModalButton">Close</button>
+            <div class="modal-body">
+                <form action="{{ route('barang.update', ['barang' => $barang->id_barang]) }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    @method('PUT')
+                    <div class="mb-3">
+                        <label for="nama_barang" class="form-label">Nama Barang</label>
+                        <input type="text" class="form-control" id="nama_barang" name="nama_barang" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="jenis_barang" class="form-label">Jenis Barang</label>
+                        <select class="form-control" id="jenis_barang" name="jenis_barang" required>
+                            <option value="Pack">Pack</option>
+                            <option value="Botol">Botol</option>
+                            <option value="Kaleng">Kaleng</option>
+                            <option value="Saset">Saset</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gambar_barang" class="form-label">Gambar Barang</label>
+                        <input type="file" class="form-control" id="gambar_barang" name="gambar_barang">
+                    </div>
+                    <div class="mb-3">
+                        <label for="jumlah_barang" class="form-label">Jumlah Barang</label>
+                        <input type="number" class="form-control" id="jumlah_barang" name="jumlah_barang" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </form>
             </div>
-    
-          </div>
         </div>
-      </div>
-    
+    </div>
+</div>
+
       <script src="{{asset('js/index.js')}}"></script>
 </body>
 

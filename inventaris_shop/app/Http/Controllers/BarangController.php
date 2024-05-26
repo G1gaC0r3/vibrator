@@ -89,8 +89,25 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+    $barang = Barang::findOrFail($id);
+
+    // Handle file upload
+    if ($request->hasFile('gambar_barang')) {
+        $image = $request->file('gambar_barang');
+        $imageName = time() . '.' . $image->extension();
+        $image->move(public_path('images'), $imageName);
+        $barang->gambar_barang = $imageName;
     }
+
+    $barang->nama_barang = $request->input('nama_barang');
+    $barang->jenis_barang = $request->input('jenis_barang');
+    $barang->jumlah_barang = $request->input('jumlah_barang');
+
+    $barang->save();
+
+    return redirect()->route('keluar')->with('success', 'Barang updated successfully');
+    }
+
 
     /**
      * Remove the specified resource from storage.
