@@ -11,5 +11,67 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    opacity: 0.5;
+    position: relative; 
+}
+
+.banner::before{ 
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); 
+    z-index: 0;
+}
+
+.content{
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: center;
+    color: #fff;
+    z-index: 1; 
+}
+.content h1{
+    font-size: 50px;
+    font-weight: 700;;
+    margin-bottom: 20px
+;}
+.content p{
+    font-size: 20px;
+    margin-bottom: 40px;
+    font-weight: 500;
+}
+.btn{
+    display: inline-block;
+    background: transparent;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    margin: 10px 0;
+    border: 2px solid #fff;
+    transition: 0.3s;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+.span{
+    background-color: rgba(25,118,210,0.98); /* Perbaikan nilai alpha dari 255 menjadi 0.98 */
+    height: 100%;
+    width: 0;
+    border-radius: 25px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: 0.5s;
+}
+.btn:hover .span{ /* Perbaikan selektor dari 'btn' menjadi '.btn' dan menambahkan spasi antara .btn dan span */
+    width: 100%;
+}
+.btn:hover .span{ /* Perbaikan selektor dari 'btn' menjadi '.btn' dan menambahkan spasi antara .btn dan span */
+    border: none;
 }

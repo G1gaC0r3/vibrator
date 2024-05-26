@@ -6,21 +6,23 @@
         <link rel="stylesheet" href="{{asset('css/welcome.css')}}">
     </head>
     <body>
-        <div class="banner"></div>
-        <div class="welcome-container">
-            <h1>Welcome to Our Website!</h1>
+        <div class="banner">
+        <div class="content">
+            <h1>Welcome to Ineventory</h1>
+            <p>Inventory Management System</p>
             @if (Route::has('login'))
                 <div>
                     @auth
-                        <a href="{{ url('dashboard') }}" class="btn">Dashboard</a>
+                        <a href="{{ url('dashboard') }}" class="btn"><span class="span"></span>Dashboard</a>
                                        @else
-                        <a href="{{ route('login') }}" class="btn">Log in</a>
+                        <a href="{{ route('login') }}" class="btn"><span class="span"></span>Log in</a>
                                                @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="btn">Register</a>
+                            <a href="{{ route('register') }}" class="btn"><span class="span"></span>Register</a>
                         @endif
                     @endauth
                 </div>
             @endif
         </div>
+    </div>
     </body>
 </html>
