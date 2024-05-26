@@ -76,8 +76,7 @@
         <main>
             <div class="header">
                 <div class="left">
-                    <h1>Stok Barang</h1>
-                    
+                    <h1>Stok Barang</h1>    
                 </div>
             </div>
 
