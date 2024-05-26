@@ -52,4 +52,7 @@ Route::middleware('auth')->group(function () {
 }); 
 
 
+Route::post('/update-profile', [ProfileController::class, 'updateProfile'])->name('updateProfile')->middleware(['auth', 'verified']);
+
+
 require __DIR__.'/auth.php';
