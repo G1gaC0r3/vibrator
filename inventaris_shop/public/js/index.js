@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     menuBar.addEventListener('click', () => {
         sideBar.classList.toggle('close');
-        logoutLink.style.display = sideBar.classList.contains('close') ? 'none' : 'contents';
+        logoutLink.style.display = sideBar.classList.contains('close') ? 'none' : 'inline';
         Logo1.style.display = sideBar.classList.contains('close') ? 'none' : 'flex';
         // Save the state in localStorage
         if (sideBar.classList.contains('close')) {
