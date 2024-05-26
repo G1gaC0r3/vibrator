@@ -81,6 +81,7 @@ body{
     color: var(--primary);
     z-index: 500;
     padding-bottom: 20px;
+    margin-left: 20px;
     /* padding-left: 50px; */
     box-sizing: content-box;
 }
@@ -173,6 +174,22 @@ body.dark-mode .sidebar .logo span {
 
 .sidebar .side-menu li a.logout{
     color: var(--danger);
+}
+
+.logout-container {
+    text-align: left;
+    margin-top: 50px;
+    margin-left: 25px;
+}
+
+.logout-link {
+    color: #e40e0e;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logout-link:hover {
+    color: #ff8383; /* Change the color on hover if desired */
 }
 
 .content{
