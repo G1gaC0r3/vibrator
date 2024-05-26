@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2024 at 11:48 AM
+-- Generation Time: May 26, 2024 at 08:05 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `inventaris`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `barangs`
+--
+
+CREATE TABLE `barangs` (
+  `id_barang` bigint(20) UNSIGNED NOT NULL,
+  `nama_barang` varchar(255) NOT NULL,
+  `jenis_barang` enum('Pack','Botol','Kaleng','Saset') NOT NULL,
+  `gambar_barang` varchar(255) NOT NULL,
+  `jumlah_barang` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `barangs`
+--
+
+INSERT INTO `barangs` (`id_barang`, `nama_barang`, `jenis_barang`, `gambar_barang`, `jumlah_barang`, `created_at`, `updated_at`) VALUES
+(1, 'Apel', 'Pack', '1716741664.png', 10, '2024-05-26 08:41:04', '2024-05-26 08:41:04');
 
 -- --------------------------------------------------------
 
@@ -57,7 +80,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2024_05_26_111149_create_barangs_table', 2),
+(6, '2024_05_26_154055_create_barangs_table', 3);
 
 -- --------------------------------------------------------
 
@@ -70,6 +95,13 @@ CREATE TABLE `password_resets` (
   `token` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('user@gmail.com', '$2y$10$nsK3NK545nlR5tRp2iXJbOmCEfQDPIiaRPxemA63S.Pdf0hUw6aLG', '2024-05-24 02:45:33');
 
 -- --------------------------------------------------------
 
@@ -111,11 +143,18 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'user', 'user@gmail.com', '2024-05-23 18:20:51', '$2y$10$WxGOsEtRTeWk0SJbYVNhoePM4aOoDMsERjQTDVi1566Zv86..zWyO', NULL, '2024-05-23 18:20:25', '2024-05-23 18:20:51');
+(1, 'user', 'user@gmail.com', '2024-05-23 18:20:51', '$2y$10$WxGOsEtRTeWk0SJbYVNhoePM4aOoDMsERjQTDVi1566Zv86..zWyO', NULL, '2024-05-23 18:20:25', '2024-05-23 18:20:51'),
+(5, 'admin', 'admin@gmail.com', NULL, '$2y$10$JPwFA20QrCymQUqgLHuzRuf..LU7qpkWbTc8q4fHMW1ntN6eKd3xu', NULL, '2024-05-25 18:16:11', '2024-05-25 18:16:11');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `barangs`
+--
+ALTER TABLE `barangs`
+  ADD PRIMARY KEY (`id_barang`);
 
 --
 -- Indexes for table `failed_jobs`
@@ -156,6 +195,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `barangs`
+--
+ALTER TABLE `barangs`
+  MODIFY `id_barang` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -165,7 +210,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -177,7 +222,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

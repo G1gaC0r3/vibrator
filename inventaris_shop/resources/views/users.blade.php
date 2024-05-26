@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="./style.css">
+    <!-- Perbaikan path untuk CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Website Inventaris</title>
 </head>
-
 <body>
 
  <div class="sidebar">
@@ -56,54 +56,62 @@
         </nav>
         <!-- End of Navbar -->
 
-        <main>
-            <div class="profile-container">
-                <div class="profile-left">
-                    <img src="/images/profile-picture.jpg" alt="Profile Picture" class="profile-img">
-                </div>
-                <div class="profile-right">
-                    <h2>John Doe</h2>
-                    <p class="user-detail"><strong>Username:</strong> johndoe</p>
-                    <p class="user-detail"><strong>Email:</strong> john@example.com</p>
-                    <p class="user-detail"><strong>Full Name:</strong> John Doe</p>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editProfileModal" id="openEditProfileModalButton">
-                        Edit Profile
-                    </button>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-labelledby="editProfileModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <!-- Modal body -->
-                <form id="editProfileForm">
-                    <div class="modal-body">
-                        <input type="text" name="fullname" placeholder="Full Name" class="form-control" required>
-                        <br>
-                        <input type="text" name="username" placeholder="Username" class="form-control" required>
-                        <br>
-                        <input type="email" name="email" placeholder="Email" class="form-control" required>
-                        <br>
-                        <button type="submit" class="btn btn-primary" name="editprofile">Save Changes</button>
+        <!-- Form Update Profil -->
+        <div class="update-profile">
+            <div class="form-and-preview" style="display: flex; justify-content: space-between;">
+                <form action="{{ route('updateProfile') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="form-group">
+                        <label for="name">Nama:</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="profile_picture">Foto Profil:</label>
+                        <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
+                    </div>
+                    <button type="submit" class="btn-update">Update Profil</button>
                 </form>
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <div class="image-preview" id="imagePreview">
+                    <img src="" alt="Image Preview" class="image-preview__image">
+                    <span class="image-preview__default-text">Preview Foto Profil</span>
                 </div>
             </div>
         </div>
+        <!-- End Form Update Profil -->
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="index.js"></script>
+    <script src="{{ asset('js/index.js') }}"></script>
+    <script>
+        const profilePictureInput = document.getElementById('profile_picture');
+        const imagePreview = document.getElementById('imagePreview');
+        const imagePreviewImage = document.querySelector('.image-preview__image');
+        const imagePreviewDefaultText = document.querySelector('.image-preview__default-text');
+
+        profilePictureInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                imagePreviewDefaultText.style.display = 'none';
+                imagePreviewImage.style.display = 'block';
+
+                reader.addEventListener('load', function() {
+                    imagePreviewImage.setAttribute('src', this.result);
+                });
+
+                reader.readAsDataURL(file);
+            } else {
+                imagePreviewDefaultText.style.display = null;
+                imagePreviewImage.style.display = null;
+                imagePreviewImage.setAttribute('src', '');
+            }
+        });
+    </script>
 
     </body>
     </html>

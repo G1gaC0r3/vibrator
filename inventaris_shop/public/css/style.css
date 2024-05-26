@@ -788,40 +788,71 @@ body.dark-mode .sidebar .logo span {
 
 }
 
-.profile-container {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f7f7f7;
+.update-profile {
+    background-color: var(--light);
+    padding: 10px; /* Mengurangi padding untuk mengurangi ruang kosong */
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    max-width: 900px;
+    margin: 10px auto; /* Mengurangi margin untuk mengurangi ruang kosong */
 }
-.profile-left {
+
+.update-profile h2 {
+    color: var(--dark);
+    text-align: center;
+    margin-bottom: 10px; /* Mengurangi margin untuk mengurangi ruang kosong */
+    width: 100%;
+}
+
+.update-profile form {
+    display: grid;
+    grid-gap: 10px; /* Mengurangi grid-gap untuk mengurangi ruang kosong */
+    flex: 1;
+}
+
+.update-profile .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.update-profile .form-group label {
+    font-size: 16px;
+    color: var(--dark);
+    margin-bottom: 3px; /* Mengurangi margin untuk mengurangi ruang kosong */
+}
+
+.update-profile .form-group input,
+.update-profile .form-group button {
+    padding: 8px; /* Mengurangi padding untuk mengurangi ruang kosong */
+    border-radius: 5px;
+    border: 1px solid var(--dark);
+}
+
+.update-profile .form-group input[type="file"] {
+    border: none;
+}
+
+.update-profile .btn-update {
+    background-color: var(--primary);
+    color: var(--light);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.update-profile .btn-update:hover {
+    background-color: var(--secondary);
+}
+
+.update-profile .image-preview {
     flex: 1;
     display: flex;
+    align-items: center;
     justify-content: center;
 }
-.profile-img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 2px solid #ccc;
-    object-fit: cover;
-}
-.profile-right {
-    flex: 2;
-    margin-left: 20px;
-}
-.profile-right h2 {
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-.user-detail {
-    margin-bottom: 10px;
-    font-size: 16px;
-    color: #333;
-}
-.profile-right .btn {
-    margin-top: 10px;
+
+.update-profile .image-preview img {
+    max-width: 100%;
+    border-radius: 8px;
 }
