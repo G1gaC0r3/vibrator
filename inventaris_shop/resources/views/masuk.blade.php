@@ -29,14 +29,14 @@
                     <a href="#"><i class='bx bx-group'></i>Users</a>
                 </li>
             </ul>        
-        <ul class="side-menu">
-            <li>
-                <a href="#" class="logout">
-                    <i class='bx bx-log-out-circle'></i>
-                    Logout
-                </a>
-            </li>
-        </ul>
+            <ul class="side-menu">
+                <div class="logout-container">
+                    <a href="logout.php" class="logout-link">
+                        <i class='bx bx-log-out-circle'></i>
+                        Logout
+                    </a>
+                </div>
+            </ul>
     </div>
     <!-- End of Sidebar -->
 
@@ -54,7 +54,7 @@
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
             <a href="#" class="profile">
-                <img src="profiel.png" alt="">
+                <img src="{{ asset('images/profile.png') }}" alt="">
             </a>
         </nav>
 
