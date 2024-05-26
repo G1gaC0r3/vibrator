@@ -1,6 +1,6 @@
 body {
     font-family: 'Roboto', sans-serif;
-    background-image: url('../images/shipping.jpg');
+    background-image: url('../images/shipping.jpg'); 
     background-size: cover;
     background-position: center;
     margin: 0; 
@@ -12,27 +12,37 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100vh; 
 }
 
 .register-form {
-    background-color: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
+    background-color: rgba(219, 219, 219, 0.8);
+    backdrop-filter: blur(15px);
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     width: 350px;
+    text-align: center;
+}
+
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.logo {
+    width: 50px; /* Adjust the size of the logo as needed */
+    height: auto;
 }
 
 h2 {
     margin-bottom: 25px;
-    text-align: center;
     color: #333;
     font-size: 24px;
 }
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 15px; 
+    text-align: left;
 }
 
 label {
@@ -67,19 +77,4 @@ input[type="password"]:focus {
     cursor: pointer;
     margin-top: 15px;
     transition: background-color 0.3s;
-}
-
-.btn-register:hover {
-    background-color: #0056b3;
-}
-
-.error-message {
-    color: #ff3860;
-    font-size: 14px;
-}
-
-.alert-success {
-    color: #23d160;
-    font-size: 16px;
-    margin-bottom: 20px;
 }

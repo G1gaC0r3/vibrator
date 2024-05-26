@@ -3,34 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/login.css')}}">
+    <title>Login Page</title>
 </head>
 <body>
     <div class="login-container">
         <div class="login-form">
-            <h2>Login</h2>
-            <form method="POST" action="{{ route('login') }}">
+            <div class="logo-container">
+                <img src="{{ asset('images/LOGO POLNES.png') }}" alt="Logo" class="logo">
+            </div>
+            <h2>LOGIN</h2>
+            <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="email">Email:</label>
-                    <input id="email" type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                    @error('email')
-                        <span class="error-message">{{ $message }}</span>
-                    @enderror
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <label for="password">Password:</label>
-                    <input id="password" type="password" class="@error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                    @error('password')
-                        <span class="error-message">{{ $message }}</span>
-                    @enderror
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
                 </div>
                 <div class="form-group">
-                    <a href="{{ route('password.request') }}">Forgot Password</a>
+                    <button type="submit" class="btn-login">Login</button>
                 </div>
-                <button type="submit" class="btn-login">Login</button>
+                <div class="form-group">
+                    <a href="{{ route('password.request') }}">Forgot Password?</a>
+                </div>
             </form>
         </div>
     </div>
