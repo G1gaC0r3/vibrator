@@ -8,48 +8,40 @@
     <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Website Inventaris</title>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const isDarkMode = localStorage.getItem('theme') === 'dark';
-            if (isDarkMode) {
-                document.body.classList.add('dark-mode');
-            }
-        });
-    </script>
 </head>
 
 <body>
 
     <!-- Sidebar -->
     <div class="sidebar">
-            <div class="logo">Inv<span class="logo1">entaris</span></div>
-        <ul class="side-menu">
-            <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <a href="{{ route('dashboard') }}"><i class='bx bxs-dashboard'></i>Stok Barang</a>
-            </li>
-            <li class="{{ request()->routeIs('masuk') ? 'active' : '' }}">
-                <a href="{{ route('masuk') }}"><i class='bx bx-arrow-to-left'></i>Barang Masuk</a>
-            </li>
-            <li class="{{ request()->routeIs('keluar') ? 'active' : '' }}">
-                <a href="{{ route('keluar') }}"><i class='bx bx-arrow-to-right'></i>Barang Keluar</a>
-            </li>
-            <li class="{{ request()->routeIs('users') ? 'active' : '' }}">
-                <a href="{{ route('users') }}"><i class='bx bx-group'></i>Users</a>
-            </li>
-        </ul>        
-        <ul class="side-menu">
-            <li>
-                <div class="logout-container">
-                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="logout-link">
-                            <i class='bx bx-log-out-circle'></i>
-                            <span class="logout-text">Logout</span>
-                        </button>
-                    </form>
-                </div>
-            </li>
-        </ul>
+        <div class="logo">Inv<span class="logo1">entaris</span></div>
+            <ul class="side-menu">
+                <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}"><i class='bx bxs-dashboard'></i>Stok Barang</a>
+                </li>
+                <li class="{{ request()->routeIs('masuk') ? 'active' : '' }}">
+                    <a href="{{ route('masuk') }}"><i class='bx bx-arrow-to-left'></i>Barang Masuk</a>
+                </li>
+                <li class="{{ request()->routeIs('keluar') ? 'active' : '' }}">
+                    <a href="{{ route('keluar') }}"><i class='bx bx-arrow-to-right'></i>Barang Keluar</a>
+                </li>
+                <li class="{{ request()->routeIs('users') ? 'active' : '' }}">
+                    <a href="{{ route('users') }}"><i class='bx bx-group'></i>Users</a>
+                </li>
+            </ul>        
+            <ul class="side-menu">
+                <li>
+                    <div class="logout-container">
+                        <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="logout-link">
+                                <i class='bx bx-log-out-circle'></i>
+                                <span class="logout-text">Logout</span>
+                            </button>
+                        </form>
+                    </div>
+                </li>
+            </ul>
     </div>
     <!-- End of Sidebar -->
 
@@ -76,7 +68,7 @@
         <main>
             <div class="header">
                 <div class="left">
-                    <h1>Stok Barang</h1>
+                    <h1>Barang Masuk</h1>
                     
                 </div>
             </div>
@@ -111,6 +103,9 @@
                         <i class='bx bx-filter'></i>
                         <i class='bx bx-search'></i>
                     </div>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
+                        Tambah Barang
+                      </button>
                     <table>
                         <thead>
                             <tr>
@@ -132,12 +127,53 @@
                         </tbody>
                     </table>
                 </div>
+
+               
+
             </div>
+
         </main>
-    </div>  
-            
+
+    </div>
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
     
-    <script src="{{ asset('js/index.js') }}"></script>
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title">Tambahkan Barang</h4>
+              <!-- <button type="button" class="btn-close" id="closeModalButton">&times;</button> -->
+            </div>
+    
+            <!-- Modal body -->
+            <form action="" method="post">
+              <div class="modal-body">
+                <input type="text" name="kodebarang" placeholder="Kode Barang" class="form-control" required>
+                <br>
+                <input type="text" name="namabarang" placeholder="Nama Barang" class="form-control" required>
+                <br>
+                <input type="file" name="kodebarang" placeholder="Gambar" class="form-control" required>
+                <br>
+                <input type="text" name="deskripsi" placeholder="Deskripsi" class="form-control" required>
+                <br>
+                <input type="text" name="harga" placeholder="Harga" class="form-control" required>
+                <br>
+                <input type="number" name="jumlah" placeholder="Jumlah" class="form-control" required>
+                <br>
+                <button type="submit" class="btn btn-primary" name="addnewbarang">Tambah</button>
+              </div>
+            </form>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-close" id="closeModalButton">Close</button>
+            </div>
+    
+          </div>
+        </div>
+      </div>
+    
+    <script src="{{asset('js/index.js')}}"></script>
 </body>
 
 </html>
