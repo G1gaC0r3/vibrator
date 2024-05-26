@@ -15,7 +15,23 @@ class BarangController extends Controller
     public function index()
 {
     $barangs = Barang::all();
-    return view('masuk', compact('barangs'))->with('dashboard', view('dashboard', compact('barangs')));
+    $totalJumlah = Barang::sum('jumlah_barang');
+    return view('masuk', compact('barangs', 'totalJumlah'));
+}
+
+public function index1()
+{
+    $barangs = Barang::all();
+    $totalJumlah = Barang::sum('jumlah_barang');
+    return view('dashboard', compact('barangs', 'totalJumlah'));
+   
+}
+
+public function index2()
+{
+    $barangs = Barang::all();
+    $totalJumlah = Barang::sum('jumlah_barang');
+    return view('keluar', compact('barangs', 'totalJumlah'));
    
 }
 
