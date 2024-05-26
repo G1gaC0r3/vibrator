@@ -47,7 +47,7 @@
             <div class="logout-container">
                 <a href="logout.php" class="logout-link">
                     <i class='bx bx-log-out-circle'></i>
-                    Logout
+                    <span class="logout-text">Logout</span>
                 </a>
             </div>
         </ul>

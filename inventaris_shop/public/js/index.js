@@ -13,19 +13,27 @@ sideLinks.forEach(item => {
 document.addEventListener('DOMContentLoaded', (event) => {
     const menuBar = document.querySelector('.content nav .bx.bx-menu');
     const sideBar = document.querySelector('.sidebar');
+    const logoutLink = document.querySelector('.logout-text');
+    const Logo1 = document.querySelector('.logo1');
 
     // Check localStorage for sidebar state
     if (localStorage.getItem('sidebarState') === 'close') {
         sideBar.classList.add('close');
+        logoutLink.style.display = 'none';
+        Logo1.style.display = 'none';
     }
 
     menuBar.addEventListener('click', () => {
         sideBar.classList.toggle('close');
+        logoutLink.style.display = sideBar.classList.contains('close') ? 'none' : 'contents';
+        Logo1.style.display = sideBar.classList.contains('close') ? 'none' : 'flex';
         // Save the state in localStorage
         if (sideBar.classList.contains('close')) {
-            localStorage.setItem('sidebarState', 'close');
+            localStorage.setItem('sidebarState', 'close',);
+            localStorage.setItem('logo1State', 'close');
         } else {
             localStorage.removeItem('sidebarState');
+            localStorage.removeItem('logo1State', 'close');
         }
     });
 

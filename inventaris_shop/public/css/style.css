@@ -81,7 +81,7 @@ body{
     color: var(--primary);
     z-index: 500;
     padding-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 10px;
     /* padding-left: 50px; */
     box-sizing: content-box;
 }
@@ -179,7 +179,7 @@ body.dark-mode .sidebar .logo span {
 .logout-container {
     text-align: left;
     margin-top: 50px;
-    margin-left: 25px;
+    margin-left: 15px;
 }
 
 .logout-link {
@@ -772,5 +772,10 @@ body.dark-mode .sidebar .logo span {
     .content main .bottom-data .reminders .task-list{
         min-width: 340px;
     }
+
+    .hide-text {
+        display: contents;
+    }
+    
 
 }

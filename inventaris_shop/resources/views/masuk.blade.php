@@ -14,7 +14,7 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-            <div class="logo">Inv<span>entaris</span></div>
+        <div class="logo">Inv<span class="logo1">entaris</span></div>
             <ul class="side-menu">
                 <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <a href="{{ route('dashboard') }}"><i class='bx bxs-dashboard'></i>Stok Barang</a>
@@ -33,7 +33,7 @@
                 <div class="logout-container">
                     <a href="logout.php" class="logout-link">
                         <i class='bx bx-log-out-circle'></i>
-                        Logout
+                        <span class="logout-text">Logout</span>
                     </a>
                 </div>
             </ul>
