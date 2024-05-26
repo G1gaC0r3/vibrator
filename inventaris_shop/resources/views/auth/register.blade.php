@@ -9,6 +9,9 @@
 <body>
     <div class="register-container">
         <div class="register-form">
+            <div class="logo-container">
+                <img src="{{ asset('images/LOGO POLNES.png') }}" alt="Logo" class="logo">
+            </div>
             <h2>Register</h2>
             <form method="POST" action="{{ route('register') }}">
                 @csrf
