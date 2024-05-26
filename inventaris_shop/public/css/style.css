@@ -846,6 +846,7 @@ body.dark-mode .sidebar .logo span {
 
 .update-profile .btn-update {
     background-color: var(--primary);
+    border-radius: 8px;
     color: var(--light);
     cursor: pointer;
     transition: background-color 0.3s;

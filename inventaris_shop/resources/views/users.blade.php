@@ -29,12 +29,17 @@
             </li>
         </ul>        
         <ul class="side-menu">
-            <div class="logout-container">
-                <a href="logout.php" class="logout-link">
-                    <i class='bx bx-log-out-circle'></i>
-                    <span class="logout-text">Logout</span>
-                </a>
-            </div>
+            <li>
+                <div class="logout-container">
+                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="logout-link">
+                            <i class='bx bx-log-out-circle'></i>
+                            <span class="logout-text">Logout</span>
+                        </button>
+                    </form>
+                </div>
+            </li>
         </ul>
     </div>
     <!-- Main Content -->
@@ -51,8 +56,9 @@
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
             <a href="#" class="profile">
-                <img src="/images/logo.png" alt="">
+                <img src="{{ asset($profilePicture) }}" alt="" id="navbar-profile-picture">
             </a>
+            
         </nav>
         <!-- End of Navbar -->
 
@@ -86,7 +92,7 @@
                         <span class="image-preview__default-text">Preview Foto Profil</span>
                                        </div>
                     <button type="submit" class="btn-update">
-                        Update Profil
+                        Update Profile
                     </button>
                 </form>
             </div>
@@ -97,31 +103,5 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/index.js') }}"></script>
-    <script>
-        const profilePictureInput = document.getElementById('profile_picture');
-        const imagePreview = document.getElementById('imagePreview');
-        const imagePreviewImage = document.querySelector('.image-preview__image');
-        const imagePreviewDefaultText = document.querySelector('.image-preview__default-text');
-
-        profilePictureInput.addEventListener('change', function() {
-            the file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                imagePreviewDefaultText.style.display = 'none';
-                imagePreviewImage.style.display = 'block';
-
-                reader.addEventListener('load', function() {
-                    imagePreviewImage.setAttribute('src', this.result);
-                });
-
-                reader.readAsDataURL(file);
-            } else {
-                imagePreviewDefaultText.style.display = 'block';
-                imagePreviewImage.style.display = 'none';
-                imagePreviewImage.setAttribute('src', '');
-            }
-        });
-    </script>
-
     </body>
     </html>

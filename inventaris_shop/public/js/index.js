@@ -193,5 +193,31 @@ document.addEventListener('DOMContentLoaded', (event) => {
     });
 });
 
+const profilePictureInput = document.getElementById('profile_picture');
+const imagePreview = document.getElementById('imagePreview');
+const imagePreviewImage = document.querySelector('.image-preview__image');
+const imagePreviewDefaultText = document.querySelector('.image-preview__default-text');
+const navbarProfilePicture = document.getElementById('navbar-profile-picture');
+
+profilePictureInput.addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        imagePreviewDefaultText.style.display = 'none';
+        imagePreviewImage.style.display = 'block';
+
+        reader.addEventListener('load', function() {
+            imagePreviewImage.setAttribute('src', this.result);
+            navbarProfilePicture.setAttribute('src', this.result);
+        });
+
+        reader.readAsDataURL(file);
+    } else {
+        imagePreviewDefaultText.style.display = 'block';
+        imagePreviewImage.style.display = 'none';
+        imagePreviewImage.setAttribute('src', '');
+        navbarProfilePicture.setAttribute('src', '/images/logo.png'); // Fallback image
+    }
+});
 
 
