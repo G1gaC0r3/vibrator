@@ -70,15 +70,25 @@
                         <input type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
+                        <div class="form-group">
+                            <label for="phone">Nomor HP:</label>
+                            <input type="text" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="birthdate">Tanggal Lahir:</label>
+                            <input type="date" id="birthdate" name="birthdate" required>
+                        </div>
                         <label for="profile_picture">Foto Profil:</label>
                         <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
                     </div>
-                    <button type="submit" class="btn-update">Update Profil</button>
+                    <div class="image-preview" id="imagePreview">
+                        <img src="" alt="Image Preview" class="image-preview__image" style="display: none;">
+                        <span class="image-preview__default-text">Preview Foto Profil</span>
+                                       </div>
+                    <button type="submit" class="btn-update">
+                        Update Profil
+                    </button>
                 </form>
-                <div class="image-preview" id="imagePreview">
-                    <img src="" alt="Image Preview" class="image-preview__image">
-                    <span class="image-preview__default-text">Preview Foto Profil</span>
-                </div>
             </div>
         </div>
         <!-- End Form Update Profil -->
@@ -106,8 +116,8 @@
 
                 reader.readAsDataURL(file);
             } else {
-                imagePreviewDefaultText.style.display = null;
-                imagePreviewImage.style.display = null;
+                imagePreviewDefaultText.style.display = 'block';
+                imagePreviewImage.style.display = 'none';
                 imagePreviewImage.setAttribute('src', '');
             }
         });

@@ -787,51 +787,60 @@ body.dark-mode .sidebar .logo span {
     } 
 
 }
-
 .update-profile {
     background-color: var(--light);
-    padding: 10px; /* Mengurangi padding untuk mengurangi ruang kosong */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    margin-top: 30px;
+    margin-bottom: 20px;   
+    padding: 30px;
+    border-radius: 30px;
     display: flex;
-    justify-content: space-between;
-    max-width: 900px;
-    margin: 10px auto; /* Mengurangi margin untuk mengurangi ruang kosong */
-}
+    justify-content: center;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
 
 .update-profile h2 {
-    color: var(--dark);
+    color: var(--primary);
     text-align: center;
-    margin-bottom: 10px; /* Mengurangi margin untuk mengurangi ruang kosong */
+    margin-bottom: 25px;
     width: 100%;
+    font-size: 28px;
 }
 
 .update-profile form {
     display: grid;
-    grid-gap: 10px; /* Mengurangi grid-gap untuk mengurangi ruang kosong */
-    flex: 1;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    width: 100%;
 }
 
 .update-profile .form-group {
     display: flex;
     flex-direction: column;
+    margin-bottom: 15px;
 }
 
 .update-profile .form-group label {
-    font-size: 16px;
+    font-size: 18px;
     color: var(--dark);
-    margin-bottom: 3px; /* Mengurangi margin untuk mengurangi ruang kosong */
+    margin-bottom: 12px;
 }
 
 .update-profile .form-group input,
 .update-profile .form-group button {
-    padding: 8px; /* Mengurangi padding untuk mengurangi ruang kosong */
-    border-radius: 5px;
-    border: 1px solid var(--dark);
+    padding: 14px;
+    border-radius: 8px;
+    border: 2px solid var(--primary);
+    font-size: 16px;
 }
 
 .update-profile .form-group input[type="file"] {
-    border: none;
+    border: 2px dashed var(--primary);
+    background-color: var(--lighter);
+    padding: 12px;
+    text-align: center;
 }
 
 .update-profile .btn-update {
@@ -839,10 +848,16 @@ body.dark-mode .sidebar .logo span {
     color: var(--light);
     cursor: pointer;
     transition: background-color 0.3s;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 30px;
 }
 
 .update-profile .btn-update:hover {
-    background-color: var(--secondary);
+    background-color: var(--light-primary);
 }
 
 .update-profile .image-preview {
@@ -850,9 +865,19 @@ body.dark-mode .sidebar .logo span {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-left: 25px;
+    border: 2px solid var(--light-grey);
+    padding: 15px;
+    border-radius: 15px;
 }
 
 .update-profile .image-preview img {
     max-width: 100%;
-    border-radius: 8px;
+    border-radius: 15px;
+}
+
+.update-profile .image-preview .image-preview__default-text {
+    color: var(--dark-grey);
+    font-size: 18px;
+    font-style: italic;
 }
