@@ -15,7 +15,8 @@ class BarangController extends Controller
     public function index()
 {
     $barangs = Barang::all();
-    return view('masuk', compact('barangs'));
+    return view('masuk', compact('barangs'))->with('dashboard', view('dashboard', compact('barangs')));
+   
 }
 
 

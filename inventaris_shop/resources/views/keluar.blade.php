@@ -20,10 +20,10 @@
                 <a href="{{ route('dashboard') }}"><i class='bx bxs-dashboard'></i>Stok Barang</a>
             </li>
             <li class="{{ request()->routeIs('masuk') ? 'active' : '' }}">
-                <a href="{{ route('masuk') }}"><i class='bx bx-arrow-to-left'></i>Barang Masuk</a>
+                <a href="{{ route('masuk') }}"><i class='bx bx-arrow-to-left'></i>Input Barang</a>
             </li>
             <li class="{{ request()->routeIs('keluar') ? 'active' : '' }}">
-                <a href="{{ route('keluar') }}"><i class='bx bx-arrow-to-right'></i>Barang Keluar</a>
+                <a href="{{ route('keluar') }}"><i class='bx bx-arrow-to-right'></i>Edit Barang</a>
             </li>
             <li class="{{ request()->routeIs('users') ? 'active' : '' }}">
                 <a href="{{ route('users') }}"><i class='bx bx-group'></i>Users</a>
@@ -106,24 +106,26 @@
                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
                         Tambah Barang
                       </button>
-                    <table>
+                      <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Kode Barang</th>
+                                <th>ID Barang</th>
                                 <th>Nama Barang</th>
+                                <th>Jenis Barang</th>
                                 <th>Gambar</th>
-                                <th>Deskripsi</th>
                                 <th>Jumlah</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>231</td>
-                                <td>Iphone</td>
-                                <td></td>
-                                <td>Kurang Bagus</td>
-                                <td>53</td>
-                            </tr>
+                            @foreach($barangs as $barang)
+                                <tr>
+                                    <td>{{ $barang->id_barang }}</td>
+                                    <td>{{ $barang->nama_barang }}</td>
+                                    <td>{{ $barang->jenis_barang }}</td>
+                                    <td><img src="{{ asset('images/' . $barang->gambar_barang) }}" alt="{{ $barang->nama_barang }}" width="100"></td>
+                                    <td>{{ $barang->jumlah_barang }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
