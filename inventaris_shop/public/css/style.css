@@ -177,19 +177,28 @@ body.dark-mode .sidebar .logo span {
 }
 
 .logout-container {
-    text-align: left;
-    margin-top: 50px;
-    margin-left: 15px;
+    display: flex; /* Menggunakan flex untuk menyelaraskan item secara horizontal */
+    align-items: center; /* Menyelaraskan item secara vertikal */
+    margin-left: 5px; /* Mengurangi margin kiri lebih lanjut untuk menggeser lebih ke kiri */
 }
 
 .logout-link {
     color: #e40e0e;
     text-decoration: none;
     transition: color 0.3s ease;
+    font-size: 16px; 
+    font-weight: 500; 
+    background: none; 
+    border: none; 
+    padding: 0; 
+    font-family: 'Roboto', sans-serif; 
+    display: flex; 
+    align-items: center; 
+    gap: 10px; 
 }
 
 .logout-link:hover {
-    color: #ff8383; /* Change the color on hover if desired */
+    color: #ff8383; 
 }
 
 .content{
