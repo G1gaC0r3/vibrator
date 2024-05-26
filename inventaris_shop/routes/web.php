@@ -48,6 +48,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 }); 
 
-Route::resource('barang', BarangController::class);
-
 require __DIR__.'/auth.php';
