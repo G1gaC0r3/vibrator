@@ -166,7 +166,7 @@
                 <br>
                 <div class="form-group">
                     <label for="gambar_barang">Gambar Barang</label>
-                    <input type="file" name="gambar_barang" class="form-control" required>
+                    <input type="file" name="gambar_barang" class="form-control">
                 </div>
                 <br>
                 <div class="form-group">
