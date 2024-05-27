@@ -174,12 +174,11 @@
                 <button type="submit" class="btn btn-primary" name="addnewbarang">Edit</button>
             </div>
             </form>
-    
+
             <!-- Modal footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary btn-close" id="closeModalButton">Close</button>
             </div>
-    
           </div>
         </div>
       </div>
