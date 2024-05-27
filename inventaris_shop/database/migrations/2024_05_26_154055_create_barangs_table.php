@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id('id_barang');
             $table->string('nama_barang');
             $table->enum('jenis_barang', ['Pack', 'Botol', 'Kaleng', 'Saset']);
-            $table->string('gambar_barang');
-            $table->integer('jumlah_barang');
+            $table->string('gambar_barang')->nullable();
+            $table->integer('jumlah_barang')->nullable();
             $table->timestamps();
         });
     }

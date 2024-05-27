@@ -786,6 +786,8 @@ body.dark-mode .sidebar .logo span {
         display: contents;
     } 
 
+
+    /* users update */
 }
 .update-profile {
     background-color: var(--light);
@@ -863,7 +865,7 @@ body.dark-mode .sidebar .logo span {
 }
 
 .update-profile .image-preview {
-    flex: 1;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -871,14 +873,14 @@ body.dark-mode .sidebar .logo span {
     border: 2px solid var(--light-grey);
     padding: 15px;
     border-radius: 15px;
-    overflow: hidden; /* Menambahkan overflow hidden untuk memastikan gambar tidak melebihi border */
-    background-color: var(--lighter); /* Memberikan latar belakang yang lebih terang untuk menonjolkan area preview */
+    overflow: hidden; 
 }
 
 .update-profile .image-preview img {
-    max-width: 100%;
-    max-height: 100%; /* Menambahkan max-height untuk memastikan gambar tidak melebihi border */
+    max-width: 250px;
+    max-height: auto; /* Menambahkan max-height untuk memastikan gambar tidak melebihi border */
     border-radius: 15px;
+    margin: absolute;
 }
 
 .update-profile .image-preview .image-preview__default-text {

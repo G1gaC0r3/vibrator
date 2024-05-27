@@ -57,7 +57,7 @@ public function index2()
     $validatedData = $request->validate([
         'nama_barang' => 'required|string|max:255',
         'jenis_barang' => 'required|in:Pack,Botol,Kaleng,Saset',
-        'gambar_barang' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'gambar_barang' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'jumlah_barang' => 'required|integer',
     ]);
 
