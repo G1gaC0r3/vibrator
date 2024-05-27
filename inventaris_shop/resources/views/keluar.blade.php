@@ -114,6 +114,7 @@
                                 <th>Jenis Barang</th>
                                 <th>Gambar</th>
                                 <th>Jumlah</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -124,6 +125,9 @@
                                     <td>{{ $barang->jenis_barang }}</td>
                                     <td><img src="{{ asset('images/' . $barang->gambar_barang) }}" alt="{{ $barang->nama_barang }}" width="100"></td>
                                     <td>{{ $barang->jumlah_barang }}</td>
+                                    <td>
+                                        <a action="" method="POST"< <i class="fa-solid fa-pencil" style="color: blue"></i></a> | <a href = "#" <i class="fa-solid fa-eraser" style="color: red"></i> </a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
