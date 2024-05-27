@@ -33,6 +33,15 @@ document.addEventListener('DOMContentLoaded', function() {
         return isDarkMode ? darkColors : lightColors;
     }
 
+    // Fungsi untuk mendapatkan warna teks dan garis berdasarkan mode
+    function getTextColor() {
+        return localStorage.getItem('theme') === 'dark' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)';
+    }
+
+    function getGridColor() {
+        return localStorage.getItem('theme') === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)';
+    }
+
     // Mendapatkan warna yang akan digunakan
     var colors = getColors();
 
@@ -56,8 +65,29 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         options: {
             scales: {
+                x: {
+                    ticks: {
+                        color: getTextColor()
+                    },
+                    grid: {
+                        color: getGridColor()
+                    }
+                },
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        color: getTextColor()
+                    },
+                    grid: {
+                        color: getGridColor()
+                    }
+                }
+            },
+            plugins: {
+                legend: {
+                    labels: {
+                        color: getTextColor()
+                    }
                 }
             }
         }
