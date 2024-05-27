@@ -29,4 +29,17 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
+    /**
+     * Register middleware groups for the application.
+     *
+     * @var array
+     */
+    protected $middlewareGroups = [
+        'web' => [
+            // other middleware
+            \App\Http\Middleware\ShareProfilePicture::class,
+        ],
+    ];
 }
+

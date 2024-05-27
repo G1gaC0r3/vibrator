@@ -800,6 +800,7 @@ body.dark-mode .sidebar .logo span {
     margin-right: auto;
     gap: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
 
 .update-profile h2 {
     color: var(--primary);
@@ -811,7 +812,7 @@ body.dark-mode .sidebar .logo span {
 
 .update-profile form {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 2fr; /* Mengubah distribusi kolom untuk memberikan lebih banyak ruang untuk image preview */
     gap: 25px;
     width: 100%;
 }
@@ -845,6 +846,7 @@ body.dark-mode .sidebar .logo span {
 
 .update-profile .btn-update {
     background-color: var(--primary);
+    border-radius: 8px;
     color: var(--light);
     cursor: pointer;
     transition: background-color 0.3s;
@@ -869,10 +871,13 @@ body.dark-mode .sidebar .logo span {
     border: 2px solid var(--light-grey);
     padding: 15px;
     border-radius: 15px;
+    overflow: hidden; /* Menambahkan overflow hidden untuk memastikan gambar tidak melebihi border */
+    background-color: var(--lighter); /* Memberikan latar belakang yang lebih terang untuk menonjolkan area preview */
 }
 
 .update-profile .image-preview img {
     max-width: 100%;
+    max-height: 100%; /* Menambahkan max-height untuk memastikan gambar tidak melebihi border */
     border-radius: 15px;
 }
 
