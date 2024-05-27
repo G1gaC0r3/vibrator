@@ -5,23 +5,23 @@ document.addEventListener('DOMContentLoaded', function() {
     var labels = JSON.parse(document.getElementById('barangLabels').textContent);
     var data = JSON.parse(document.getElementById('barangData').textContent);
 
-    // Mendefinisikan warna-warna untuk light mode
+    // Mendefinisikan warna-warna untuk light mode dengan gradasi
     var lightColors = [
         'rgba(255, 99, 132, 0.8)',
         'rgba(54, 162, 235, 0.8)',
-        'rgba(255, 206, 86, 0.8)',
         'rgba(75, 192, 192, 0.8)',
+        'rgba(255, 206, 86, 0.8)',
         'rgba(153, 102, 255, 0.8)',
         'rgba(255, 159, 64, 0.8)',
         'rgba(201, 203, 207, 0.8)'
     ];
 
-    // Mendefinisikan warna-warna untuk dark mode
+    // Mendefinisikan warna-warna untuk dark mode dengan gradasi
     var darkColors = [
         'rgba(255, 99, 132, 1)',
         'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
         'rgba(75, 192, 192, 1)',
+        'rgba(255, 206, 86, 1)',
         'rgba(153, 102, 255, 1)',
         'rgba(255, 159, 64, 1)',
         'rgba(201, 203, 207, 1)'
@@ -51,6 +51,15 @@ document.addEventListener('DOMContentLoaded', function() {
         backgroundColors.push(colors[i % colors.length]);
     }
 
+    // Menambahkan efek gradasi ke setiap batang
+    var gradientBackgrounds = [];
+    backgroundColors.forEach(function(color, index) {
+        var gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, color);
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0.3)');
+        gradientBackgrounds.push(gradient);
+    });
+
     var chart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -58,8 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
             datasets: [{
                 label: 'Jumlah Barang',
                 data: data,
-                backgroundColor: backgroundColors,
-                borderColor: backgroundColors,
+                backgroundColor: gradientBackgrounds,
+                borderColor: colors,
                 borderWidth: 1
             }]
         },

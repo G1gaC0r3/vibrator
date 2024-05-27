@@ -60,8 +60,8 @@
             <i class='bx bx-menu'></i>
             <form action="#">
                 <div class="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
+                    {{-- <input type="search" placeholder="Search...">
+                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button> --}}
                 </div>
             </form>
             <input type="checkbox" id="theme-toggle" hidden>
@@ -83,7 +83,7 @@
             <div class="chart-container" style="position: relative; height:40vh; width:80vw">
                 <canvas id="barangChart"></canvas>
                 <!-- Elemen tersembunyi untuk menyimpan data -->
-                <div id="barangLabels" style="display: none;">{!! json_encode($barangs->pluck('nama_barang')) !!}</div>
+                <div id="barangLabels" style="display: none;">{!! json_encode($barangs->pluck('jenis_barang')) !!}</div>
                 <div id="barangData" style="display: none;">{!! json_encode($barangs->pluck('jumlah_barang')) !!}</div>
             </div>
             <!-- End of Bar Chart -->

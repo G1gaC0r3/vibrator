@@ -14,6 +14,18 @@
     --success: #388E3C;
     --light-success: #BBF7D0;
     --black : #0000;
+
+      /* Light mode colors */
+      --bg-light: #ffffff;
+      --text-light: #000000;
+      --border-light: #ddd;
+      --hover-light: #f1f1f1;
+  
+      /* Dark mode colors */
+      --bg-dark: var(--dark);
+      --text-dark: var(--light);
+      --border-dark: #555;
+      --hover-dark: #444;
 }
 
 *{
@@ -489,65 +501,63 @@ body.dark-mode .sidebar .logo span {
     flex-basis: 500px;
 }
 
-.content main .bottom-data .orders table{
+.content main .bottom-data .orders table {
     width: 100%;
     border-collapse: collapse;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
 }
 
-.content main .bottom-data .orders table th{
-    padding-bottom: 12px;
-    font-size: 13px;
+.content main .bottom-data .orders table th,
+.content main .bottom-data .orders table td {
+    padding: 12px;
     text-align: left;
-    border-bottom: 1px solid var(--grey);
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+    color: var(--text-color);
 }
 
-.content main .bottom-data .orders table td{
-    padding: 16px 0;
+.content main .bottom-data .orders table th {
+    background-color: var(--hover-color);
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
 }
 
-.content main .bottom-data .orders table tr td:first-child{
-    display: flex;
-    align-items: center;
-    grid-gap: 12px;
-    padding-left: 6px;
+.content main .bottom-data .orders table tr:hover {
+    background-color: var(--hover-color);
 }
 
-/* .content main .bottom-data .orders table td img{
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+.content main .bottom-data .orders table tr td img {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
     object-fit: cover;
-} */
-
-.content main .bottom-data .orders table tbody tr{
-    cursor: pointer;
-    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    display: block;
+    margin: auto;
 }
 
-.content main .bottom-data .orders table tbody tr:hover{
-    background: var(--grey);
-}
-
-.content main .bottom-data .orders table tr td .status{
-    font-size: 10px;
+.content main .bottom-data .orders table tr td .status {
+    font-size: 12px;
     padding: 6px 16px;
-    color: var(--light);
+    color: white;
     border-radius: 20px;
     font-weight: 700;
+    text-align: center;
 }
 
-.content main .bottom-data .orders table tr td .status.completed{
-    background: var(--success);
+.content main .bottom-data .orders table tr td .status.completed {
+    background-color: var(--success);
 }
 
-.content main .bottom-data .orders table tr td .status.process{
-    background: var(--primary);
+.content main .bottom-data .orders table tr td .status.process {
+    background-color: var(--primary);
 }
 
-.content main .bottom-data .orders table tr td .status.pending{
-    background: var(--warning);
+.content main .bottom-data .orders table tr td .status.pending {
+    background-color: var(--warning);
 }
-
 .content main .bottom-data .reminders{
     flex-grow: 1;
     flex-basis: 300px;
@@ -888,3 +898,6 @@ body.dark-mode .sidebar .logo span {
     font-size: 18px;
     font-style: italic;
 }
+
+/* mengatur tabel */
+
