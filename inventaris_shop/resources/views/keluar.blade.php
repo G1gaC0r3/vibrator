@@ -104,9 +104,6 @@
                         <i class='bx bx-filter'></i>
                         <i class='bx bx-search'></i>
                     </div>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
-                        Edit Barang
-                      </button>
                       <table class="table table-bordered">
                         <thead>
                             <tr>

@@ -41,7 +41,7 @@ Route::post('login', [LoginController::class, 'login']);
 
 //Data Table
 Route::post('masuk', [BarangController::class,'store'])->name('masuk');
-Route::get('/keluar/{$id}', [BarangController::class, 'edit'])->name('keluar');
+
 
 
 
