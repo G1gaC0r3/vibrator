@@ -22,21 +22,21 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-            <div class="logo">Inv<span class="logo1">entaris</span></div>
+        <div class="logo">Inv<span class="logo1">entaris</span></div>
         <ul class="side-menu">
-             <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                    <a href="{{ route('dashboard') }}"><i class='bx bxs-dashboard'></i>Stok Barang</a>
-                </li>
-                <li class="{{ request()->routeIs('masuk') ? 'active' : '' }}">
-                    <a href="{{ route('masuk') }}"><i class='bx bx-arrow-to-left'></i>Input Barang</a>
-                </li>
-                <li class="{{ request()->routeIs('keluar') ? 'active' : '' }}">
-                    <a href="{{ route('keluar') }}"><i class='bx bx-arrow-to-right'></i>Edit Barang</a>
-                </li>
-                <li class="{{ request()->routeIs('users') ? 'active' : '' }}">
-                    <a href="{{ route('users') }}"><i class='bx bx-group'></i>Users</a>
-                </li>
-        </ul>        
+            <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <a href="{{ route('dashboard') }}"><i class='bx bxs-dashboard'></i>Stok Barang</a>
+            </li>
+            <li class="{{ request()->routeIs('masuk') ? 'active' : '' }}">
+                <a href="{{ route('masuk') }}"><i class='bx bx-arrow-to-left'></i>Input Barang</a>
+            </li>
+            <li class="{{ request()->routeIs('keluar') ? 'active' : '' }}">
+                <a href="{{ route('keluar') }}"><i class='bx bx-arrow-to-right'></i>Edit Barang</a>
+            </li>
+            <li class="{{ request()->routeIs('users') ? 'active' : '' }}">
+                <a href="{{ route('users') }}"><i class='bx bx-group'></i>Users</a>
+            </li>
+        </ul>
         <ul class="side-menu">
             <li>
                 <div class="logout-container">
@@ -69,39 +69,25 @@
             <a href="#" class="profile">
                 <img src="{{ asset($profilePicture) }}" alt="" id="navbar-profile-picture">
             </a>
-            
         </nav>
-
         <!-- End of Navbar -->
 
         <main>
             <div class="header">
                 <div class="left">
-                    <h1>Stok Barang</h1>    
+                    <h1>Stok Barang</h1>
                 </div>
             </div>
 
-            <!-- Insights -->
-            <ul class="insights">
-                <li>
-                    <i class='bx bx-arrow-to-right' style="color: rgb(24, 141, 180);"></i>
-                    <span class="info">
-                        <h3>
-                            {{ $totalJumlah }}
-                        </h3>
-                        <p>Total Barang Masuk</p>
-                    </span>
-                </li>
-                <li><i class='bx bx-arrow-to-left' style="color: rgb(207, 164, 10);"></i>
-                    <span class="info">
-                        <h3>
-                            20
-                        </h3>
-                        <p>Total Barang Keluar</p>
-                    </span>
-                </li>
-            </ul>
-            <!-- End of Insights -->
+            <!-- Bar Chart -->
+            <div class="chart-container" style="position: relative; height:40vh; width:80vw">
+                <canvas id="barangChart"></canvas>
+                <!-- Elemen tersembunyi untuk menyimpan data -->
+                <div id="barangLabels" style="display: none;">{!! json_encode($barangs->pluck('nama_barang')->take(8)) !!}</div>
+                <div id="barangData" style="display: none;">{!! json_encode($barangs->pluck('jumlah_barang')->take(8)) !!}</div>
+            </div>
+            
+            <!-- End of Bar Chart -->
 
             <div class="bottom-data">
                 <div class="orders">
@@ -136,10 +122,12 @@
                 </div>
             </div>
         </main>
-    </div>  
-            
-    
-    <script src="{{ asset('js/index.js') }}"></script>
+    </div>
+
+    <!-- Sertakan Chart.js dan file chart.js -->
+    <script src="{{asset('js/index.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ asset('js/barchart.js') }}"></script>
 </body>
 
 </html>

@@ -624,6 +624,13 @@ body.dark-mode .sidebar .logo span {
     background-color: #007bff;
     border-color: #007bff;
   }
+
+  .btn-primary1 {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+    display: none;
+  }
   
   .btn-primary:hover {
     color: #fff;
