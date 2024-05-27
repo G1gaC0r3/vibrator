@@ -94,21 +94,12 @@ public function index2()
     public function edit($id)
 {
     $barang = Barang::findOrFail($id);
-    return view('barang.edit', compact('barang'));
+    return view('keluar', compact('barang')); 
 }
 
 public function update(Request $request, $id)
 {
-    $barang = Barang::findOrFail($id);
-
-    $barang->nama_barang = $request->input('nama_barang');
-    $barang->jenis_barang = $request->input('jenis_barang');
-    $barang->jumlah_barang = $request->input('jumlah_barang');
-    // Handle image upload if needed
-
-    $barang->save();
-
-    return redirect()->route('keluar')->with('success', 'Barang updated successfully');
+    
 }
 
 
