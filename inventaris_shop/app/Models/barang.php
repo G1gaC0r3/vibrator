@@ -13,7 +13,6 @@ class Barang extends Model
         'id_barang',
         'nama_barang',
         'jenis_barang',
-        'gambar_barang',
         'jumlah_barang',
     ];
     use HasFactory;

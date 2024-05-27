@@ -114,7 +114,6 @@
                                 <th>ID Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Jenis Barang</th>
-                                <th>Gambar</th>
                                 <th>Jumlah</th>
                             </tr>
                         </thead>
@@ -124,7 +123,6 @@
                                     <td>{{ $barang->id_barang }}</td>
                                     <td>{{ $barang->nama_barang }}</td>
                                     <td>{{ $barang->jenis_barang }}</td>
-                                    <td><img src="{{ asset('images/' . $barang->gambar_barang) }}" alt="{{ $barang->nama_barang }}" width="100"></td>
                                     <td>{{ $barang->jumlah_barang }}</td>
                                 </tr>
                             @endforeach
@@ -161,15 +159,13 @@
                         <option value="Pack">Pack</option>
                         <option value="Botol">Botol</option>
                         <option value="Kaleng">Kaleng</option>
-                        <option value="Saset">Saset</option>
+                        <option value="Pcs">Pcs</option>
+                        <option value="Box">Box</option>
+                        <option value="Lembar">Lembar</option>
+                        <option value="Unit">Unit</option>
                     </select>
                 </div>
-                <br>
-                <div class="form-group">
-                    <label for="gambar_barang">Gambar Barang</label>
-                    <input type="file" name="gambar_barang" class="form-control" nullable>
-                </div>
-                <br>
+
                 <div class="form-group">
                     <label for="jumlah_barang">Jumlah Barang</label>
                     <input type="number" name="jumlah_barang" placeholder="Jumlah Barang" class="form-control" required>

@@ -97,13 +97,12 @@
                         <i class='bx bx-filter'></i>
                         <i class='bx bx-search'></i>
                     </div>
-                    <table class="table table-bordered">
+                    <table>
                         <thead>
                             <tr>
                                 <th>ID Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Jenis Barang</th>
-                                <th>Gambar</th>
                                 <th>Jumlah</th>
                             </tr>
                         </thead>
@@ -113,7 +112,6 @@
                                     <td>{{ $barang->id_barang }}</td>
                                     <td>{{ $barang->nama_barang }}</td>
                                     <td>{{ $barang->jenis_barang }}</td>
-                                    <td><img src="{{ asset('images/' . $barang->gambar_barang) }}" alt="{{ $barang->nama_barang }}" width="100"></td>
                                     <td>{{ $barang->jumlah_barang }}</td>
                                 </tr>
                             @endforeach

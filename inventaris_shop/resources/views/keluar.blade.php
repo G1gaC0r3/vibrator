@@ -107,14 +107,14 @@
                     </div>
                     <button type="button" class="btn btn-primary1" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
                       </button>
-                    <table>
+                      <table>
                         <thead>
                             <tr>
                                 <th>ID Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Jenis Barang</th>
-                                <th>Gambar</th>
                                 <th>Jumlah</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,7 +123,6 @@
                                     <td>{{ $barang->id_barang }}</td>
                                     <td>{{ $barang->nama_barang }}</td>
                                     <td>{{ $barang->jenis_barang }}</td>
-                                    <td><img src="{{ asset('images/' . $barang->gambar_barang) }}" alt="{{ $barang->nama_barang }}" width="100"></td>
                                     <td>{{ $barang->jumlah_barang }}</td>
                                     <td>
                                         <a action="" method="POST"< <i class="fa-solid fa-pencil" style="color: blue"></i></a> | <a href = "#" <i class="fa-solid fa-eraser" style="color: red"></i> </a>
@@ -166,12 +165,7 @@
                         <option value="Saset">Saset</option>
                     </select>
                 </div>
-                <br>
-                <div class="form-group">
-                    <label for="gambar_barang">Gambar Barang</label>
-                    <input type="file" name="gambar_barang" class="form-control" nullable>
-                </div>
-                <br>
+              
                 <div class="form-group">
                     <label for="jumlah_barang">Jumlah Barang</label>
                     <input type="number" name="jumlah_barang" placeholder="Jumlah Barang" class="form-control" required>

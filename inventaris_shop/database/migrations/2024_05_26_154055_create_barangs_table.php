@@ -16,8 +16,7 @@ return new class extends Migration
         Schema::create('barangs', function (Blueprint $table) {
             $table->id('id_barang');
             $table->string('nama_barang');
-            $table->enum('jenis_barang', ['Pack', 'Botol', 'Kaleng', 'Saset']);
-            $table->string('gambar_barang')->nullable();
+            $table->enum('jenis_barang', ['Pack', 'Botol', 'Kaleng', 'Pcs', 'Box', 'Lembar', 'Unit']);
             $table->integer('jumlah_barang')->nullable();
             $table->timestamps();
         });
