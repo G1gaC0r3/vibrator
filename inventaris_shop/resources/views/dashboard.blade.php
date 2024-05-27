@@ -83,9 +83,10 @@
             <div class="chart-container" style="position: relative; height:40vh; width:80vw">
                 <canvas id="barangChart"></canvas>
                 <!-- Elemen tersembunyi untuk menyimpan data -->
-                <div id="barangLabels" style="display: none;">{!! json_encode($barangs->pluck('nama_barang')) !!}</div>
-                <div id="barangData" style="display: none;">{!! json_encode($barangs->pluck('jumlah_barang')) !!}</div>
+                <div id="barangLabels" style="display: none;">{!! json_encode($barangs->pluck('nama_barang')->take(8)) !!}</div>
+                <div id="barangData" style="display: none;">{!! json_encode($barangs->pluck('jumlah_barang')->take(8)) !!}</div>
             </div>
+            
             <!-- End of Bar Chart -->
 
             <div class="bottom-data">

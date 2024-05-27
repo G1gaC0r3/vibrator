@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mendapatkan data dari elemen HTML
     var labels = JSON.parse(document.getElementById('barangLabels').textContent);
     var data = JSON.parse(document.getElementById('barangData').textContent);
-
+    
     // Mendefinisikan warna-warna untuk light mode
     var lightColors = [
         'rgba(255, 99, 132, 0.8)',
