@@ -166,7 +166,7 @@
                 <br>
                 <div class="form-group">
                     <label for="gambar_barang">Gambar Barang</label>
-                    <input type="file" name="gambar_barang" class="form-control">
+                    <input type="file" name="gambar_barang" class="form-control" nullable>
                 </div>
                 <br>
                 <div class="form-group">
