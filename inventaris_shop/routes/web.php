@@ -22,6 +22,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('keluar/{id_barang}', [BarangController::class,'edit']);
+Route::post('masuk', [BarangController::class,'store']);
+Route::put('keluar/{id_barang}', [BarangController::class, 'update'])->name('keluar.update');
+Route::delete('keluar/{id_barang}', [BarangController::class, 'destroy'])->name('keluar.destroy');
+
+
+
+
+
 Route::get('/dashboard', [BarangController::class ,'index1'])
 ->name('dashboard')->middleware(['auth', 'verified']);
 
@@ -39,9 +48,9 @@ Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 
 //Data Table
-Route::post('masuk', [BarangController::class,'store'])->name('masuk');
-Route::resource("/edit", BarangController::class);
-Route::delete('/barang/{id}', [BarangController::class, 'destroy'])->name('barang.destroy');
+
+
+
 
 
 Route::middleware('auth')->group(function () {

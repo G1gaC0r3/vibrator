@@ -102,7 +102,7 @@
             </ul>
             <!-- resources/views/barang/edit.blade.php -->
 
-<form action="" method="POST">
+<form action="{{ route('barang.update', $barang->id) }}" method="POST">
     @csrf
     @method('PUT')
     <div class="modal-body">

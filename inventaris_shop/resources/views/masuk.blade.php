@@ -149,6 +149,10 @@
             <form action="{{ route('masuk') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
+                    <label for="id_barang">ID Barang</label>
+                    <input type="text" name="id_barang" placeholder="ID Barang" class="form-control" required>
+                </div>
+                <div class="form-group">
                     <label for="nama_barang">Nama Barang</label>
                     <input type="text" name="nama_barang" placeholder="Nama Barang" class="form-control" required>
                 </div>

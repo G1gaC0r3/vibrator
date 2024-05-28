@@ -15,5 +15,8 @@ class AppServiceProvider extends ServiceProvider
             $profilePicture = $user ? $user->profile_picture : 'images/logo.png';
             $view->with('profilePicture', $profilePicture);
         });
+
+        
     }
+    
 }
