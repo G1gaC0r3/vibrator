@@ -54,10 +54,7 @@
                 </div>
             </form>
             <input type="checkbox" id="theme-toggle" hidden>
-            <label for="theme-toggle" class="theme-toggle"></label>
-            <a href="#" class="profile">
-                <img src="" alt="" id="navbar-profile-picture">
-            </a>
+            <label for="theme-toggle" class="theme-toggle"></label>>
             
         </nav>      
         <!-- End CRUD Display -->

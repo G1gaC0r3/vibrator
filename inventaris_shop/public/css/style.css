@@ -939,13 +939,6 @@ body.dark-mode .content main .bottom-data .orders table {
     font-style: italic;
 }
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-/* mengatur tabel */
-=======
->>>>>>> d919f25499bfd20aaf6d837250bbdc39bac07b4f
 .updated-profiles {
     background-color: var(--light);
     margin-top: 30px;
@@ -996,7 +989,6 @@ body.dark-mode .content main .bottom-data .orders table {
     text-align: center;
     margin-top: 15px;
 }
->>>>>>> 2a02a5b3b9b37f9e304095566df9567d7466473c
 
 .saved-profile {
     background-color: var(--light);
@@ -1029,8 +1021,10 @@ body.dark-mode .content main .bottom-data .orders table {
 .table-saved th,
 .table-saved td {
     text-align: left;
-    padding: 15px; /* Diperbesar dari 8px menjadi 15px untuk memberikan jarak yang lebih */
+    padding: 15px; /* Diperbesar dari 15px menjadi 20px untuk memberikan jarak yang lebih rapih */
     border-bottom: 1px solid var(--light-grey);
+    letter-spacing: 1px; /* Menambahkan jarak antar huruf menjadi 2px */
+    vertical-align: middle; /* Menengahkan teks secara vertikal agar sejajar dengan foto profil */
 }
 
 .table-saved th {
