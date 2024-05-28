@@ -17,7 +17,7 @@ class BarangController extends Controller
 {
     $barangs = Barang::all();
     $totalJumlah = Barang::sum('jumlah_barang');
-    return view('masuk', compact('barangs', 'totalJumlah'));
+    return response()->view('masuk', compact('barangs', 'totalJumlah'));
 }
 
 public function index1()
@@ -45,7 +45,7 @@ public function index2()
      */
     public function create()
     {
-        return view("dashboard");
+        return response()->view("dashboard");
     }
 
     /**
@@ -58,7 +58,7 @@ public function index2()
 {
     $validatedData = $request->validate([
         'nama_barang' => 'required|string|max:255',
-        'jenis_barang' => 'required|in:Pack,Botol,Kaleng,Pcs,Box,Lembar,Unit',
+        'jenis_barang' => 'required|string|max:255',
         'jumlah_barang' => 'required|integer',
     ]);
 
@@ -97,7 +97,7 @@ public function update(Request $request, $id)
 {
     $validatedData = $request->validate([
         'nama_barang' => 'required|string|max:255',
-        'jenis_barang' => 'required|in:Pack,Botol,Kaleng,Saset',
+        'jenis_barang' => 'required|string|max:255',
         'jumlah_barang' => 'required|integer',
     ]);
 
@@ -111,7 +111,7 @@ public function update(Request $request, $id)
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy($id)
     {

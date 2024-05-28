@@ -155,16 +155,7 @@
                 <br>
                 <div class="form-group">
                     <label for="jenis_barang">Jenis Barang</label>
-                    <select name="jenis_barang" class="form-control" required>
-                        <option value="" disabled selected>Pilih Jenis Barang</option>
-                        <option value="Pack">Pack</option>
-                        <option value="Botol">Botol</option>
-                        <option value="Kaleng">Kaleng</option>
-                        <option value="Pcs">Pcs</option>
-                        <option value="Box">Box</option>
-                        <option value="Lembar">Lembar</option>
-                        <option value="Unit">Unit</option>
-                    </select>
+                    <input type="text" name="jenis_barang" id="jenis_barang" class="form-control" placeholder="Jenis Barang" required>
                 </div>
 
                 <div class="form-group">
@@ -191,4 +182,5 @@
     <script src="{{asset('js/searchDsc.js')}}"></script>
 </body>
 
+</html>
 </html>

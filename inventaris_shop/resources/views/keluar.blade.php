@@ -130,17 +130,15 @@
                                     <td>{{ $barang->jenis_barang }}</td>
                                     <td>{{ $barang->jumlah_barang }}</td>
                                     <td>
-                                        <a ><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
+                                        <a><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal" id="editButton{{ $barang->id }}">
                                             <i class="fa-solid fa-pencil" style="color: blue"></i>
-                                        </button>
-                                        </a>
+                                        </button></a>
                                         <form id="deleteForm{{ $barang->id }}" method="POST" action="{{ url('/barang/'.$barang->id) }}" accept-charset="UTF-8" style="display: inline;">
                                             @method('DELETE')
                                             @csrf
-                                            <a href="#" onclick="confirmDelete({{ $barang->id }})"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
+                                            <a href="#" onclick="confirmDelete({{ $barang->id }})"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteModal" id="deleteButton{{ $barang->id }}">
                                                 <i class="fa-solid fa-eraser" style="color: red"></i>
-                                                </button>
-                                            </a>
+                                            </button></a>
                                         </form>
                                     </td>
                                 </tr>
@@ -165,10 +163,11 @@
         }
     </script>
 
-      <script src="{{asset('js/index.js')}}"></script>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="{{asset('js/index.js')}}"></script>
       <script src="{{ asset('js/barchart.js') }}"></script>
       <script src="{{asset('js/searchDsc.js')}}"></script>
 </body>
 
+</html>
 </html>

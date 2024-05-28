@@ -9,20 +9,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mengambil data dari elemen HTML dan menggabungkan jumlah barang yang sama
     const rows = document.querySelectorAll('.table-bordered tbody tr');
     rows.forEach(row => {
-        const jenisBarang = row.cells[2].textContent;
-        const jumlahBarang = parseInt(row.cells[4].textContent);
+        const namaBarang = row.cells[2].textContent; // Assuming Nama_Barang is in the third cell
 
-        if (dataMap[jenisBarang]) {
-            dataMap[jenisBarang] += jumlahBarang;
+        if (dataMap[namaBarang]) {
+            dataMap[namaBarang] += 1; // Increment count of Nama_Barang
         } else {
-            dataMap[jenisBarang] = jumlahBarang;
+            dataMap[namaBarang] = 1; // Initialize count of Nama_Barang
         }
     });
 
     // Memasukkan data dari objek ke dalam array labels dan data
-    for (const jenisBarang in dataMap) {
-        labels.push(jenisBarang);
-        data.push(dataMap[jenisBarang]);
+    for (const namaBarang in dataMap) {
+        labels.push(namaBarang);
+        data.push(dataMap[namaBarang]);
     }
 
     const colorPalette = [
@@ -47,6 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function createChart(labels, data, colors, theme) {
         const ctx = document.getElementById('barangChart').getContext('2d');
+        const maxDataValue = Math.max(...data); // Calculate the maximum value in the data array
+
         return new Chart(ctx, {
             type: 'bar',
             data: {
@@ -60,16 +61,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 }]
             },
             options: {
+                maintainAspectRatio: false,
                 scales: {
                     y: {
                         beginAtZero: true,
+                        max: maxDataValue + 10, // Set max value slightly higher than the max data value for better visualization
                         ticks: {
-                            color: theme === 'dark-mode' ? 'white' : 'black'
+                            color: theme === 'dark-mode' ? 'black' : 'white'
                         }
                     },
                     x: {
                         ticks: {
-                            color: theme === 'dark-mode' ? 'white' : 'black'
+                            color: theme === 'dark-mode' ? 'black' : 'white'
                         }
                     }
                 }
@@ -78,8 +81,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateChartTheme(chart, theme) {
-        chart.options.scales.y.ticks.color = theme === 'dark-mode' ? 'white' : 'black';
-        chart.options.scales.x.ticks.color = theme === 'dark-mode' ? 'white' : 'black';
+        const textColor = theme === 'dark-mode' ? 'black' : 'white';
+        const gridColor = theme === 'dark-mode' ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)';
+
+        // Update ticks
+        chart.options.scales.y.ticks.color = textColor;
+        chart.options.scales.x.ticks.color = textColor;
+
+        // Update grid lines
+        chart.options.scales.y.grid.color = gridColor;
+        chart.options.scales.x.grid.color = gridColor;
+
+        // Optionally update legend and title if they exist
+        if (chart.options.plugins.legend) {
+            chart.options.plugins.legend.labels.color = textColor;
+        }
+        if (chart.options.plugins.title) {
+            chart.options.plugins.title.color = textColor;
+        }
+
+        // Update the chart to apply the new theme settings
         chart.update();
     }
 });
