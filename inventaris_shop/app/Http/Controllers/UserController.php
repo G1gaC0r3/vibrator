@@ -23,7 +23,7 @@ class UserController extends Controller
             'email' => 'required|email',
             'phone' => 'required',
             'birthdate' => 'required|date',
-            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'role_user' => 'required', // Menambahkan validasi untuk role_user
         ]);
 
         $user = Auth::user(); // mengganti $user menjadi $userP
@@ -31,12 +31,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->birthdate = $request->birthdate;
-
-        if ($request->hasFile('profile_picture')) {
-            $imageName = time().'.'.$request->profile_picture->extension();  
-            $request->profile_picture->move(public_path('images'), $imageName);
-            $user->profile_picture = $imageName;
-        }
+        $user->role_user = $request->role_user; // Menambahkan role_user ke data yang disimpan
 
         $user->save();
 
