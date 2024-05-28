@@ -1,95 +1,85 @@
 document.addEventListener('DOMContentLoaded', function() {
-    var ctx = document.getElementById('barangChart').getContext('2d');
+    const currentTheme = localStorage.getItem('theme') || 'light-mode';
+    document.body.classList.add(currentTheme);
 
-    // Mendapatkan data dari elemen HTML
-    var labels = JSON.parse(document.getElementById('barangLabels').textContent);
-    var data = JSON.parse(document.getElementById('barangData').textContent);
-    
-    // Mendefinisikan warna-warna untuk light mode
-    var lightColors = [
-        'rgba(255, 99, 132, 0.8)',
-        'rgba(54, 162, 235, 0.8)',
-        'rgba(255, 206, 86, 0.8)',
-        'rgba(75, 192, 192, 0.8)',
-        'rgba(153, 102, 255, 0.8)',
-        'rgba(255, 159, 64, 0.8)',
-        'rgba(201, 203, 207, 0.8)'
+    let dataMap = {}; // Objek untuk menyimpan jumlah barang berdasarkan jenis
+    let labels = []; // Array untuk menyimpan label jenis barang
+    let data = []; // Array untuk menyimpan jumlah barang
+
+    // Mengambil data dari elemen HTML dan menggabungkan jumlah barang yang sama
+    const rows = document.querySelectorAll('.table-bordered tbody tr');
+    rows.forEach(row => {
+        const jenisBarang = row.cells[2].textContent;
+        const jumlahBarang = parseInt(row.cells[4].textContent);
+
+        if (dataMap[jenisBarang]) {
+            dataMap[jenisBarang] += jumlahBarang;
+        } else {
+            dataMap[jenisBarang] = jumlahBarang;
+        }
+    });
+
+    // Memasukkan data dari objek ke dalam array labels dan data
+    for (const jenisBarang in dataMap) {
+        labels.push(jenisBarang);
+        data.push(dataMap[jenisBarang]);
+    }
+
+    const colorPalette = [
+        '#1abc9c', // Teal
+        '#e74c3c', // Coral
+        '#9b59b6', // Lavender
+        '#34495e', // Navy
+        '#f1c40f'  // Gold
     ];
 
-    // Mendefinisikan warna-warna untuk dark mode
-    var darkColors = [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-        'rgba(201, 203, 207, 1)'
-    ];
+    let chart = createChart(labels, data, colorPalette, currentTheme);
 
-    // Fungsi untuk mendapatkan warna berdasarkan mode
-    function getColors() {
-        const isDarkMode = localStorage.getItem('theme') === 'dark';
-        return isDarkMode ? darkColors : lightColors;
-    }
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+        document.body.classList.toggle('light-mode');
+        document.body.classList.toggle('dark-mode');
 
-    // Fungsi untuk mendapatkan warna teks dan garis berdasarkan mode
-    function getTextColor() {
-        return localStorage.getItem('theme') === 'dark' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)';
-    }
+        const newTheme = document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+        localStorage.setItem('theme', newTheme);
 
-    function getGridColor() {
-        return localStorage.getItem('theme') === 'dark' ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.1)';
-    }
+        updateChartTheme(chart, newTheme);
+    });
 
-    // Mendapatkan warna yang akan digunakan
-    var colors = getColors();
-
-    // Jika ada lebih banyak data daripada warna, ulangi warna
-    var backgroundColors = [];
-    for (var i = 0; i < data.length; i++) {
-        backgroundColors.push(colors[i % colors.length]);
-    }
-
-    var chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Jumlah Barang',
-                data: data,
-                backgroundColor: backgroundColors,
-                borderColor: backgroundColors,
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                x: {
-                    ticks: {
-                        color: getTextColor()
-                    },
-                    grid: {
-                        color: getGridColor()
-                    }
-                },
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: getTextColor()
-                    },
-                    grid: {
-                        color: getGridColor()
-                    }
-                }
+    function createChart(labels, data, colors, theme) {
+        const ctx = document.getElementById('barangChart').getContext('2d');
+        return new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Jumlah Barang',
+                    data: data,
+                    backgroundColor: colors,
+                    borderColor: colors,
+                    borderWidth: 1
+                }]
             },
-            plugins: {
-                legend: {
-                    labels: {
-                        color: getTextColor()
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: theme === 'dark-mode' ? 'white' : 'black'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: theme === 'dark-mode' ? 'white' : 'black'
+                        }
                     }
                 }
             }
-        }
-    });
+        });
+    }
+
+    function updateChartTheme(chart, theme) {
+        chart.options.scales.y.ticks.color = theme === 'dark-mode' ? 'white' : 'black';
+        chart.options.scales.x.ticks.color = theme === 'dark-mode' ? 'white' : 'black';
+        chart.update();
+    }
 });

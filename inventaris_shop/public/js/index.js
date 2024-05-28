@@ -41,17 +41,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const searchBtnIcon = document.querySelector('.content nav form .form-input button .bx');
     const searchForm = document.querySelector('.content nav form');
 
-    searchBtn.addEventListener('click', function (e) {
-        if (window.innerWidth < 576) {
-            e.preventDefault();
-            searchForm.classList.toggle('show');
-            if (searchForm.classList.contains('show')) {
-                searchBtnIcon.classList.replace('bx-search', 'bx-x');
-            } else {
-                searchBtnIcon.classList.replace('bx-x', 'bx-search');
-            }
-        }
-    });
 
     window.addEventListener('resize', () => {
         if (window.innerWidth < 768) {
@@ -65,6 +54,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
     });
 });
+
 
 
 // Mengatur tampilan layar
@@ -99,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     loadTheme();
 });
+
 
 // Mengatur Modal
 var modal = document.getElementById("myModal");
@@ -226,5 +217,23 @@ profilePictureInput.addEventListener('change', function() {
         imagePreviewImage.setAttribute('src', '');
         navbarProfilePicture.setAttribute('src', '/images/logo.png'); 
     }
+});
+
+// respon barchart untuk mode 
+
+// mengatur tabel 
+document.addEventListener('DOMContentLoaded', function() {
+    // Set the initial theme based on local storage or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light-mode';
+    document.body.classList.add(currentTheme);
+
+    // Toggle theme on button click
+    document.getElementById('theme-toggle').addEventListener('click', function() {
+        document.body.classList.toggle('light-mode');
+        document.body.classList.toggle('dark-mode');
+        
+        const newTheme = document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
+        localStorage.setItem('theme', newTheme);
+    });
 });
 

@@ -45,7 +45,7 @@ public function index2()
      */
     public function create()
     {
-        //
+        return view("dashboard");
     }
 
     /**
@@ -58,25 +58,13 @@ public function index2()
 {
     $validatedData = $request->validate([
         'nama_barang' => 'required|string|max:255',
-        'jenis_barang' => 'required|in:Pack,Botol,Kaleng,Saset',
-        'gambar_barang' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'jenis_barang' => 'required|in:Pack,Botol,Kaleng,Pcs,Box,Lembar,Unit',
         'jumlah_barang' => 'required|integer',
     ]);
 
-    // Handle the image upload
-    if ($request->hasFile('gambar_barang')) {
-        $image = $request->file('gambar_barang');
-        $imageName = time().'.'.$image->extension();
-        $image->move(public_path('images'), $imageName);
-        $validatedData['gambar_barang'] = $imageName;
-    }
-    else {
-        $validatedData['gambar_barang'] = 'images.jpeg';
-    }
-
     Barang::create($validatedData);
 
-    return redirect('dashboard')->with('success', 'Barang created successfully.');
+    return redirect('dashboard')->with('success', 'Barang Di Tambahkan!');
 }
 
     /**
@@ -87,7 +75,9 @@ public function index2()
      */
     public function show($id)
     {
-        //
+        $barang = barang::find($id);
+        
+        return view('dashboard')->with('barang', $barang);
     }
 
     /**
@@ -98,23 +88,22 @@ public function index2()
      */
     public function edit($id)
 {
-    $barang = Barang::findOrFail($id);
-    return view('keluar', compact('barang')); 
+    $barang = Barang::find($id);
+    return view('keluar', compact('barang'))
+    -> with('barang', $barang);
 }
 
 public function update(Request $request, $id)
 {
     $validatedData = $request->validate([
         'nama_barang' => 'required|string|max:255',
-        'jenis_barang' => 'required|in:Pack,Botol,Kaleng,Pcs,Buah,Lembar,Unit',
+        'jenis_barang' => 'required|in:Pack,Botol,Kaleng,Saset',
         'jumlah_barang' => 'required|integer',
     ]);
 
-    $barang = Barang::findOrFail($id);
+    Barang::create($validatedData);
 
-    $barang->update($validatedData);
-
-    return redirect()->route('masuk')->with('success', 'Barang updated successfully.');
+    return redirect()->route('masuk')->with('success', 'Barang Di Update!');
 }
 
 
@@ -126,6 +115,9 @@ public function update(Request $request, $id)
      */
     public function destroy($id)
     {
-        //
+        $barang = Barang::findOrFail($id);
+        $barang->delete();
+    
+        return redirect()->route('dashboard')->with('success', 'Barang deleted successfully');
     }
 }

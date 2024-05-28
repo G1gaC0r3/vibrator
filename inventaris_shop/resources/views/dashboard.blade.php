@@ -58,12 +58,7 @@
         <!-- Navbar -->
         <nav>
             <i class='bx bx-menu'></i>
-            <form action="#">
-                <div class="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
-                </div>
-            </form>
+            <form action="#"></form>
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
             @foreach($users as $user)
@@ -85,10 +80,9 @@
             <div class="chart-container" style="position: relative; height:40vh; width:80vw">
                 <canvas id="barangChart"></canvas>
                 <!-- Elemen tersembunyi untuk menyimpan data -->
-                <div id="barangLabels" style="display: none;">{!! json_encode($barangs->pluck('nama_barang')->take(8)) !!}</div>
-                <div id="barangData" style="display: none;">{!! json_encode($barangs->pluck('jumlah_barang')->take(8)) !!}</div>
+                <div id="barangLabels" style="display: none;">{!! json_encode($barangs->pluck('jenis_barang')) !!}</div>
+                <div id="barangData" style="display: none;">{!! json_encode($barangs->pluck('jumlah_barang')) !!}</div>
             </div>
-            
             <!-- End of Bar Chart -->
 
             <div class="bottom-data">
@@ -96,10 +90,15 @@
                     <div class="header">
                         <i class='bx bx-receipt'></i>
                         <h3>Daftar Barang</h3>
-                        <i class='bx bx-filter'></i>
-                        <i class='bx bx-search'></i>
+                        <div class="search-box">
+                            <input type="text" id="search-input" placeholder="Cari...">
+                            <i class='bx bx-search' id="search-icon"></i>
+                        </div>
+                        <div class="sortir">
+                            <i class='bx bx-filter' id="sort-icon"></i>
+                        </div>
                     </div>
-                    <table>
+                    <table class="table table-bordered" border="1" id="barang-table">
                         <thead>
                             <tr>
                                 <th>ID Barang</th>
@@ -114,6 +113,7 @@
                                     <td>{{ $barang->id_barang }}</td>
                                     <td>{{ $barang->nama_barang }}</td>
                                     <td>{{ $barang->jenis_barang }}</td>
+                                    <td></td>
                                     <td>{{ $barang->jumlah_barang }}</td>
                                 </tr>
                             @endforeach
@@ -128,6 +128,7 @@
     <script src="{{asset('js/index.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{ asset('js/barchart.js') }}"></script>
+    <script src="{{asset('js/searchDsc.js')}}"></script>
 </body>
 
 </html>
