@@ -57,7 +57,7 @@ public function index2()
     public function store(Request $request)
 {
     $validatedData = $request->validate([
-        'id_barang' => 'required|string|max:255|unique:barangs',
+        'id_barang' => 'required|int|max:10|unique:barangs',
         'nama_barang' => 'required|string|max:255',
         'jenis_barang' => 'required|string|max:255',
         'jumlah_barang' => 'required|integer',
@@ -98,7 +98,7 @@ public function index2()
 public function update(Request $request)
 {
     $validatedData = $request->validate([
-        'id_barang' => 'required|string|max:255|unique:barangs',
+        'id_barang' => 'required|int|max:10|unique:barangs',
         'nama_barang' => 'required|string|max:255',
         'jenis_barang' => 'required|string|max:255',
         'jumlah_barang' => 'required|integer',
