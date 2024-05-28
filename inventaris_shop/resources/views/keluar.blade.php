@@ -130,14 +130,16 @@
                                     <td>{{ $barang->jenis_barang }}</td>
                                     <td>{{ $barang->jumlah_barang }}</td>
                                     <td>
-                                        <a href="{{ url('/edit/'.$barang->id) }}">
+                                        <a ><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
                                             <i class="fa-solid fa-pencil" style="color: blue"></i>
+                                        </button>
                                         </a>
                                         <form id="deleteForm{{ $barang->id }}" method="POST" action="{{ url('/barang/'.$barang->id) }}" accept-charset="UTF-8" style="display: inline;">
                                             @method('DELETE')
                                             @csrf
-                                            <a href="#" onclick="confirmDelete({{ $barang->id }})">
+                                            <a href="#" onclick="confirmDelete({{ $barang->id }})"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
                                                 <i class="fa-solid fa-eraser" style="color: red"></i>
+                                                </button>
                                             </a>
                                         </form>
                                     </td>
