@@ -125,7 +125,15 @@
                                     <td>{{ $barang->jenis_barang }}</td>
                                     <td>{{ $barang->jumlah_barang }}</td>
                                     <td>
-                                        <a action="" method="POST"< <i class="fa-solid fa-pencil" style="color: blue"></i></a> | <a href = "#" <i class="fa-solid fa-eraser" style="color: red"></i> </a>
+                                        <a href="{{ route('barang.edit', $barang->id_barang) }}" method="GET">
+                                            <i class="fa-solid fa-pencil" style="color: blue"></i>
+                                        </a>
+                                        <form action="{{ route('barang.destroy', $barang->id_barang) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" style="border:none; background:none;">
+                                                <i class="fa-solid fa-eraser" style="color: red"></i>
+                                            </button>
                                     </td>
                                 </tr>
                             @endforeach
