@@ -160,7 +160,7 @@
                                         
                                             <button type="submit" class="btn btn-primary">Update</button>
                                         </form>
-                                        
+                                        {{ method_field('DELETE') }}
                                         {{ csrf_field() }}
                                         <a href="#" <i class="fa-solid fa-eraser" style="color: red"></i> </a>
                                     </td>
