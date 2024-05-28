@@ -102,12 +102,17 @@
                     <div class="header">
                         <i class='bx bx-receipt'></i>
                         <h3>Daftar Barang</h3>
-                        <i class='bx bx-filter'></i>
-                        <i class='bx bx-search'></i>
+                        <div class="search-box">
+                            <input type="text" id="search-input" placeholder="Cari...">
+                            <i class='bx bx-search' id="search-icon"></i>
+                        </div>
+                        <div class="sortir">
+                            <i class='bx bx-filter' id="sort-icon"></i>
+                        </div>
                     </div>
                     <button type="button" class="btn btn-primary1" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
                       </button>
-                      <table>
+                      <table class="table table-bordered" border="1" id="barang-table">
                         <thead>
                             <tr>
                                 <th>ID Barang</th>
@@ -221,7 +226,10 @@
         </div>
       </div>
     
-    <script src="{{asset('js/index.js')}}"></script>
+      <script src="{{asset('js/index.js')}}"></script>
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="{{ asset('js/barchart.js') }}"></script>
+      <script src="{{asset('js/searchDsc.js')}}"></script>
 </body>
 
 </html>
