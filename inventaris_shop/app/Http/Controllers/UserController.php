@@ -26,19 +26,19 @@ class UserController extends Controller
             'profile_picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $userP = Auth::user(); // mengganti $user menjadi $userP
-        $userP->name = $request->name;
-        $userP->email = $request->email;
-        $userP->phone = $request->phone;
-        $userP->birthdate = $request->birthdate;
+        $user = Auth::user(); // mengganti $user menjadi $userP
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->birthdate = $request->birthdate;
 
         if ($request->hasFile('profile_picture')) {
             $imageName = time().'.'.$request->profile_picture->extension();  
             $request->profile_picture->move(public_path('images'), $imageName);
-            $userP->profile_picture = $imageName;
+            $user->profile_picture = $imageName;
         }
 
-        $userP->save();
+        $user->save();
 
         return redirect()->back()->with('status', 'profile-updated');
     }
