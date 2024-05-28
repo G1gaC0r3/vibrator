@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Barang;
+use App\Models\User;
 use Illuminate\Http\Request;
 Use Illuminate\Http\Response;
 
@@ -22,8 +23,9 @@ class BarangController extends Controller
 public function index1()
 {
     $barangs = Barang::all();
+    $users = User::all(); // Fetch all users from the users table
     $totalJumlah = Barang::sum('jumlah_barang');
-    return view('dashboard', compact('barangs', 'totalJumlah'));
+    return view('dashboard', compact('barangs', 'totalJumlah', 'users'));
    
 }
 
