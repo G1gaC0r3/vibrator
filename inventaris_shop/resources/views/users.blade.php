@@ -89,9 +89,9 @@
             @endif
         </div>
 
-        <div class="saved-profiles">
-            <div>
-                <div>
+        <div class="update-profile">
+            <div class="form-and-preview" style="display: flex; justify-content: space-between; flex-direction:column">
+                <div style="display: flex; justify-content:center">
                     <h3>Data User</h3>
                 </div>
                 <table class="table-saved">
