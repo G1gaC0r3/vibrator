@@ -12,15 +12,9 @@ class fotoprofile extends Model
     protected $fillable = [
         'name',
         'email',
-        'password',
         'phone',
         'birthdate',
         'profile_picture'
-    ];
-
-    protected $hidden = [
-        'password',
-        'remember_token',
     ];
 
     protected $casts = [
