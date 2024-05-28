@@ -59,39 +59,71 @@
                 <img src="" alt="" id="navbar-profile-picture">
             </a>
             
-        </nav>
-        <!-- End of Navbar -->
-
-        <!-- CRUD Display -->
-        <div class="profile-updates" style="background-color: var(--light); margin-top: 30px; margin-bottom: 20px; padding: 30px; border-radius: 30px; display: flex; justify-content: center; max-width: 960px; margin-left: auto; margin-right: auto; gap: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <h2 style="color: var(--primary); font-weight: bold; margin-bottom: 15px; text-align: center;">Recent Profile Updates</h2>
-            <table style="width: 100%; border-collapse: collapse;">
-                <thead>
-                    <tr>
-                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Nama</th>
-                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Email</th>
-                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Nomor HP</th>
-                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Tanggal Lahir</th>
-                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Foto Profil</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;">Contoh Nama</td>
-                        <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;">contoh@email.com</td>
-                        <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;">08123456789</td>
-                        <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;">01-01-1990</td>
-                        <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;"><img src="" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%; display: block; margin: auto;"></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        </nav>      
         <!-- End CRUD Display -->
+        <div class="updated-profiles">
+            <h2>Profil Terbaru yang Diperbarui</h2>
+            @if(session('status') == 'profile-updated')
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Nomor HP</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Foto Profil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ Auth::user()->name }}</td>
+                            <td>{{ Auth::user()->email }}</td>
+                            <td>{{ Auth::user()->phone }}</td>
+                            <td>{{ \Carbon\Carbon::parse(Auth::user()->birthdate)->format('d-m-Y') }}</td>
+                            <td><img src="{{ asset('images/' . Auth::user()->profile_picture) }}" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%;"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            @else
+                <p>Belum ada profil yang diperbarui.</p>
+            @endif
+        </div>
+
+        <div class="update-profile">
+            <div class="form-and-preview" style="display: flex; justify-content: space-between; flex-direction:column">
+                <div style="display: flex; justify-content:center">
+                    <h3>Data User</h3>
+                </div>
+                <table class="table-saved">
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Nomor HP</th>
+                            <th>Tanggal Lahir</th>
+                            <td>Foto Profile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($users as $user)
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->phone }}</td>
+                                <td>{{ $user->birthdate }}</td>
+                                <td><img src="{{ asset('images/' . Auth::user()->profile_picture) }}" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%;"></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <!-- Form Update Profil -->
         <div class="update-profile">
             <div class="form-and-preview" style="display: flex; justify-content: space-between;">
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="{{ route('update-profile') }}" method="post" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group">
                         <label for="name">Nama:</label>
                         <input type="text" id="name" name="name" required>
@@ -130,3 +162,4 @@
     <script src="{{ asset('js/index.js') }}"></script>
     </body>
     </html>
+

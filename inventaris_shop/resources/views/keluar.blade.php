@@ -130,7 +130,44 @@
                                     <td>{{ $barang->jenis_barang }}</td>
                                     <td>{{ $barang->jumlah_barang }}</td>
                                     <td>
-                                        <a action="" method="POST"< <i class="fa-solid fa-pencil" style="color: blue"></i></a> | <a href = "#" <i class="fa-solid fa-eraser" style="color: red"></i> </a>
+                                        <a href="#" onclick="toggleForm({{ $barang->id }})">
+                                            <i class="fa-solid fa-pencil" style="color: blue"></i>
+                                        </a>
+                                        <form id="editForm{{ $barang->id }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('PUT')
+                                            <div class="form-group">
+                                                <label for="id_barang">ID Barang:</label>
+                                                <input type="text" id="id_barang" name="id_barang" value="{{ $barang->id_barang }}" class="form-control" readonly>
+                                            </div>
+                                        
+                                            <div class="form-group">
+                                                <label for="nama_barang">Nama Barang:</label>
+                                                <input type="text" id="nama_barang" name="nama_barang" value="{{ $barang->nama_barang }}" class="form-control">
+                                            </div>
+                                        
+                                            <div class="form-group">
+                                                <label for="jenis_barang">Jenis Barang:</label>
+                                                <select id="jenis_barang" name="jenis_barang" class="form-control">
+                                                    <option value="Pack" @if($barang->jenis_barang == 'Pack') selected @endif>Pack</option>
+                                                    <option value="Botol" @if($barang->jenis_barang == 'Botol') selected @endif>Botol</option>
+                                                    <option value="Kaleng" @if($barang->jenis_barang == 'Kaleng') selected @endif>Kaleng</option>
+                                                    <option value="Pcs" @if($barang->jenis_barang == 'Pcs') selected @endif>Pcs</option>
+                                                    <option value="Box" @if($barang->jenis_barang == 'Box') selected @endif>Box</option>
+                                                    <option value="Unit" @if($barang->jenis_barang == 'Unit') selected @endif>Unit</option>
+                                                </select>
+                                            </div>
+                                        
+                                            <div class="form-group">
+                                                <label for="jumlah_barang">Jumlah Barang:</label>
+                                                <input type="number" id="jumlah_barang" name="jumlah_barang" value="{{ $barang->jumlah_barang }}" class="form-control">
+                                            </div>
+                                        
+                                            <button type="submit" class="btn btn-primary">Update</button>
+                                        </form>
+                                        
+                                        {{ csrf_field() }}
+                                        <a href="#" <i class="fa-solid fa-eraser" style="color: red"></i> </a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -16,9 +16,8 @@ class ProfileController extends Controller
      */
     public function edit(Request $request): View
     {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
+        $userP = $request->user(); // Mendapatkan user yang sedang login
+        return view('profile.edit', ['userP' => $userP]); // Teruskan ke view
     }
 
     /**
@@ -57,4 +56,6 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
 }
+

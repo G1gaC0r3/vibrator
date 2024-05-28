@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Barang;
+use App\Models\User;
 use Illuminate\Http\Request;
 Use Illuminate\Http\Response;
 
@@ -22,8 +23,9 @@ class BarangController extends Controller
 public function index1()
 {
     $barangs = Barang::all();
+    $users = User::all(); // Fetch all users from the users table
     $totalJumlah = Barang::sum('jumlah_barang');
-    return view('dashboard', compact('barangs', 'totalJumlah'));
+    return view('dashboard', compact('barangs', 'totalJumlah', 'users'));
    
 }
 
@@ -43,7 +45,7 @@ public function index2()
      */
     public function create()
     {
-        //
+        return view("dashboard");
     }
 
     /**
@@ -56,13 +58,17 @@ public function index2()
 {
     $validatedData = $request->validate([
         'nama_barang' => 'required|string|max:255',
+<<<<<<< HEAD
         'jenis_barang' => 'required|in:Pack,Botol,Kaleng,Saset',
+=======
+        'jenis_barang' => 'required|in:Pack,Botol,Kaleng,Pcs,Box,Lembar,Unit',
+>>>>>>> 2a02a5b3b9b37f9e304095566df9567d7466473c
         'jumlah_barang' => 'required|integer',
     ]);
 
     Barang::create($validatedData);
 
-    return redirect('dashboard')->with('success', 'Barang created successfully.');
+    return redirect('dashboard')->with('success', 'Barang Di Tambahkan!');
 }
 
     /**
@@ -73,7 +79,9 @@ public function index2()
      */
     public function show($id)
     {
-        //
+        $barang = barang::find($id);
+        
+        return view('dashboard')->with('barang', $barang);
     }
 
     /**
@@ -84,23 +92,22 @@ public function index2()
      */
     public function edit($id)
 {
-    $barang = Barang::findOrFail($id);
-    return view('keluar', compact('barang')); 
+    $barang = Barang::find($id);
+    return view('keluar', compact('barang'))
+    -> with('barang', $barang);
 }
 
 public function update(Request $request, $id)
 {
     $validatedData = $request->validate([
         'nama_barang' => 'required|string|max:255',
-        'jenis_barang' => 'required|in:Pack,Botol,Kaleng,Pcs,Buah,Lembar,Unit',
+        'jenis_barang' => 'required|in:Pack,Botol,Kaleng,Saset',
         'jumlah_barang' => 'required|integer',
     ]);
 
-    $barang = Barang::findOrFail($id);
+    Barang::create($validatedData);
 
-    $barang->update($validatedData);
-
-    return redirect()->route('masuk')->with('success', 'Barang updated successfully.');
+    return redirect()->route('masuk')->with('success', 'Barang Di Update!');
 }
 
 
@@ -112,6 +119,7 @@ public function update(Request $request, $id)
      */
     public function destroy($id)
     {
-        //
+        Barang::destroy($id);
+        return redirect('keluar')->with('success','Barang Di Hapus!');
     }
 }

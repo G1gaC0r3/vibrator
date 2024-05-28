@@ -61,9 +61,11 @@
             <form action="#"></form>
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
-            <a href="#" class="profile">
-                <img src="{{ asset($profilePicture) }}" alt="" id="navbar-profile-picture">
-            </a>
+            @foreach($users as $user)
+            <li>
+                <img src="{{ asset($user->profile_picture) }}" alt="" id="profile_picture">
+            </li>
+        @endforeach
         </nav>
         <!-- End of Navbar -->
 
