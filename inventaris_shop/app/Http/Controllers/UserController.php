@@ -11,8 +11,8 @@ class UserController extends Controller
     // Menampilkan pengguna
     public function showUsers()
     {
-        $userP = Auth::user();
-        return view('users', ['userP' => $userP]);
+        $users = User::all(); // Ambil semua data user
+        return view('users', ['users' => $users]);
     }
 
     // Memperbarui profil pengguna

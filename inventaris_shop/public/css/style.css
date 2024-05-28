@@ -895,3 +895,44 @@ body.dark-mode .sidebar .logo span {
     font-size: 18px;
     font-style: italic;
 }
+
+.updated-profiles {
+    background-color: var(--light);
+    border: 1px solid var(--light-grey);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.updated-profiles h2 {
+    color: var(--primary);
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.updated-profiles table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.updated-profiles table th,
+.updated-profiles table td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.updated-profiles table th {
+    background-color: var(--lighter);
+    color: var(--dark);
+}
+
+.updated-profiles table tr:last-child td {
+    border-bottom: none;
+}
+
+.updated-profiles p {
+    color: var(--dark-grey);
+    font-size: 16px;
+    text-align: center;
+}

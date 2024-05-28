@@ -59,45 +59,35 @@
                 <img src="" alt="" id="navbar-profile-picture">
             </a>
             
-        </nav>
-        <!-- End of Navbar -->
-
-        <!-- CRUD Display -->
-        <div class="profile-updates" style="background-color: var(--light); margin-top: 30px; margin-bottom: 20px; padding: 30px; border-radius: 30px; display: flex; justify-content: center; max-width: 960px; margin-left: auto; margin-right: auto; gap: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+        </nav>      
+        <!-- End CRUD Display -->
+        <div class="updated-profiles">
+            <h2>Profil Terbaru yang Diperbarui</h2>
             @if(session('status') == 'profile-updated')
-                <div class="alert alert-success">
-                    Profil berhasil diperbarui.
-                </div>
-            @endif
-            @if(isset($userP) && $userP->updates)
-                <table style="width: 100%; border-collapse: collapse;">
-                    <caption style="color: var(--primary); font-weight: bold; margin-bottom: 15px; text-align: center;">Recent Profile Updates</caption>
+                <table class="table">
                     <thead>
                         <tr>
-                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Nama</th>
-                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Email</th>
-                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Nomor HP</th>
-                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Tanggal Lahir</th>
-                            <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Foto Profil</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Nomor HP</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Foto Profil</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($userP->updates as $update)
-                            <tr>
-                                <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;">{{ $update->name }}</td>
-                                <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;">{{ $update->email }}</td>
-                                <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;">{{ $update->phone }}</td>
-                                <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;">{{ $update->birthdate->format('d-m-Y') }}</td>
-                                <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;"><img src="{{ $update->profile_picture_url }}" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%; display: block; margin: auto;"></td>
-                            </tr>
-                        @endforeach
+                        <tr>
+                            <td>{{ Auth::user()->name }}</td>
+                            <td>{{ Auth::user()->email }}</td>
+                            <td>{{ Auth::user()->phone }}</td>
+                            <td>{{ \Carbon\Carbon::parse(Auth::user()->birthdate)->format('d-m-Y') }}</td>
+                            <td><img src="{{ asset('images/' . Auth::user()->profile_picture) }}" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%;"></td>
+                        </tr>
                     </tbody>
                 </table>
             @else
-                <p>Tidak ada data update profil.</p>
+                <p>Belum ada profil yang diperbarui.</p>
             @endif
         </div>
-        <!-- End CRUD Display -->
 
         <!-- Form Update Profil -->
         <div class="update-profile">
@@ -142,3 +132,4 @@
     <script src="{{ asset('js/index.js') }}"></script>
     </body>
     </html>
+
