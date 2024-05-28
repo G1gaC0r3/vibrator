@@ -2,10 +2,38 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentTheme = localStorage.getItem('theme') || 'light-mode';
     document.body.classList.add(currentTheme);
 
-    const labels = JSON.parse(document.getElementById('barangLabels').textContent);
-    const data = JSON.parse(document.getElementById('barangData').textContent);
+    let dataMap = {}; // Objek untuk menyimpan jumlah barang berdasarkan jenis
+    let labels = []; // Array untuk menyimpan label jenis barang
+    let data = []; // Array untuk menyimpan jumlah barang
 
-    let chart = createChart();
+    // Mengambil data dari elemen HTML dan menggabungkan jumlah barang yang sama
+    const rows = document.querySelectorAll('.table-bordered tbody tr');
+    rows.forEach(row => {
+        const jenisBarang = row.cells[2].textContent;
+        const jumlahBarang = parseInt(row.cells[4].textContent);
+
+        if (dataMap[jenisBarang]) {
+            dataMap[jenisBarang] += jumlahBarang;
+        } else {
+            dataMap[jenisBarang] = jumlahBarang;
+        }
+    });
+
+    // Memasukkan data dari objek ke dalam array labels dan data
+    for (const jenisBarang in dataMap) {
+        labels.push(jenisBarang);
+        data.push(dataMap[jenisBarang]);
+    }
+
+    const colorPalette = [
+        '#1abc9c', // Teal
+        '#e74c3c', // Coral
+        '#9b59b6', // Lavender
+        '#34495e', // Navy
+        '#f1c40f'  // Gold
+    ];
+
+    let chart = createChart(labels, data, colorPalette, currentTheme);
 
     document.getElementById('theme-toggle').addEventListener('click', function() {
         document.body.classList.toggle('light-mode');
@@ -17,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
         updateChartTheme(chart, newTheme);
     });
 
-    function createChart() {
+    function createChart(labels, data, colors, theme) {
         const ctx = document.getElementById('barangChart').getContext('2d');
         return new Chart(ctx, {
             type: 'bar',
@@ -26,8 +54,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 datasets: [{
                     label: 'Jumlah Barang',
                     data: data,
-                    backgroundColor: getChartColors(currentTheme),
-                    borderColor: getChartBorderColors(currentTheme),
+                    backgroundColor: colors,
+                    borderColor: colors,
                     borderWidth: 1
                 }]
             },
@@ -36,12 +64,12 @@ document.addEventListener('DOMContentLoaded', function() {
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            color: currentTheme === 'dark-mode' ? 'white' : 'black'
+                            color: theme === 'dark-mode' ? 'white' : 'black'
                         }
                     },
                     x: {
                         ticks: {
-                            color: currentTheme === 'dark-mode' ? 'white' : 'black'
+                            color: theme === 'dark-mode' ? 'white' : 'black'
                         }
                     }
                 }
@@ -49,17 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function getChartColors(theme) {
-        return theme === 'dark-mode' ? 'rgba(255, 99, 132, 0.8)' : 'rgba(54, 162, 235, 0.8)';
-    }
-
-    function getChartBorderColors(theme) {
-        return theme === 'dark-mode' ? 'rgba(255, 99, 132, 1)' : 'rgba(54, 162, 235, 1)';
-    }
-
     function updateChartTheme(chart, theme) {
-        chart.data.datasets[0].backgroundColor = getChartColors(theme);
-        chart.data.datasets[0].borderColor = getChartBorderColors(theme);
         chart.options.scales.y.ticks.color = theme === 'dark-mode' ? 'white' : 'black';
         chart.options.scales.x.ticks.color = theme === 'dark-mode' ? 'white' : 'black';
         chart.update();

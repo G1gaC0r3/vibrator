@@ -478,12 +478,42 @@ body.dark-mode .sidebar .logo span {
     padding: 24px;
     overflow-x: auto;
 }
+.content main .bottom-data .header .search-box {
+    position: relative;
+    width: 300px;
+}
+
+.content main .bottom-data .header .search-box input[type="text"] {
+    width: 100%;
+    padding: 8px 32px 8px 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.content main .bottom-data .header .search-box i.bx-search {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--dark);
+}
+
+.content main .bottom-data .header .search-box i.bx-search:hover {
+    color: var(--primary-color);
+}
+
+
 
 .content main .bottom-data .header{
     display: flex;
     align-items: center;
     grid-gap: 16px;
     margin-bottom: 24px;
+    padding-bottom: 8px; /* Tambahkan padding bawah agar terlihat lebih baik */
+    border-bottom: 1px solid var(--border-color);
 }
 
 .content main .bottom-data .header h3{
@@ -503,7 +533,8 @@ body.dark-mode .sidebar .logo span {
 
 .content main .bottom-data .orders table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
     border: 1px solid var(--border-color);
