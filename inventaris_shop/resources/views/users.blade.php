@@ -98,7 +98,6 @@
                             <th style="color: #696969;"><strong>Email</strong></th>
                             <th style="color: #696969;"><strong>Nomor HP</strong></th>
                             <th style="color: #696969;"><strong>Tanggal Lahir</strong></th>
-                            <td style="color: #696969;"><strong>Foto Profile</strong></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -108,7 +107,6 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone }}</td>
                                 <td>{{ $user->birthdate }}</td>
-                                <td><img src="{{ asset('images/' . Auth::user()->profile_picture) }}" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%;"></td>
                             </tr>
                         @endforeach
                     </tbody>
