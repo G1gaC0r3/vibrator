@@ -68,7 +68,7 @@
                             <th style="color: #696969;"><strong>Email</strong></th>
                             <th style="color: #696969;"><strong>Nomor HP</strong></th>
                             <th style="color: #696969;"><strong>Tanggal Lahir</strong></th>
-
+                            <th style="color: #696969;"><strong>Role</strong></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -76,6 +76,8 @@
                             <td>{{ Auth::user()->name }}</td>
                             <td>{{ Auth::user()->email }}</td>
                             <td>{{ Auth::user()->phone }}</td>
+                            <td>{{ Auth::user()->birthdate }}</td>
+                            <td>{{ Auth::user()->role_user }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -96,6 +98,7 @@
                             <th style="color: #696969;"><strong>Email</strong></th>
                             <th style="color: #696969;"><strong>Nomor HP</strong></th>
                             <th style="color: #696969;"><strong>Tanggal Lahir</strong></th>
+                            <th style="color: #696969;"><strong>Role</strong></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -105,6 +108,7 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone }}</td>
                                 <td>{{ $user->birthdate }}</td>
+                                <td>{{ $user->role_user }}</td>
                             </tr>
                         @endforeach
                     </tbody>
@@ -133,6 +137,13 @@
                         <div class="form-group">
                             <label for="birthdate">Tanggal Lahir:</label>
                             <input type="date" id="birthdate" name="birthdate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="role_user">Role:</label>
+                            <select id="role_user" name="role_user" required>
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
+                            </select>
                         </div>
                     <button type="submit" class="btn-update">
                         Update Profile

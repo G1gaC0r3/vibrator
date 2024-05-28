@@ -23,6 +23,7 @@ class UserController extends Controller
             'email' => 'required|email',
             'phone' => 'required',
             'birthdate' => 'required|date',
+            'role_user' => 'required', // Menambahkan validasi untuk role_user
         ]);
 
         $user = Auth::user(); // mengganti $user menjadi $userP
@@ -30,6 +31,7 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->birthdate = $request->birthdate;
+        $user->role_user = $request->role_user; // Menambahkan role_user ke data yang disimpan
 
         $user->save();
 
