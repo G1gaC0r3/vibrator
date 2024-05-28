@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let labels = []; // Array untuk menyimpan label jenis barang
     let data = []; // Array untuk menyimpan jumlah barang
 
-    // Mengambil data dari elemen HTML dan menggabungkan jumlah barang yang sama
+    // Mengambil data HTML dan menggabungkan jumlah barang yang sama
     const rows = document.querySelectorAll('.table-bordered tbody tr');
     rows.forEach(row => {
         const jenisBarang = row.cells[2].textContent;
@@ -19,21 +19,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // Memasukkan data dari objek ke dalam array labels dan data
+    
     for (const jenisBarang in dataMap) {
         labels.push(jenisBarang);
         data.push(dataMap[jenisBarang]);
     }
 
     const colorPalette = [
-        '#1abc9c', // Teal
-        '#e74c3c', // Coral
-        '#9b59b6', // Lavender
-        '#34495e', // Navy
-        '#f1c40f'  // Gold
+        '#3498db', // Blue
+        '#e74c3c', // Red
+        '#9b59b6', // Purple
+        '#f39c12', // Orange
+        '#2ecc71', // Green
+        '#e67e22', // Carrot
+        '#1abc9c', // Turquoise
+        '#34495e', // Navy Blue
+        '#f1c40f', // Yellow
+        '#e84393'  // Pink
     ];
 
-    let chart = createChart(labels, data, colorPalette, currentTheme);
+    let chart = createChart(labels, data, colorPalette);
 
     document.getElementById('theme-toggle').addEventListener('click', function() {
         document.body.classList.toggle('light-mode');
@@ -42,10 +47,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const newTheme = document.body.classList.contains('dark-mode') ? 'dark-mode' : 'light-mode';
         localStorage.setItem('theme', newTheme);
 
-        updateChartTheme(chart, newTheme);
+        updateChartTheme(chart);
     });
 
-    function createChart(labels, data, colors, theme) {
+    function createChart(labels, data, colors) {
         const ctx = document.getElementById('barangChart').getContext('2d');
         return new Chart(ctx, {
             type: 'bar',
@@ -60,16 +65,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 }]
             },
             options: {
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'darkgray' 
+                        }
+                    }
+                },
                 scales: {
                     y: {
                         beginAtZero: true,
                         ticks: {
-                            color: theme === 'dark-mode' ? 'white' : 'black'
+                            color: 'darkgray' 
                         }
                     },
                     x: {
                         ticks: {
-                            color: theme === 'dark-mode' ? 'white' : 'black'
+                            color: 'darkgray' 
                         }
                     }
                 }
@@ -77,9 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function updateChartTheme(chart, theme) {
-        chart.options.scales.y.ticks.color = theme === 'dark-mode' ? 'white' : 'black';
-        chart.options.scales.x.ticks.color = theme === 'dark-mode' ? 'white' : 'black';
+    function updateChartTheme(chart) {
         chart.update();
     }
 });

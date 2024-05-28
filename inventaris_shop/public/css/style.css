@@ -939,9 +939,7 @@ body.dark-mode .content main .bottom-data .orders table {
     font-style: italic;
 }
 
-<<<<<<< HEAD
-/* mengatur tabel */
-=======
+
 .updated-profiles {
     background-color: var(--light);
     margin-top: 30px;
@@ -992,5 +990,3 @@ body.dark-mode .content main .bottom-data .orders table {
     text-align: center;
     margin-top: 15px;
 }
->>>>>>> 2a02a5b3b9b37f9e304095566df9567d7466473c
-
