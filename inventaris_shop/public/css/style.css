@@ -945,3 +945,54 @@ body.dark-mode .sidebar .logo span {
     text-align: center;
     margin-top: 15px;
 }
+
+.saved-profiles {
+    background-color: var(--light);
+    margin-top: 30px;
+    margin-bottom: 20px;   
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.saved-profiles h3 {
+    color: var(--primary);
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.saved-profiles table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.saved-profiles table th,
+.saved-profiles table td {
+    text-align: center;
+    padding: 20px; // Jarak ditingkatkan dari 15px menjadi 20px
+    border-bottom: 1px solid var(--light-grey);
+}
+
+.saved-profiles table th {
+    background-color: var(--lighter);
+    color: var(--dark);
+}
+
+.saved-profiles table tr:last-child td {
+    border-bottom: none;
+}
+
+.saved-profiles p {
+    color: var(--dark-grey);
+    font-size: 16px;
+    text-align: center;
+    margin-top: 15px;
+}

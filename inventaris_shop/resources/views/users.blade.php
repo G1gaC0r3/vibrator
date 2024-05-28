@@ -89,19 +89,19 @@
             @endif
         </div>
 
-        <div class="updated-profiles">
+        <div class="saved-profiles">
             <div>
                 <div>
                     <h3>Data User</h3>
                 </div>
-                <table class="table">
+                <table class="table-saved">
                     <thead>
                         <tr>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Nomor HP</th>
                             <th>Tanggal Lahir</th>
-                            <td></th>
+                            <td>Foto Profile</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -111,7 +111,7 @@
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->phone }}</td>
                                 <td>{{ $user->birthdate }}</td>
-                                <td><img src="{{ asset($user->profile_picture) }}"></td>
+                                <td><img src="{{ asset('images/' . Auth::user()->profile_picture) }}" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%;"></td>
                             </tr>
                         @endforeach
                     </tbody>
