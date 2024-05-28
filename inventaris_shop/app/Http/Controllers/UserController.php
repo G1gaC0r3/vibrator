@@ -23,7 +23,6 @@ class UserController extends Controller
             'email' => 'required|email',
             'phone' => 'required',
             'birthdate' => 'required|date',
-            'profile_picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $user = Auth::user(); // mengganti $user menjadi $userP
@@ -31,12 +30,6 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->birthdate = $request->birthdate;
-
-        if ($request->hasFile('profile_picture')) {
-            $imageName = time().'.'.$request->profile_picture->extension();  
-            $request->profile_picture->move(public_path('images'), $imageName);
-            $user->profile_picture = $imageName;
-        }
 
         $user->save();
 
