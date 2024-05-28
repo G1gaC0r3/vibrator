@@ -89,6 +89,36 @@
             @endif
         </div>
 
+        <div class="bottom-data">
+            <div class="orders">
+                <div class="header">
+                    <h3>Data User</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Nomor HP</th>
+                            <th>Tanggal Lahir</th>
+                            <td></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($users as $user)
+                            <tr>
+                                <td>{{ $user->name }}</td>
+                                <td>{{ $user->email }}</td>
+                                <td>{{ $user->phone }}</td>
+                                <td>{{ $user->birthdate }}</td>
+                                <td><img src="{{ asset($user->profile_picture) }}"></td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <!-- Form Update Profil -->
         <div class="update-profile">
             <div class="form-and-preview" style="display: flex; justify-content: space-between;">
