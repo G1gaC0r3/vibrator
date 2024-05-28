@@ -507,13 +507,14 @@ body.dark-mode .sidebar .logo span {
     background-color: var(--bg-color);
     color: var(--text-color);
     border: 1px solid var(--border-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .content main .bottom-data .orders table th,
 .content main .bottom-data .orders table td {
     padding: 12px;
     text-align: left;
-    border-bottom: 1px solid var(--border-color);
+    border: 1px solid var(--border-color);
     vertical-align: middle;
     color: var(--text-color);
 }
@@ -557,6 +558,15 @@ body.dark-mode .sidebar .logo span {
 
 .content main .bottom-data .orders table tr td .status.pending {
     background-color: var(--warning);
+}
+
+/* Mengatur transisi saat pergantian mode */
+body.light-mode .content main .bottom-data .orders table {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .content main .bottom-data .orders table {
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.1);
 }
 .content main .bottom-data .reminders{
     flex-grow: 1;

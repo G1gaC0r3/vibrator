@@ -56,17 +56,42 @@
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
             <a href="#" class="profile">
-                <img src="{{ asset($profilePicture) }}" alt="" id="navbar-profile-picture">
+                <img src="" alt="" id="navbar-profile-picture">
             </a>
             
         </nav>
         <!-- End of Navbar -->
 
+        <!-- CRUD Display -->
+        <div class="profile-updates" style="background-color: var(--light); margin-top: 30px; margin-bottom: 20px; padding: 30px; border-radius: 30px; display: flex; justify-content: center; max-width: 960px; margin-left: auto; margin-right: auto; gap: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h2 style="color: var(--primary); font-weight: bold; margin-bottom: 15px; text-align: center;">Recent Profile Updates</h2>
+            <table style="width: 100%; border-collapse: collapse;">
+                <thead>
+                    <tr>
+                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Nama</th>
+                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Email</th>
+                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Nomor HP</th>
+                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Tanggal Lahir</th>
+                        <th style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--dark-grey); font-size: 16px;">Foto Profil</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;">Contoh Nama</td>
+                        <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;">contoh@email.com</td>
+                        <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;">08123456789</td>
+                        <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;">01-01-1990</td>
+                        <td style="padding: 12px; text-align: left; border-bottom: 1px solid var(--light-grey); color: var(--medium-grey); font-size: 14px;"><img src="" alt="Profile Picture" style="width: 50px; height: 50px; border-radius: 50%; display: block; margin: auto;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- End CRUD Display -->
+
         <!-- Form Update Profil -->
         <div class="update-profile">
             <div class="form-and-preview" style="display: flex; justify-content: space-between;">
-                <form action="{{ route('updateProfile') }}" method="post" enctype="multipart/form-data">
-                    @csrf
+                <form action="#" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">Nama:</label>
                         <input type="text" id="name" name="name" required>
@@ -90,7 +115,7 @@
                     <div class="image-preview" id="imagePreview">
                         <img src="" alt="Image Preview" class="image-preview__image" style="display: none;">
                         <span class="image-preview__default-text">Preview Foto Profil</span>
-                                       </div>
+                    </div>
                     <button type="submit" class="btn-update">
                         Update Profile
                     </button>

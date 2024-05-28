@@ -58,12 +58,7 @@
         <!-- Navbar -->
         <nav>
             <i class='bx bx-menu'></i>
-            <form action="#">
-                <div class="form-input">
-                    {{-- <input type="search" placeholder="Search...">
-                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button> --}}
-                </div>
-            </form>
+            <form action="#"></form>
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
             <a href="#" class="profile">
@@ -96,7 +91,7 @@
                         <i class='bx bx-filter'></i>
                         <i class='bx bx-search'></i>
                     </div>
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" border="1">
                         <thead>
                             <tr>
                                 <th>ID Barang</th>
