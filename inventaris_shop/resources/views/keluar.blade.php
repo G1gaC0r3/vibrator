@@ -125,49 +125,21 @@
                         <tbody>
                             @foreach($barangs as $barang)
                                 <tr>
-                                    <td>{{ $barang->id_barang }}</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $barang->nama_barang }}</td>
                                     <td>{{ $barang->jenis_barang }}</td>
                                     <td>{{ $barang->jumlah_barang }}</td>
                                     <td>
-                                        <a href="#" onclick="toggleForm({{ $barang->id }})">
+                                        <a href="{{ url('/edit/'.$barang->id) }}">
                                             <i class="fa-solid fa-pencil" style="color: blue"></i>
                                         </a>
-                                        <form id="editForm{{ $barang->id }}" method="POST" style="display: none;">
+                                        <form id="deleteForm{{ $barang->id }}" method="POST" action="{{ url('/barang/'.$barang->id) }}" accept-charset="UTF-8" style="display: inline;">
+                                            @method('DELETE')
                                             @csrf
-                                            @method('PUT')
-                                            <div class="form-group">
-                                                <label for="id_barang">ID Barang:</label>
-                                                <input type="text" id="id_barang" name="id_barang" value="{{ $barang->id_barang }}" class="form-control" readonly>
-                                            </div>
-                                        
-                                            <div class="form-group">
-                                                <label for="nama_barang">Nama Barang:</label>
-                                                <input type="text" id="nama_barang" name="nama_barang" value="{{ $barang->nama_barang }}" class="form-control">
-                                            </div>
-                                        
-                                            <div class="form-group">
-                                                <label for="jenis_barang">Jenis Barang:</label>
-                                                <select id="jenis_barang" name="jenis_barang" class="form-control">
-                                                    <option value="Pack" @if($barang->jenis_barang == 'Pack') selected @endif>Pack</option>
-                                                    <option value="Botol" @if($barang->jenis_barang == 'Botol') selected @endif>Botol</option>
-                                                    <option value="Kaleng" @if($barang->jenis_barang == 'Kaleng') selected @endif>Kaleng</option>
-                                                    <option value="Pcs" @if($barang->jenis_barang == 'Pcs') selected @endif>Pcs</option>
-                                                    <option value="Box" @if($barang->jenis_barang == 'Box') selected @endif>Box</option>
-                                                    <option value="Unit" @if($barang->jenis_barang == 'Unit') selected @endif>Unit</option>
-                                                </select>
-                                            </div>
-                                        
-                                            <div class="form-group">
-                                                <label for="jumlah_barang">Jumlah Barang:</label>
-                                                <input type="number" id="jumlah_barang" name="jumlah_barang" value="{{ $barang->jumlah_barang }}" class="form-control">
-                                            </div>
-                                        
-                                            <button type="submit" class="btn btn-primary">Update</button>
+                                            <a href="#" onclick="confirmDelete({{ $barang->id }})">
+                                                <i class="fa-solid fa-eraser" style="color: red"></i>
+                                            </a>
                                         </form>
-                                        {{ method_field('DELETE') }}
-                                        {{ csrf_field() }}
-                                        <a href="#" <i class="fa-solid fa-eraser" style="color: red"></i> </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -179,53 +151,18 @@
         </main>
 
     </div>
-    <div class="modal" id="myModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
+   
     
-            <!-- Modal Header -->
-            <div class="modal-header">
-              <h4 class="modal-title">Tambahkan Barang</h4>
-              <!-- <button type="button" class="btn-close" id="closeModalButton">&times;</button> -->
-            </div>
+
     
-            <!-- Modal body -->
-            <form action="{{ route('masuk') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="form-group">
-                    <label for="nama_barang">Nama Barang</label>
-                    <input type="text" name="nama_barang" placeholder="Nama Barang" class="form-control" required>
-                </div>
-                <br>
-                <div class="form-group">
-                    <label for="jenis_barang">Jenis Barang</label>
-                    <select name="jenis_barang" class="form-control" required>
-                        <option value="" disabled selected>Pilih Jenis Barang</option>
-                        <option value="Pack">Pack</option>
-                        <option value="Botol">Botol</option>
-                        <option value="Kaleng">Kaleng</option>
-                        <option value="Saset">Saset</option>
-                    </select>
-                </div>
-              
-                <div class="form-group">
-                    <label for="jumlah_barang">Jumlah Barang</label>
-                    <input type="number" name="jumlah_barang" placeholder="Jumlah Barang" class="form-control" required>
-                </div>
-                <br>
-                <button type="submit" class="btn btn-primary">Tambah</button>
-            </form>
-            
-    
-            <!-- Modal footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary btn-close" id="closeModalButton">Close</button>
-            </div>
-    
-          </div>
-        </div>
-      </div>
-    
+      <script>
+        function confirmDelete(id) {
+            if (confirm("Are you sure you want to delete?")) {
+                document.getElementById('deleteForm' + id).submit();
+            }
+        }
+    </script>
+
       <script src="{{asset('js/index.js')}}"></script>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script src="{{ asset('js/barchart.js') }}"></script>
