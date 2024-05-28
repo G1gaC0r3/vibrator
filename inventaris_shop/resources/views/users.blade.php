@@ -89,12 +89,12 @@
             @endif
         </div>
 
-        <div class="bottom-data">
-            <div class="orders">
-                <div class="header">
+        <div class="updated-profiles">
+            <div>
+                <div>
                     <h3>Data User</h3>
                 </div>
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Nama</th>
