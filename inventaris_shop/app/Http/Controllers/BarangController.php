@@ -95,19 +95,19 @@ public function index2()
     return view('keluar')->with('barang', $barang);
 }
 
-public function update(Request $request)
+public function update(Request $request, $id)
 {
     $validatedData = $request->validate([
-        'id_barang' => 'required|int|max:10|unique:barangs',
         'nama_barang' => 'required|string|max:255',
         'jenis_barang' => 'required|string|max:255',
         'jumlah_barang' => 'required|integer',
     ]);
 
-    Barang::create($validatedData);
+    Barang::where('id', $id)->update($validatedData);
 
-    return redirect()->route('masuk')->with('success', 'Barang Di Update!');
+    return redirect()->route('keluar')->with('success', 'Barang Di Update!');
 }
+
 
 
     /**

@@ -216,7 +216,7 @@
                         <input type="number" name="jumlah_barang" placeholder="Jumlah Barang" class="form-control" required>
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-primary-custom">Tambah</button>
+                    <button type="submit" class="btn btn-primary-custom">Edit</button>
                 </form>
                 <div class="custom-modal-footer">
                     <button type="button" class="btn-close-custom" id="closeCustomModalButton">Close</button>
