@@ -113,7 +113,6 @@
                                     <td>{{ $barang->id_barang }}</td>
                                     <td>{{ $barang->nama_barang }}</td>
                                     <td>{{ $barang->jenis_barang }}</td>
-                                    <td></td>
                                     <td>{{ $barang->jumlah_barang }}</td>
                                 </tr>
                             @endforeach
@@ -125,8 +124,8 @@
     </div>
 
     <!-- Sertakan Chart.js dan file chart.js -->
-    <script src="{{asset('js/index.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{asset('js/index.js')}}"></script>
     <script src="{{ asset('js/barchart.js') }}"></script>
     <script src="{{asset('js/searchDsc.js')}}"></script>
 </body>

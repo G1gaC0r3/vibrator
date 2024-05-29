@@ -110,8 +110,6 @@
                             <i class='bx bx-filter' id="sort-icon"></i>
                         </div>
                     </div>
-                    <button type="button" class="btn btn-primary1" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
-                      </button>
                       <table class="table table-bordered" border="1" id="barang-table">
                         <thead>
                             <tr>
@@ -125,25 +123,29 @@
                         <tbody>
                             @foreach($barangs as $barang)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $barang->id_barang }}</td>
                                     <td>{{ $barang->nama_barang }}</td>
                                     <td>{{ $barang->jenis_barang }}</td>
                                     <td>{{ $barang->jumlah_barang }}</td>
                                     <td>
-                                        <a ><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
-                                            <i class="fa-solid fa-pencil" style="color: blue"></i>
-                                        </button>
-                                        </a>
-                                        <form id="deleteForm{{ $barang->id }}" method="POST" action="{{ url('/barang/'.$barang->id) }}" accept-charset="UTF-8" style="display: inline;">
-                                            @method('DELETE')
+                                        <form method="POST" action="keluar/{{ $barang->id_barang }}">
                                             @csrf
-                                            <a href="#" onclick="confirmDelete({{ $barang->id }})"><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" id="openModalButton">
-                                                <i class="fa-solid fa-eraser" style="color: red"></i>
-                                                </button>
-                                            </a>
+                                            @method('PUT')
+                                            <button><a><i class="fa-solid fa-pencil" color="red" value='Update'></i></a>
+                                            </button>
                                         </form>
+                                        <form method="POST" action="keluar/{{ $barang->id_barang }}">
+                                            @csrf
+
+                                            @method('DELETE')
+                                            <button><a><i class="fa-solid fa-eraser" color="red" value='Delete'></i></a>
+                                            </button>
+                                        </form>
+
+
                                     </td>
                                 </tr>
+
                             @endforeach
                         </tbody>
                     </table>
@@ -165,10 +167,12 @@
         }
     </script>
 
-      <script src="{{asset('js/index.js')}}"></script>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script src="{{asset('js/index.js')}}"></script>
       <script src="{{ asset('js/barchart.js') }}"></script>
       <script src="{{asset('js/searchDsc.js')}}"></script>
 </body>
 
+</html>
+</html>
 </html>

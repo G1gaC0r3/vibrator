@@ -29,6 +29,9 @@
                 <div class="form-group">
                     <a href="{{ route('password.request') }}">Forgot Password?</a>
                 </div>
+                <div class="form-group">
+                    <a href="{{ url('register') }}">Buat Akun</a>
+                </div>
             </form>
         </div>
     </div>
