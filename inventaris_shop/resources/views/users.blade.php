@@ -54,10 +54,7 @@
                 </div>
             </form>
             <input type="checkbox" id="theme-toggle" hidden>
-            <label for="theme-toggle" class="theme-toggle"></label>
-            <a href="#" class="profile">
-                <img src="" alt="" id="navbar-profile-picture">
-            </a>
+            <label for="theme-toggle" class="theme-toggle"></label>>
             
         </nav>      
         <!-- End CRUD Display -->
@@ -67,11 +64,11 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Nomor HP</th>
-                            <th>Tanggal Lahir</th>
-                            <th>Foto Profil</th>
+                            <th style="color: #696969;"><strong>Nama</strong></th>
+                            <th style="color: #696969;"><strong>Email</strong></th>
+                            <th style="color: #696969;"><strong>Nomor HP</strong></th>
+                            <th style="color: #696969;"><strong>Tanggal Lahir</strong></th>
+                            <td style="color: #696969;"><strong>Foto Profile</strong></td>
                         </tr>
                     </thead>
                     <tbody>
@@ -89,7 +86,7 @@
             @endif
         </div>
 
-        <div class="update-profile">
+        <div class="saved-profile">
             <div class="form-and-preview" style="display: flex; justify-content: space-between; flex-direction:column">
                 <div style="display: flex; justify-content:center">
                     <h3>Data User</h3>
@@ -97,11 +94,11 @@
                 <table class="table-saved">
                     <thead>
                         <tr>
-                            <th>Nama</th>
-                            <th>Email</th>
-                            <th>Nomor HP</th>
-                            <th>Tanggal Lahir</th>
-                            <td>Foto Profile</th>
+                            <th style="color: #696969;"><strong>Nama</strong></th>
+                            <th style="color: #696969;"><strong>Email</strong></th>
+                            <th style="color: #696969;"><strong>Nomor HP</strong></th>
+                            <th style="color: #696969;"><strong>Tanggal Lahir</strong></th>
+                            <td style="color: #696969;"><strong>Foto Profile</strong></td>
                         </tr>
                     </thead>
                     <tbody>

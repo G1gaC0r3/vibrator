@@ -40,6 +40,9 @@ Route::post('login', [LoginController::class, 'login']);
 
 //Data Table
 Route::post('masuk', [BarangController::class,'store'])->name('masuk');
+Route::resource("/edit", BarangController::class);
+Route::delete('/barang/{id}', [BarangController::class, 'destroy'])->name('barang.destroy');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

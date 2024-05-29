@@ -838,7 +838,7 @@ body.dark-mode .content main .bottom-data .orders table {
     } 
 
 
-    /* users update */
+/* users update */
 }
 .update-profile {
     background-color: var(--light);
@@ -939,7 +939,6 @@ body.dark-mode .content main .bottom-data .orders table {
     font-style: italic;
 }
 
-
 .updated-profiles {
     background-color: var(--light);
     margin-top: 30px;
@@ -985,6 +984,59 @@ body.dark-mode .content main .bottom-data .orders table {
 }
 
 .updated-profiles p {
+    color: var(--dark-grey);
+    font-size: 16px;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.saved-profile {
+    background-color: var(--light);
+    margin-top: 30px;
+    margin-bottom: 20px;   
+    padding: 30px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    gap: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+.saved-profile h3 {
+    color: var(--primary);
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.saved-profile table-saved {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-saved th,
+.table-saved td {
+    text-align: left;
+    padding: 15px; /* Diperbesar dari 15px menjadi 20px untuk memberikan jarak yang lebih rapih */
+    border-bottom: 1px solid var(--light-grey);
+    letter-spacing: 1px; /* Menambahkan jarak antar huruf menjadi 2px */
+    vertical-align: middle; /* Menengahkan teks secara vertikal agar sejajar dengan foto profil */
+}
+
+.table-saved th {
+    background-color: var(--lighter);
+    color: var(--dark);
+}
+
+.table-saved tr:last-child td {
+    border-bottom: none;
+}
+
+.saved-profile p {
     color: var(--dark-grey);
     font-size: 16px;
     text-align: center;

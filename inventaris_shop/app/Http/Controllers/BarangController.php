@@ -115,7 +115,9 @@ public function update(Request $request, $id)
      */
     public function destroy($id)
     {
-        Barang::destroy($id);
-        return redirect('keluar')->with('success','Barang Di Hapus!');
+        $barang = Barang::findOrFail($id);
+        $barang->delete();
+    
+        return redirect()->route('dashboard')->with('success', 'Barang deleted successfully');
     }
 }
