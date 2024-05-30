@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Website Inventaris</title>
     <style>
-/* CSS code here */
 .content nav{
     height: 56px;
     background: var(--light);
@@ -35,17 +34,17 @@
 
 
 .saved-profile {
-    background-color: #ffffff; /* Background color for saved profile section */
+    background-color: #ffffff;
     padding: 15px;
     margin-top: 40px;
     margin-left: 20px;
     margin-right: 20px;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .form-and-preview {
-    margin-bottom: 20px; /* Add margin bottom to create space between table and other elements */
+    margin-bottom: 20px;
 }
 
 .table-saved {
@@ -55,12 +54,12 @@
 
 .table-header {
     font-weight: bold;
-    padding: 10px; /* Add padding to table headers */
-    background-color: #f0f0f0; /* Background color for table headers */
+    padding: 10px;
+    background-color: #f0f0f0;
 }
 
 .table-saved td {
-    padding: 10px; /* Add padding to table cells */
+    padding: 10px;
 }
 
 .btn-container {
@@ -74,8 +73,8 @@
 }
 
 .btn-danger {
-    background-color: #dc3545; /* Red color for delete button */
-    color: #fff; /* White text color */
+    background-color: #dc3545;
+    color: #fff;
 }
 
 .select-container {
@@ -89,8 +88,6 @@ select {
     border-radius: 3px;
     cursor: pointer;
 }
-
-/* Styling for debugging output */
 p {
     margin: 0;
 }
@@ -104,12 +101,15 @@ p {
     border: none;
     border-top: 1px solid #ccc;
 }
+.userrole {
+    text-align: center; 
+}
 
 .action-cell {
     display: flex;
-    justify-content: center; /* Menengahkan konten secara horizontal */
-    align-items: center; /* Menengahkan konten secara vertikal */
-    flex-direction: column; /* Menyusun konten secara vertikal */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
     </style>
 </head>
