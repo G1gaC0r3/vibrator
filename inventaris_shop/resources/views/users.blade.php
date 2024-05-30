@@ -123,28 +123,28 @@ p {
 .dark-mode .table-saved,
 .dark-mode .table-saved th,
 .dark-mode .table-saved td {
-    background-color: #333; 
-    color: #fff; 
+    background-color: #333; /* Warna latar belakang gelap */
+    color: #fff; /* Warna teks terang */
 }
 
 .dark-mode .form-and-preview {
-    background-color: #424242; 
-    color: #fff; 
+    background-color: #424242; /* Warna latar belakang gelap untuk form */
+    color: #fff; /* Warna teks terang */
 }
 
 .dark-mode .form-and-preview h3, .dark-mode .saved-profile h3 {
-    color: #e0e0e0; 
+    color: #e0e0e0; /* Warna teks terang untuk judul dalam mode gelap */
 }
 
 .dark-mode .saved-profile {
-    background-color: #333; 
-    color: #fff; 
+    background-color: #333; /* Warna latar belakang gelap untuk profil tersimpan */
+    color: #fff; /* Warna teks terang */
 }
 
 .dark-mode .table-header {
-    background-color: #555; 
-    color: #fff; 
-    border-bottom: 1px solid #666; 
+    background-color: #555; /* Warna latar belakang header yang lebih gelap */
+    color: #fff; /* Warna teks terang */
+    border-bottom: 1px solid #666; /* Menyesuaikan border dalam dark mode */
 }
     </style>
 </head>
