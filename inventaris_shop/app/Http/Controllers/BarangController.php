@@ -77,6 +77,7 @@ public function index2()
     public function show($id_barang)
     {
         $barang = barang::find($id_barang);
+        $totalJumlah = Barang::sum('jumlah_barang');
 
         
         return view('dashboard')->with('barang', $barang);
@@ -91,6 +92,7 @@ public function index2()
     public function edit($id_barang)
 {
     $barang = Barang::find($id_barang);
+    
 
     return view('keluar')->with('barang', $barang);
 }
@@ -103,9 +105,10 @@ public function update(Request $request, $id)
         'jumlah_barang' => 'required|integer',
     ]);
 
-    Barang::where('id', $id)->update($validatedData);
+    Barang::where('id_barang', $id)->update($validatedData);
 
     return redirect()->route('keluar')->with('success', 'Barang Di Update!');
+
 }
 
 

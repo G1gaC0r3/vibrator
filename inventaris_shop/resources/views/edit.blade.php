@@ -22,7 +22,11 @@
 
     <!-- Sidebar -->
     <div class="sidebar">
-            <div class="logo">Inv<span class="logo1">entaris</span></div>
+        <div class="logo">
+            <a href="{{ route('dashboard') }}" style="color: inherit; text-decoration: none;">
+                Inv<span class="logo1">entaris</span>
+            </a>
+        </div>
         <ul class="side-menu">
              <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <a href="{{ route('dashboard') }}"><i class='bx bxs-dashboard'></i>Stok Barang</a>
@@ -99,25 +103,7 @@
             </ul>
             <!-- resources/views/barang/edit.blade.php -->
 
-<form action="{{ route('barang.update', $barang->id) }}" method="POST">
-    @csrf
-    @method('PUT')
-    <div class="modal-body">
-        <input type="text" name="nama_barang" placeholder="Nama Barang" value="{{ $barang->nama_barang }}" class="form-control" required>
-        <br>
-        <select name="jenis_barang" class="form-control" required>
-            <option value="Pack" {{ $barang->jenis_barang == 'Pack' ? 'selected' : '' }}>Pack</option>
-            <option value="Botol" {{ $barang->jenis_barang == 'Botol' ? 'selected' : '' }}>Botol</option>
-            <option value="Kaleng" {{ $barang->jenis_barang == 'Kaleng' ? 'selected' : '' }}>Kaleng</option>
-            <option value="Saset" {{ $barang->jenis_barang == 'Saset' ? 'selected' : '' }}>Saset</option>
-        </select>
-        <br>
-        <input type="number" name="jumlah_barang" placeholder="Jumlah Barang" value="{{ $barang->jumlah_barang }}" class="form-control" required>
-        <br>
-        <!-- Add more fields as needed -->
-        <button type="submit" class="btn btn-primary">Update Barang</button>
-    </div>
-</form>
+
 
     
     <script src="{{ asset('js/index.js') }}"></script>
