@@ -32,6 +32,13 @@
     box-shadow: -20px -20px 0 var(--light);
 }
 
+.saved-profile h3 {
+    color: var(--primary);
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+    border: none; /* Memastikan tidak ada border */
+}
 
 .saved-profile {
     background-color: #ffffff;
@@ -56,6 +63,7 @@
     font-weight: bold;
     padding: 10px;
     background-color: #f0f0f0;
+    border-bottom: 1px solid #ccc; /* Menambahkan border bawah */
 }
 
 .table-saved td {
@@ -110,6 +118,33 @@ p {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+}
+
+.dark-mode .table-saved,
+.dark-mode .table-saved th,
+.dark-mode .table-saved td {
+    background-color: #333; /* Warna latar belakang gelap */
+    color: #fff; /* Warna teks terang */
+}
+
+.dark-mode .form-and-preview {
+    background-color: #424242; /* Warna latar belakang gelap untuk form */
+    color: #fff; /* Warna teks terang */
+}
+
+.dark-mode .form-and-preview h3, .dark-mode .saved-profile h3 {
+    color: #e0e0e0; /* Warna teks terang untuk judul dalam mode gelap */
+}
+
+.dark-mode .saved-profile {
+    background-color: #333; /* Warna latar belakang gelap untuk profil tersimpan */
+    color: #fff; /* Warna teks terang */
+}
+
+.dark-mode .table-header {
+    background-color: #555; /* Warna latar belakang header yang lebih gelap */
+    color: #fff; /* Warna teks terang */
+    border-bottom: 1px solid #666; /* Menyesuaikan border dalam dark mode */
 }
     </style>
 </head>
@@ -184,7 +219,6 @@ p {
                                         <button type="submit" class="btn-container btn-danger">Hapus</button>
                                     </form>
                                     <form method="POST" action="{{ route('setRole', $user->id) }}" style="display:inline;">
-                                        @csrf
                                         <div class="select-container">
                                             <select name="role" onchange="this.form.submit()">
                                                 <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>User</option>
@@ -214,15 +248,19 @@ p {
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const themeToggle = document.getElementById('theme-toggle');
-        const tableHeaders = document.querySelectorAll('.table-header');
+        const body = document.body; // Atau selector ke container utama lainnya
+
         const updateTheme = () => {
             const isDarkMode = themeToggle.checked;
-            tableHeaders.forEach(header => {
-                header.style.color = isDarkMode ? '#ffffff' : '#696969';
-            });
+            if (isDarkMode) {
+                body.classList.add('dark-mode');
+            } else {
+                body.classList.remove('dark-mode');
+            }
         };
+
         themeToggle.addEventListener('change', updateTheme);
-        updateTheme();
+        updateTheme(); // Memastikan tema diatur pada saat load
     });
 </script>
 </body>
