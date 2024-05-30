@@ -114,121 +114,6 @@ p {
     </style>
 </head>
 <body>
-<<<<<<< HEAD
-
- <div class="sidebar">
-    <div class="logo">
-        <a href="{{ route('dashboard') }}" style="color: inherit; text-decoration: none;">
-            Inv<span class="logo1">entaris</span>
-        </a>
-    </div>
-        <ul class="side-menu">
-            <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                <a href="{{ route('dashboard') }}"><i class='bx bxs-dashboard'></i>Stok Barang</a>
-            </li>
-            <li class="{{ request()->routeIs('masuk') ? 'active' : '' }}">
-                <a href="{{ route('masuk') }}"><i class='bx bx-arrow-to-left'></i>Input Barang</a>
-            </li>
-            <li class="{{ request()->routeIs('keluar') ? 'active' : '' }}">
-                <a href="{{ route('keluar') }}"><i class='bx bx-arrow-to-right'></i>Edit Barang</a>
-            </li>
-            <li class="{{ request()->routeIs('users') ? 'active' : '' }}">
-                <a href="{{ route('users') }}"><i class='bx bx-group'></i>Users</a>
-            </li>
-        </ul>        
-        <ul class="side-menu">
-            <li>
-                <div class="logout-container">
-                    <form id="logout-form" method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="logout-link">
-                            <i class='bx bx-log-out-circle'></i>
-                            <span class="logout-text">Logout</span>
-                        </button>
-                    </form>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <!-- Main Content -->
-    <div class="content">
-        <!-- Navbar -->
-        <nav>
-            <i class='bx bx-menu'></i>
-            <form action="#">
-                <div class="form-input">
-                    <input type="search" placeholder="Search...">
-                    <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
-                </div>
-            </form>
-            <input type="checkbox" id="theme-toggle" hidden>
-            <label for="theme-toggle" class="theme-toggle"></label>>
-            
-        </nav>      
-        <!-- End CRUD Display -->
-        <div class="updated-profiles">
-            <h2>Profil Terbaru yang Diperbarui</h2>
-            @if(session('status') == 'profile-updated')
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th style="color: #696969;"><strong>Nama</strong></th>
-                            <th style="color: #696969;"><strong>Email</strong></th>
-                            <th style="color: #696969;"><strong>Nomor HP</strong></th>
-                            <th style="color: #696969;"><strong>Tanggal Lahir</strong></th>
-                            <th style="color: #696969;"><strong>Role</strong></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ Auth::user()->name }}</td>
-                            <td>{{ Auth::user()->email }}</td>
-                            <td>{{ Auth::user()->phone }}</td>
-                            <td>{{ Auth::user()->birthdate }}</td>
-                            <td>{{ Auth::user()->role_user }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            @else
-                <p>Belum ada profil yang diperbarui.</p>
-            @endif
-        </div>
-
-        <div class="saved-profile">
-            <div class="form-and-preview" style="display: flex; justify-content: space-between; flex-direction:column">
-                <div style="display: flex; justify-content:center">
-                    <h3>Data User</h3>
-                </div>
-                <table class="table-saved">
-                    <thead>
-                        <tr>
-                            <th style="color: #696969;"><strong>Nama</strong></th>
-                            <th style="color: #696969;"><strong>Email</strong></th>
-                            <th style="color: #696969;"><strong>Nomor HP</strong></th>
-                            <th style="color: #696969;"><strong>Tanggal Lahir</strong></th>
-                            <th style="color: #696969;"><strong>Role</strong></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($users as $user)
-                            <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
-                                <td>{{ $user->phone }}</td>
-                                <td>{{ $user->birthdate }}</td>
-                                <td>{{ $user->role_user }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- Form Update Profil -->
-        <div class="update-profile">
-            <div class="form-and-preview" style="display: flex; justify-content: space-between;">
-                <form action="{{ route('update-profile') }}" method="post" enctype="multipart/form-data">
-=======
 <div class="sidebar">
     <div class="logo">Inv<span class="logo1">entaris</span></div>
     <ul class="side-menu">
@@ -249,7 +134,6 @@ p {
         <li>
             <div class="logout-container">
                 <form id="logout-form" method="POST" action="{{ route('logout') }}">
->>>>>>> 1e786ad2b6a84d3c35c5d6a9cdfbe9f468f1ca5c
                     @csrf
                     <button type="submit" class="logout-link">
                         <i class='bx bx-log-out-circle'></i>
