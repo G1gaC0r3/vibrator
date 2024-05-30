@@ -3,39 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class UserController extends Controller
 {
-    // Menampilkan pengguna
+    // Menampilkan semua pengguna yang ada di database
     public function showUsers()
     {
-        $users = User::all(); // Ambil semua data user
-        return view('users', ['users' => $users]);
+        $users = User::where('created_at', '<', now()->subDay())->get(); // Ambil data pengguna yang sudah ada sebelum hari ini
+        return view('users', ['users' => $users]); // Tampilkan semua pengguna
     }
 
-    // Memperbarui profil pengguna
-    public function updateProfile(Request $request)
+    // Menambahkan pengguna baru ke dalam database
+    public function addUser(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'birthdate' => 'required|date',
-            'role_user' => 'required', // Menambahkan validasi untuk role_user
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8'
         ]);
 
-        $user = Auth::user(); // mengganti $user menjadi $userP
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->birthdate = $request->birthdate;
-        $user->role_user = $request->role_user; // Menambahkan role_user ke data yang disimpan
+        $user = User::create([
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'password' => bcrypt($validatedData['password']),
+        ]);
 
-        $user->save();
+        return redirect()->route('users')->with('success', 'Pengguna baru berhasil ditambahkan.');
+    }
 
-        return redirect()->back()->with('status', 'profile-updated');
+    // Menghapus pengguna dari database
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('users')->with('success', 'Pengguna berhasil dihapus.');
     }
 }
-

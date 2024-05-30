@@ -57,35 +57,6 @@
             <label for="theme-toggle" class="theme-toggle"></label>>
             
         </nav>      
-        <!-- End CRUD Display -->
-        <div class="updated-profiles">
-            <h2>Profil Terbaru yang Diperbarui</h2>
-            @if(session('status') == 'profile-updated')
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th style="color: #696969;"><strong>Nama</strong></th>
-                            <th style="color: #696969;"><strong>Email</strong></th>
-                            <th style="color: #696969;"><strong>Nomor HP</strong></th>
-                            <th style="color: #696969;"><strong>Tanggal Lahir</strong></th>
-                            <th style="color: #696969;"><strong>Role</strong></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>{{ Auth::user()->name }}</td>
-                            <td>{{ Auth::user()->email }}</td>
-                            <td>{{ Auth::user()->phone }}</td>
-                            <td>{{ Auth::user()->birthdate }}</td>
-                            <td>{{ Auth::user()->role_user }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            @else
-                <p>Belum ada profil yang diperbarui.</p>
-            @endif
-        </div>
-
         <div class="saved-profile">
             <div class="form-and-preview" style="display: flex; justify-content: space-between; flex-direction:column">
                 <div style="display: flex; justify-content:center">
@@ -94,11 +65,10 @@
                 <table class="table-saved">
                     <thead>
                         <tr>
-                            <th style="color: #696969;"><strong>Nama</strong></th>
-                            <th style="color: #696969;"><strong>Email</strong></th>
-                            <th style="color: #696969;"><strong>Nomor HP</strong></th>
-                            <th style="color: #696969;"><strong>Tanggal Lahir</strong></th>
-                            <th style="color: #696969;"><strong>Role</strong></th>
+                            <th style="color: var(--text-color, #696969);"><strong>Nama</strong></th>
+                            <th style="color: var(--text-color, #696969);"><strong>Email</strong></th>
+                            <th style="color: var(--text-color, #696969);"><strong>Role</strong></th>
+                            <th style="color: var(--text-color, #696969);"><strong>Aksi</strong></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -106,57 +76,27 @@
                             <tr>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ $user->phone }}</td>
-                                <td>{{ $user->birthdate }}</td>
                                 <td>{{ $user->role_user }}</td>
+                                <td>
+                                    @if(auth()->user()->role_user == 'admin')
+                                        <form method="POST" action="{{ route('deleteUser', $user->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                        </form>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
-
-        <!-- Form Update Profil -->
-        <div class="update-profile">
-            <div class="form-and-preview" style="display: flex; justify-content: space-between;">
-                <form action="{{ route('update-profile') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group">
-                        <label for="name">Nama:</label>
-                        <input type="text" id="name" name="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <div class="form-group">
-                            <label for="phone">Nomor HP:</label>
-                            <input type="text" id="phone" name="phone" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="birthdate">Tanggal Lahir:</label>
-                            <input type="date" id="birthdate" name="birthdate" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="role_user">Role:</label>
-                            <select id="role_user" name="role_user" required>
-                                <option value="admin">Admin</option>
-                                <option value="user">User</option>
-                            </select>
-                        </div>
-                    <button type="submit" class="btn-update">
-                        Update Profile
-                    </button>
-                </form>
-            </div>
-        </div>
-        <!-- End Form Update Profil -->
-
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('js/index.js') }}"></script>
     </body>
     </html>
+
 
