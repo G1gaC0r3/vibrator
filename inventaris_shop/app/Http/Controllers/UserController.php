@@ -3,39 +3,43 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    // Menampilkan pengguna
+    // Menampilkan semua pengguna yang ada di database
     public function showUsers()
     {
-        $users = User::all(); // Ambil semua data user
-        return view('users', ['users' => $users]);
+        // Ambil data pengguna yang sudah ada sebelum hari ini
+        $users = User::where('created_at', '<', now()->subDay())->get();
+        
+        return view('users', ['users' => $users]); // Tampilkan semua pengguna
     }
 
-    // Memperbarui profil pengguna
-    public function updateProfile(Request $request)
+    // Menghapus pengguna dari database
+    public function deleteUser($id)
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'birthdate' => 'required|date',
-            'role_user' => 'required', // Menambahkan validasi untuk role_user
-        ]);
+        if (Auth::user()->role === 'admin') {
+            $user = User::findOrFail($id);
+            $user->delete();
+            return redirect()->route('users')->with('success', 'Pengguna berhasil dihapus.');
+        } else {
+            return redirect()->route('users')->with('error', 'Anda tidak memiliki izin untuk melakukan operasi ini.');
+        }
+    }
 
-        $user = Auth::user(); // mengganti $user menjadi $userP
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->phone = $request->phone;
-        $user->birthdate = $request->birthdate;
-        $user->role_user = $request->role_user; // Menambahkan role_user ke data yang disimpan
+    // Mengubah peran pengguna
+    public function setRole(Request $request, $id)
+    {
+        if (Auth::user()->role === 'admin') {
+            $user = User::findOrFail($id);
+            $user->role = $request->input('role');
+            $user->save();
 
-        $user->save();
-
-        return redirect()->back()->with('status', 'profile-updated');
+            return redirect()->route('users')->with('success', 'Role pengguna berhasil diubah.');
+        } else {
+            return redirect()->route('users')->with('error', 'Anda tidak memiliki izin untuk melakukan operasi ini.');
+        }
     }
 }
-
