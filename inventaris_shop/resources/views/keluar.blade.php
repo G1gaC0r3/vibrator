@@ -155,14 +155,14 @@
                     <i class='bx bx-arrow-to-right' style="color: rgb(24, 141, 180);"></i>
                     <span class="info">
                         <h3>{{ $totalJumlah }}</h3>
-                        <p>Total Barang Masuk</p>
+                        <p>Total Jumlah Seluruh</p>
                     </span>
                 </li>
                 <li>
                     <i class='bx bx-arrow-to-left' style="color: rgb(207, 164, 10);"></i>
                     <span class="info">
-                        <h3>20</h3>
-                        <p>Total Barang Keluar</p>
+                        <h3>{{ $totalBarang }}</h3>
+                        <p>Total Barang</p>
                     </span>
                 </li>
             </ul>
