@@ -4,40 +4,42 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
     // Menampilkan semua pengguna yang ada di database
     public function showUsers()
     {
-        $users = User::where('created_at', '<', now()->subDay())->get(); // Ambil data pengguna yang sudah ada sebelum hari ini
+        // Ambil data pengguna yang sudah ada sebelum hari ini
+        $users = User::where('created_at', '<', now()->subDay())->get();
+        
         return view('users', ['users' => $users]); // Tampilkan semua pengguna
-    }
-
-    // Menambahkan pengguna baru ke dalam database
-    public function addUser(Request $request)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8'
-        ]);
-
-        $user = User::create([
-            'name' => $validatedData['name'],
-            'email' => $validatedData['email'],
-            'password' => bcrypt($validatedData['password']),
-        ]);
-
-        return redirect()->route('users')->with('success', 'Pengguna baru berhasil ditambahkan.');
     }
 
     // Menghapus pengguna dari database
     public function deleteUser($id)
     {
-        $user = User::findOrFail($id);
-        $user->delete();
+        if (Auth::user()->role === 'admin') {
+            $user = User::findOrFail($id);
+            $user->delete();
+            return redirect()->route('users')->with('success', 'Pengguna berhasil dihapus.');
+        } else {
+            return redirect()->route('users')->with('error', 'Anda tidak memiliki izin untuk melakukan operasi ini.');
+        }
+    }
 
-        return redirect()->route('users')->with('success', 'Pengguna berhasil dihapus.');
+    // Mengubah peran pengguna
+    public function setRole(Request $request, $id)
+    {
+        if (Auth::user()->role === 'admin') {
+            $user = User::findOrFail($id);
+            $user->role = $request->input('role');
+            $user->save();
+
+            return redirect()->route('users')->with('success', 'Role pengguna berhasil diubah.');
+        } else {
+            return redirect()->route('users')->with('error', 'Anda tidak memiliki izin untuk melakukan operasi ini.');
+        }
     }
 }

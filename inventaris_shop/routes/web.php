@@ -43,6 +43,11 @@ Route::get('/keluar', [BarangController::class ,'index2'])
 
 Route::get('/users', [UserController::class, 'showUsers'])->middleware('auth')->name('users');
 
+Route::get('/users', [UserController::class, 'showUsers'])->name('users');
+Route::delete('/users/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
+Route::post('/users/set-role/{id}', [UserController::class, 'setRole'])->name('setRole');
+
+
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
@@ -58,7 +63,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/update-profile', [UserController::class, 'updateProfile'])->name('update-profile');
-}); 
+    Route::get('/users', [UserController::class, 'showUsers'])->name('users');
+    Route::delete('/users/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
+    Route::post('/users/set-role/{id}', [UserController::class, 'setRole'])->name('setRole');
+ 
+    });
 
 require __DIR__.'/auth.php';
+
+
 

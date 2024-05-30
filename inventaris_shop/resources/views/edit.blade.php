@@ -66,9 +66,6 @@
             </form>
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
-            <a href="#" class="profile">
-                <img src="{{ asset('images/profile.png') }}" alt="">
-            </a>
         </nav>
 
         <!-- End of Navbar -->
