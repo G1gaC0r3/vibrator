@@ -179,7 +179,7 @@
                                     <form method="POST" action="keluar/{{ $barang->id_barang }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button><a><i class="fa-solid fa-eraser" color="red" value='Delete'></i></a></button>
+                                        <button><a><i class="fa-solid fa-eraser" color="red" value='Delete'></i></a> Delete </button>
                                     </form>
                                 </td>
                             </tr>
@@ -234,8 +234,6 @@
 
             openModalButtons.forEach(function(button) {
                 button.onclick = function() {
-                    var idBarang = this.getAttribute('data-id');
-                    form.action = `keluar/${idBarang}`;
                     modal.style.display = "block";
                 }
             });
