@@ -208,13 +208,9 @@
                                     <form method="POST" action="keluar/{{ $barang->id_barang }}" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-<<<<<<< HEAD
-                                        <button><a><i class="fa-solid fa-eraser" color="red" value='Delete'></i></a> Delete </button>
-=======
                                         <button type="submit" class="button delete-button">
                                             <i class="fa-solid fa-eraser"></i> Delete
                                         </button>
->>>>>>> 3ad35f485d28a5b24b9b7452384826589dba60fe
                                     </form>
                                     
                                 </td>
@@ -234,7 +230,7 @@
                 <div class="custom-modal-header">
                     <h4 class="custom-modal-title">Tambahkan Barang</h4>
                 </div>
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form action="keluar/{{ $barang->id_barang }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
