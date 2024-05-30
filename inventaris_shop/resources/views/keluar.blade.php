@@ -208,9 +208,13 @@
                                     <form method="POST" action="keluar/{{ $barang->id_barang }}" style="display: inline;" class="form">
                                         @csrf
                                         @method('DELETE')
+<<<<<<< HEAD
+                                        <button><a><i class="fa-solid fa-eraser" color="red" value='Delete'></i></a> Delete </button>
+=======
                                         <button type="submit" class="button delete-button">
                                             <i class="fa-solid fa-eraser"></i> Delete
                                         </button>
+>>>>>>> 3ad35f485d28a5b24b9b7452384826589dba60fe
                                     </form>
                                     
                                 </td>
@@ -266,8 +270,6 @@
 
             openModalButtons.forEach(function(button) {
                 button.onclick = function() {
-                    var idBarang = this.getAttribute('data-id');
-                    form.action = `keluar/${idBarang}`;
                     modal.style.display = "block";
                 }
             });
