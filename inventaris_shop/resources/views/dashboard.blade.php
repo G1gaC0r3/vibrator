@@ -62,6 +62,7 @@
             <form action="#"></form>
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
+            <img src="{{ asset('images/LOGO POLNES.png') }}" alt="Profil" style="height: 30px; width: 30px; border-radius: 50%;">
             @foreach($users as $user)
         @endforeach
         </nav>
