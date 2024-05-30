@@ -30,9 +30,6 @@
                 <li class="{{ request()->routeIs('keluar') ? 'active' : '' }}">
                     <a href="{{ route('keluar') }}"><i class='bx bx-arrow-to-right'></i>Edit Barang</a>
                 </li>
-                <li class="{{ request()->routeIs('users') ? 'active' : '' }}">
-                    <a href="{{ route('users') }}"><i class='bx bx-group'></i>Users</a>
-                </li>
             </ul>        
             <ul class="side-menu">
                 <li>
