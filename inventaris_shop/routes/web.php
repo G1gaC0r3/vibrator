@@ -65,6 +65,12 @@ Route::middleware('auth')->group(function () {
  
     });
 
+    Route::middleware(['admin'])->group(function () {
+        Route::delete('/users/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
+        Route::post('/users/set-role/{id}', [UserController::class, 'setRole'])->name('setRole');
+    });
+    
+
 require __DIR__.'/auth.php';
 
 
