@@ -59,6 +59,34 @@
             border: none;
             cursor: pointer;
         }
+        .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 15px; /* Mengurangi padding untuk membuat tombol lebih kecil */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px; /* Mengurangi ukuran font untuk tombol lebih kecil */
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 10px; /* Memberikan jarak antara tombol */
+    width: 100px; /* Menetapkan lebar tetap yang lebih kecil */
+}
+
+.update-button {
+    background-color: #007bff; /* Biru modern */
+}
+
+.delete-button {
+    background-color: #dc3545; /* Merah modern */
+}
+
+.button i {
+    margin-right: 5px;
+    vertical-align: middle; /* Sejajarkan ikon dengan teks */
+}
     </style>
     <title>Website Inventaris</title>
 </head>
@@ -171,16 +199,20 @@
                                 <td>{{ $barang->jenis_barang }}</td>
                                 <td>{{ $barang->jumlah_barang }}</td>
                                 <td>
-                                    <form method="POST" action="keluar/{{ $barang->id_barang }}">
-                                        <button type="button" class="openCustomModalButton" data-id="{{ $barang->id_barang }}" style="color: red;">
+                                    <form method="POST" action="keluar/{{ $barang->id_barang }}" style="display: inline;">
+                                        <button type="button" class="button update-button openCustomModalButton" data-id="{{ $barang->id_barang }}">
                                             <i class="fa-solid fa-pencil"></i> Update
                                         </button>
                                     </form>
-                                    <form method="POST" action="keluar/{{ $barang->id_barang }}">
+                                    
+                                    <form method="POST" action="keluar/{{ $barang->id_barang }}" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button><a><i class="fa-solid fa-eraser" color="red" value='Delete'></i></a></button>
+                                        <button type="submit" class="button delete-button">
+                                            <i class="fa-solid fa-eraser"></i> Delete
+                                        </button>
                                     </form>
+                                    
                                 </td>
                             </tr>
                             @endforeach
