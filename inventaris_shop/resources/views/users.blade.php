@@ -13,7 +13,11 @@
 <body>
 
  <div class="sidebar">
-            <div class="logo">Inv<span class="logo1">entaris</span></div>
+    <div class="logo">
+        <a href="{{ route('dashboard') }}" style="color: inherit; text-decoration: none;">
+            Inv<span class="logo1">entaris</span>
+        </a>
+    </div>
         <ul class="side-menu">
             <li class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <a href="{{ route('dashboard') }}"><i class='bx bxs-dashboard'></i>Stok Barang</a>

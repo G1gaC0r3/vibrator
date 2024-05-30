@@ -111,9 +111,6 @@
             </form>
             <input type="checkbox" id="theme-toggle" hidden>
             <label for="theme-toggle" class="theme-toggle"></label>
-            <a href="#" class="profile">
-                <img src="{{ asset($profilePicture) }}" alt="" id="navbar-profile-picture">
-            </a>
         </nav>
         <!-- End of Navbar -->
 
@@ -175,7 +172,9 @@
                                 <td>{{ $barang->jumlah_barang }}</td>
                                 <td>
                                     <form method="POST" action="keluar/{{ $barang->id_barang }}">
-                                        <button type="button" class="openCustomModalButton"><i class="fa-solid fa-pencil" color="red" value='Update'></i></button>
+                                        <button type="button" class="openCustomModalButton" data-id="{{ $barang->id_barang }}" style="color: red;">
+                                            <i class="fa-solid fa-pencil"></i> Update
+                                        </button>
                                     </form>
                                     <form method="POST" action="keluar/{{ $barang->id_barang }}">
                                         @csrf
@@ -199,7 +198,7 @@
                 <div class="custom-modal-header">
                     <h4 class="custom-modal-title">Tambahkan Barang</h4>
                 </div>
-                <form action="keluar/{{ $barang->id_barang }}" method="PUT" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
@@ -231,9 +230,12 @@
             var modal = document.getElementById("customModal");
             var openModalButtons = document.querySelectorAll(".openCustomModalButton");
             var closeModalButton = document.getElementById("closeCustomModalButton");
+            var form = document.querySelector("#customModal form");
 
             openModalButtons.forEach(function(button) {
                 button.onclick = function() {
+                    var idBarang = this.getAttribute('data-id');
+                    form.action = `keluar/${idBarang}`;
                     modal.style.display = "block";
                 }
             });
@@ -256,4 +258,5 @@
     <script src="{{asset('js/searchDsc.js')}}"></script>
 </body>
 
+</html>
 </html>
