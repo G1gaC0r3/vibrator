@@ -7,6 +7,111 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <title>Website Inventaris</title>
+    <style>
+/* CSS code here */
+.content nav{
+    height: 56px;
+    background: var(--light);
+    padding: 0 24px 0 0;
+    display: flex;
+    align-items: center;
+    grid-gap: 24px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.content nav::before{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    bottom: -40px;
+    left: 0;
+    border-radius: 50%;
+    box-shadow: -20px -20px 0 var(--light);
+}
+
+
+.saved-profile {
+    background-color: #ffffff; /* Background color for saved profile section */
+    padding: 15px;
+    margin-top: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+}
+
+.form-and-preview {
+    margin-bottom: 20px; /* Add margin bottom to create space between table and other elements */
+}
+
+.table-saved {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-header {
+    font-weight: bold;
+    padding: 10px; /* Add padding to table headers */
+    background-color: #f0f0f0; /* Background color for table headers */
+}
+
+.table-saved td {
+    padding: 10px; /* Add padding to table cells */
+}
+
+.btn-container {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Red color for delete button */
+    color: #fff; /* White text color */
+}
+
+.select-container {
+    position: relative;
+}
+
+select {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Styling for debugging output */
+p {
+    margin: 0;
+}
+
+.divider-row td {
+    padding: 0;
+}
+
+.divider-row hr {
+    margin: 0;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.action-cell {
+    display: flex;
+    justify-content: center; /* Menengahkan konten secara horizontal */
+    align-items: center; /* Menengahkan konten secara vertikal */
+    flex-direction: column; /* Menyusun konten secara vertikal */
+}
+    </style>
 </head>
 <body>
 <div class="sidebar">
@@ -51,12 +156,10 @@
         </form>
         <input type="checkbox" id="theme-toggle" hidden>
         <label for="theme-toggle" class="theme-toggle"></label>
-    </nav>      
+    </nav>     
     <div class="saved-profile">
-        <div class="form-and-preview" style="display: flex; justify-content: space-between; flex-direction:column">
-            <div style="display: flex; justify-content:center">
+        <div class="form-and-preview">
                 <h3>Data User</h3>
-            </div>
             <table class="table-saved">
                 <thead>
                     <tr>
@@ -67,18 +170,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($users as $user)
+                    @foreach($users as $index => $user)
                         <tr>
-                            <td>{{ $user->name }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>{{ $user->role }}</td>
-                            <td>
+                            <td class="userrole">{{ $user->name }}</td>
+                            <td class="userrole">{{ $user->email }}</td>
+                            <td class="userrole">{{ $user->role }}</td>
+                            <td class="action-cell">
                                 @if(auth()->user()->role == 'admin')
                                     <p>Admin detected</p> <!-- Debugging output -->
                                     <form method="POST" action="{{ route('deleteUser', $user->id) }}" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                        <button type="submit" class="btn-container btn-danger">Hapus</button>
                                     </form>
                                     <form method="POST" action="{{ route('setRole', $user->id) }}" style="display:inline;">
                                         @csrf
@@ -94,6 +197,11 @@
                                 @endif
                             </td>
                         </tr>
+                        @if($index < count($users) - 1) <!-- Add a divider if it's not the last user -->
+                        <tr class="divider-row">
+                            <td colspan="4"><hr></td>
+                        </tr>
+                        @endif
                     @endforeach
                 </tbody>
             </table>
