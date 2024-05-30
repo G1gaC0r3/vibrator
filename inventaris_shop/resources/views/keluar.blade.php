@@ -198,14 +198,14 @@
                                 <td>{{ $barang->nama_barang }}</td>
                                 <td>{{ $barang->jenis_barang }}</td>
                                 <td>{{ $barang->jumlah_barang }}</td>
-                                <td>
-                                    <form method="POST" action="keluar/{{ $barang->id_barang }}" style="display: inline;">
+                                <td style="display: flex; flex-direction:column;">
+                                    <form method="POST" action="keluar/{{ $barang->id_barang }}" style="display: inline;" class="form">
                                         <button type="button" class="button update-button openCustomModalButton" data-id="{{ $barang->id_barang }}">
                                             <i class="fa-solid fa-pencil"></i> Update
                                         </button>
                                     </form>
                                     
-                                    <form method="POST" action="keluar/{{ $barang->id_barang }}" style="display: inline;">
+                                    <form method="POST" action="keluar/{{ $barang->id_barang }}" style="display: inline;" class="form">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="button delete-button">

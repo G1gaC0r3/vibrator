@@ -12,7 +12,7 @@ class UserController extends Controller
     public function showUsers()
     {
         // Ambil data pengguna yang sudah ada sebelum hari ini
-        $users = User::where('created_at', '<', now()->subDay())->get();
+        $users = user::where('created_at', '<', now()->subDay())->get();
         
         return view('users', ['users' => $users]); // Tampilkan semua pengguna
     }
