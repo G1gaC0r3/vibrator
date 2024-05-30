@@ -17,7 +17,8 @@ class BarangController extends Controller
 {
     $barangs = Barang::all();
     $totalJumlah = Barang::sum('jumlah_barang');
-    return response()->view('masuk', compact('barangs', 'totalJumlah'));
+    $totalBarang = Barang::sum('id_barang');
+    return response()->view('masuk', compact('barangs', 'totalJumlah', 'totalBarang'));
 }
 
 public function index1()
@@ -25,7 +26,8 @@ public function index1()
     $barangs = Barang::all();
     $users = User::all(); // Fetch all users from the users table
     $totalJumlah = Barang::sum('jumlah_barang');
-    return view('dashboard', compact('barangs', 'totalJumlah', 'users'));
+    $totalBarang = Barang::sum('id_barang');
+    return view('dashboard', compact('barangs', 'totalJumlah', 'totalBarang', 'users'));
    
 }
 
@@ -33,7 +35,8 @@ public function index2()
 {
     $barangs = Barang::all();
     $totalJumlah = Barang::sum('jumlah_barang');
-    return view('keluar', compact('barangs', 'totalJumlah'));
+    $totalBarang = Barang::sum('id_barang');
+    return view('keluar', compact('barangs', 'totalJumlah', 'totalBarang'));
    
 }
 

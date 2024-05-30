@@ -77,15 +77,15 @@
                         <h3>
                             {{ $totalJumlah }}
                         </h3>
-                        <p>Total Barang Masuk</p>
+                        <p>Total Jumlah Seluruh</p>
                     </span>
                 </li>
                 <li><i class='bx bx-arrow-to-left' style="color: rgb(207, 164, 10);"></i>
                     <span class="info">
                         <h3>
-                            20
+                            {{ $totalBarang }}
                         </h3>
-                        <p>Total Barang Keluar</p>
+                        <p>Total Barang</p>
                     </span>
                 </li>
             </ul>
