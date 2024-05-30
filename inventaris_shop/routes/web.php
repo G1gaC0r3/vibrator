@@ -54,10 +54,6 @@ Route::post('login', [LoginController::class, 'login']);
 
 //Data Table
 
-
-
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -68,6 +64,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/users/set-role/{id}', [UserController::class, 'setRole'])->name('setRole');
  
     });
+
+    Route::middleware(['admin'])->group(function () {
+        Route::delete('/users/{id}', [UserController::class, 'deleteUser'])->name('deleteUser');
+        Route::post('/users/set-role/{id}', [UserController::class, 'setRole'])->name('setRole');
+    });
+    
 
 require __DIR__.'/auth.php';
 
