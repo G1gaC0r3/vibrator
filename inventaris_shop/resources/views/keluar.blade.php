@@ -190,31 +190,33 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($barangs as $barang)
+                            @forelse($barangs as $barang)
                             <tr>
-                                <td>{{ $barang->id_barang }}</td>
-                                <td>{{ $barang->nama_barang }}</td>
-                                <td>{{ $barang->jenis_barang }}</td>
-                                <td>{{ $barang->jumlah_barang }}</td>
+                                <td>{{ $barang->id_barang ?? 'ID tidak tersedia' }}</td>
+                                <td>{{ $barang->nama_barang ?? 'Nama tidak tersedia' }}</td>
+                                <td>{{ $barang->jenis_barang ?? 'Jenis tidak tersedia' }}</td>
+                                <td>{{ $barang->jumlah_barang ?? 'Jumlah tidak tersedia' }}</td>
                                 <td style="display: flex; flex-direction:column;">
-                                    <form method="POST" action="keluar/{{ $barang->id_barang }}" style="display: inline;" class="form">
-                                        <button type="button" class="button update-button openCustomModalButton" data-id="{{ $barang->id_barang }}">
+                                    <form method="POST" action="keluar/{{ $barang->id_barang ?? '#' }}" style="display: inline;" class="form">
+                                        <button type="button" class="button update-button openCustomModalButton" data-id="{{ $barang->id_barang ?? '' }}">
                                             <i class="fa-solid fa-pencil"></i> Update
                                         </button>
                                     </form>
                                     
-                                    <form method="POST" action="keluar/{{ $barang->id_barang }}" style="display: inline;" class="form">
+                                    <form method="POST" action="keluar/{{ $barang->id_barang ?? '#' }}" style="display: inline;" class="form">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="button delete-button">
                                             <i class="fa-solid fa-eraser"></i> Delete
                                         </button>
                                     </form>
-                                    
                                 </td>
                             </tr>
-                            @endforeach
-                        </tbody>
+                            @empty
+                            <tr>
+                                <td colspan="5">Tidak ada data barang.</td>
+                            </tr>
+                            @endforelse
                     </table>
                 </div>
             </div>
@@ -228,7 +230,7 @@
                 <div class="custom-modal-header">
                     <h4 class="custom-modal-title">Tambahkan Barang</h4>
                 </div>
-                <form action="keluar/{{ $barang->id_barang }}" method="POST" enctype="multipart/form-data">
+                <form action="keluar/{{ $barang->id_barang ?? '#' }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
@@ -286,5 +288,6 @@
     <script src="{{asset('js/searchDsc.js')}}"></script>
 </body>
 
+</html>
 </html>
 </html>
