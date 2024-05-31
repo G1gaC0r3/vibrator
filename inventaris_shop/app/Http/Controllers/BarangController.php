@@ -31,26 +31,26 @@ public function index1()
    
 }
 
-public function index2()
-{
-    $barangs = Barang::all();
-    $totalJumlah = Barang::sum('jumlah_barang');
-    $totalBarang = Barang::sum('id_barang');
-    return view('keluar', compact('barangs', 'totalJumlah', 'totalBarang'));
-   
-}
-
+    public function index2()
+    {
+        $barangs = Barang::all();
+        $totalJumlah = Barang::sum('jumlah_barang');
+        $totalBarang = Barang::count('id_barang');
+        return view('keluar', compact('barangs', 'totalJumlah', 'totalBarang'));
+    }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response 
      */
     public function create()
     {
         return response()->view("dashboard");
     }
 
+    // Lanjutkan dengan metode lainnya di sini
+ // Kurung kurawal ini menutup kelas BarangController
     /**
      * Store a newly created resource in storage.
      *
@@ -79,10 +79,9 @@ public function index2()
      */
     public function show($id_barang)
     {
-        $barang = barang::find($id_barang);
+        $barang = Barang::find($id_barang);
         $totalJumlah = Barang::sum('jumlah_barang');
 
-        
         return view('dashboard')->with('barang', $barang);
     }
 
@@ -93,28 +92,24 @@ public function index2()
      * @return \Illuminate\Http\Response
      */
     public function edit($id_barang)
-{
-    $barang = Barang::find($id_barang);
-    
+    {
+        $barang = Barang::find($id_barang);
 
-    return view('keluar')->with('barang', $barang);
-}
+        return view('keluar')->with('barang', $barang);
+    }
 
-public function update(Request $request, $id)
-{
-    $validatedData = $request->validate([
-        'nama_barang' => 'required|string|max:255',
-        'jenis_barang' => 'required|string|max:255',
-        'jumlah_barang' => 'required|integer',
-    ]);
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'nama_barang' => 'required|string|max:255',
+            'jenis_barang' => 'required|string|max:255',
+            'jumlah_barang' => 'required|integer',
+        ]);
 
-    Barang::where('id_barang', $id)->update($validatedData);
+        Barang::where('id_barang', $id)->update($validatedData);
 
-    return redirect()->route('keluar')->with('success', 'Barang Di Update!');
-
-}
-
-
+        return redirect()->route('keluar')->with('success', 'Barang Di Update!');
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -126,8 +121,7 @@ public function update(Request $request, $id)
     {
         $barang = Barang::findOrFail($id_barang);
         $barang->delete();
-    
+
         return redirect('/keluar')->with('success', 'Barang deleted successfully');
     }
 }
-
