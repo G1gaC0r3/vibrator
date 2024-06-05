@@ -9,85 +9,148 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .custom-modal {
-            display: none;
-            position: fixed;
-            z-index: 1050;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
+.custom-modal {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+}
 
-        .custom-modal-dialog {
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
-            background-color: white;
-        }
+.custom-modal-dialog {
+    position: relative;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
 
-        .custom-modal-header, .custom-modal-footer {
-            padding: 10px;
-            border-bottom: 1px solid #e5e5e5;
-        }
+.custom-modal-content {
+    padding: 20px;
+}
 
-        .custom-modal-footer {
-            border-top: none;
-        }
-
-        .custom-modal-title {
-            margin: 0;
-        }
-
-        .btn-close-custom {
-            cursor: pointer;
-            background-color: red;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 10px;
-        }
-
-        .btn-primary-custom {
-            background-color: blue;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-        }
-        .button {
-    display: inline-flex;
+.custom-modal-header {
+    padding: 10px 20px;
+    border-bottom: 2px solid #eee;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    padding: 8px 15px; /* Mengurangi padding untuk membuat tombol lebih kecil */
+}
+
+.custom-modal-title {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.btn-close-custom {
+    cursor: pointer;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.btn-primary-custom {
+    background-color: #2196f3;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.form-group {
+    margin-bottom: 7px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #666;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.button {
+    padding: 8px 15px;
     border: none;
     border-radius: 5px;
     color: white;
-    font-size: 14px; /* Mengurangi ukuran font untuk tombol lebih kecil */
+    font-size: 14px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-    margin-right: 10px; /* Memberikan jarak antara tombol */
-    width: 100px; /* Menetapkan lebar tetap yang lebih kecil */
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
 }
 
 .update-button {
-    background-color: #007bff; /* Biru modern */
+    background-color: #4CAF50;
+}
+
+.update-button:hover {
+    background-color: #45a049;
 }
 
 .delete-button {
-    background-color: #dc3545; /* Merah modern */
+    background-color: #f44336;
 }
 
-.button i {
-    margin-right: 5px;
-    vertical-align: middle; /* Sejajarkan ikon dengan teks */
+.delete-button:hover {
+    background-color: #da190b;
 }
-    </style>
+
+.use-button {
+    background-color: #2196F3;
+}
+
+.use-button:hover {
+    background-color: #0b7dda;
+}
+
+#updateModal .form-group {
+    margin-bottom: 5px;
+}
+
+#updateModal .form-group label {
+    margin-bottom: 2px;
+}
+
+#updateModal .form-group input[type="text"],
+#updateModal .form-group input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+</style>
     <title>Website Inventaris</title>
 </head>
 
@@ -163,6 +226,13 @@
                         <p>Total Barang</p>
                     </span>
                 </li>
+                <li>
+                    <i class='bx bx-arrow-from-bottom' style="color: rgb(32, 164, 61);"></i>
+                    <span class="info">
+                        <h3>{{ $totalBarang }}</h3>
+                        <p>Terpakai</p>
+                    </span>
+                </li>
             </ul>
             <!-- End of Insights -->
 
@@ -186,6 +256,7 @@
                                 <th>Nama Barang</th>
                                 <th>Jenis Barang</th>
                                 <th>Jumlah</th>
+                                <th>Terpakai</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -196,6 +267,7 @@
                                 <td>{{ $barang->nama_barang ?? 'Nama tidak tersedia' }}</td>
                                 <td>{{ $barang->jenis_barang ?? 'Jenis tidak tersedia' }}</td>
                                 <td>{{ $barang->jumlah_barang ?? 'Jumlah tidak tersedia' }}</td>
+                                <td>{{ $barang->terpakai ?? 'Jumlah tidak tersedia' }}</td>
                                 <td style="display: flex; flex-direction:column;">
                                     <form method="POST" action="keluar/{{ $barang->id_barang ?? '#' }}" style="display: inline;" class="form">
                                         <button type="button" class="button update-button openCustomModalButton" data-id="{{ $barang->id_barang ?? '' }}">
@@ -208,6 +280,11 @@
                                         @method('DELETE')
                                         <button type="submit" class="button delete-button">
                                             <i class="fa-solid fa-eraser"></i> Delete
+                                        </button>
+                                    </form>
+                                    <form method="POST" action="gunakan/{{ $barang->id_barang ?? '#' }}" style="display: inline;" class="form">
+                                        <button type="button" class="button use-button openUseItemModalButton" data-id="{{ $barang->id_barang ?? '' }}" data-quantity="{{ $barang->jumlah_barang ?? '' }}">
+                                            <i class="fa-solid fa-hand"></i> Gunakan
                                         </button>
                                     </form>
                                 </td>
@@ -228,7 +305,8 @@
         <div class="custom-modal-dialog">
             <div class="custom-modal-content">
                 <div class="custom-modal-header">
-                    <h4 class="custom-modal-title">Tambahkan Barang</h4>
+                    <h4 class="custom-modal-title">Edit Barang</h4>
+                    <button type="button" class="btn-close-custom" id="closeCustomModalButton">&times;</button>
                 </div>
                 <form action="keluar/{{ $barang->id_barang ?? '#' }}" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -237,7 +315,6 @@
                         <label for="nama_barang">Nama Barang</label>
                         <input type="text" name="nama_barang" placeholder="Nama Barang" class="form-control" required>
                     </div>
-                    <br>
                     <div class="form-group">
                         <label for="jenis_barang">Jenis Barang</label>
                         <input type="text" name="jenis_barang" id="jenis_barang" class="form-control" placeholder="Jenis Barang" required>
@@ -249,37 +326,73 @@
                     <br>
                     <button type="submit" class="btn btn-primary-custom">Edit</button>
                 </form>
-                <div class="custom-modal-footer">
-                    <button type="button" class="btn-close-custom" id="closeCustomModalButton">Close</button>
+            </div>
+        </div>
+    </div>
+    <div id="useItemModal" class="custom-modal">
+        <div class="custom-modal-dialog">
+            <div class="custom-modal-content">
+                <div class="custom-modal-header">
+                    <h4 class="custom-modal-title">Gunakan Barang</h4>
+                    <button type="button" class="btn-close-custom" id="closeUseItemModalButton">&times;</button>
                 </div>
+                <form id="useItemForm" method="POST" action="">
+                    <div class="form-group">
+                        <label for="useItemID">ID Barang:</label>
+                        <input type="text" id="useItemID" name="useItemID" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="useItemQuantity">Jumlah Barang:</label>
+                        <input type="number" id="useItemQuantity" name="useItemQuantity" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary-custom">Submit</button>
+                </form>
             </div>
         </div>
     </div>
 
     <script>
-        // JavaScript to handle custom modal display
-        document.addEventListener('DOMContentLoaded', function() {
-            var modal = document.getElementById("customModal");
-            var openModalButtons = document.querySelectorAll(".openCustomModalButton");
-            var closeModalButton = document.getElementById("closeCustomModalButton");
-            var form = document.querySelector("#customModal form");
+document.addEventListener('DOMContentLoaded', function() {
+    var customModal = document.getElementById("customModal");
+    var useItemModal = document.getElementById("useItemModal");
+    var openCustomModalButtons = document.querySelectorAll(".openCustomModalButton");
+    var openUseItemModalButtons = document.querySelectorAll(".openUseItemModalButton");
+    var closeCustomModalButton = document.getElementById("closeCustomModalButton");
+    var closeUseItemModalButton = document.getElementById("closeUseItemModalButton");
 
-            openModalButtons.forEach(function(button) {
-                button.onclick = function() {
-                    modal.style.display = "block";
-                }
-            });
-
-            closeModalButton.onclick = function() {
-                modal.style.display = "none";
-            }
-
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
+    openCustomModalButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            customModal.style.display = "block";
+            event.stopPropagation(); // Hentikan event agar tidak menyebar
         });
+    });
+
+    openUseItemModalButtons.forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            useItemModal.style.display = "block";
+            event.stopPropagation(); // Hentikan event agar tidak menyebar
+        });
+    });
+
+    closeCustomModalButton.addEventListener('click', function() {
+        customModal.style.display = "none";
+    });
+
+    closeUseItemModalButton.addEventListener('click', function() {
+        useItemModal.style.display = "none";
+    });
+
+    window.addEventListener('click', function(event) {
+        if (event.target == customModal) {
+            customModal.style.display = "none";
+        }
+        if (event.target == useItemModal) {
+            useItemModal.style.display = "none";
+        }
+    });
+});
+</script>
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -291,3 +404,4 @@
 </html>
 </html>
 </html>
+

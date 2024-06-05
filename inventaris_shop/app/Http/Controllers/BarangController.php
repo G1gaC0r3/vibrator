@@ -123,5 +123,8 @@ public function index1()
         $barang->delete();
 
         return redirect('/keluar')->with('success', 'Barang deleted successfully');
+    
     }
+
+
 }
