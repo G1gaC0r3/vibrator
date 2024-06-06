@@ -5,6 +5,7 @@ use App\Models\Barang;
 use App\Models\User;
 use Illuminate\Http\Request;
 Use Illuminate\Http\Response;
+use App\Models\BarangTerpakai;
 
 class BarangController extends Controller
 {
@@ -126,5 +127,9 @@ public function index1()
     
     }
 
-
+     public function use($id_barang)
+     {
+        $totalJumlah = Barang::sum('jumlah_barang');
+        $jumlahBarang = Barang::where('id_barang', $id_barang)->count();
+     }
 }

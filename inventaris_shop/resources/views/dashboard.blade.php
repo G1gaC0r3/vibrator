@@ -104,6 +104,7 @@
                                 <th>Nama Barang</th>
                                 <th>Jenis Barang</th>
                                 <th>Jumlah</th>
+                                <th>Terpakai</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -113,6 +114,7 @@
                                     <td>{{ $barang->nama_barang }}</td>
                                     <td>{{ $barang->jenis_barang }}</td>
                                     <td>{{ $barang->jumlah_barang }}</td>
+                                    <td>{{ $barang->terpakai }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

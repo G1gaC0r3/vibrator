@@ -282,7 +282,7 @@
                                             <i class="fa-solid fa-eraser"></i> Delete
                                         </button>
                                     </form>
-                                    <form method="POST" action="gunakan/{{ $barang->id_barang ?? '#' }}" style="display: inline;" class="form">
+                                    <form method="POST" action="keluar/{{ $barang->id_barang ?? '#' }}" style="display: inline;" class="form">
                                         <button type="button" class="button use-button openUseItemModalButton" data-id="{{ $barang->id_barang ?? '' }}" data-quantity="{{ $barang->jumlah_barang ?? '' }}">
                                             <i class="fa-solid fa-hand"></i> Gunakan
                                         </button>
@@ -339,7 +339,7 @@
                 <form id="useItemForm" method="POST" action="">
                     <div class="form-group">
                         <label for="useItemID">ID Barang:</label>
-                        <input type="text" id="useItemID" name="useItemID" readonly>
+                        <input type="number" id="useItemID" name="useItemID" required>
                     </div>
                     <div class="form-group">
                         <label for="useItemQuantity">Jumlah Barang:</label>

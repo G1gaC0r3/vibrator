@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama_barang');
             $table->string('jenis_barang');
             $table->integer('jumlah_barang')->nullable();
+            $table->integer('terpakai')->nullable();
             $table->timestamps();
         });
     }

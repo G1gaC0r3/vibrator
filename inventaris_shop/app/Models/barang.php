@@ -14,6 +14,7 @@ class Barang extends Model
         'nama_barang',
         'jenis_barang',
         'jumlah_barang',
+        'terpakai',
     ];
     protected $guarded = ['id_barang'];
     use HasFactory;

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ItemController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +27,7 @@ Route::get('keluar/{id_barang}', [BarangController::class,'edit']);
 Route::post('masuk', [BarangController::class,'store']);
 Route::put('keluar/{id_barang}', [BarangController::class, 'update'])->name('keluar.update');
 Route::delete('keluar/{id_barang}', [BarangController::class, 'destroy'])->name('keluar.destroy');
-
-
-
+Route::put('keluar/{id_barang}', [BarangController::class, 'use'])->name('keluar.use');
 
 
 Route::get('/dashboard', [BarangController::class ,'index1'])
