@@ -131,5 +131,6 @@ public function index1()
      {
         $totalJumlah = Barang::sum('jumlah_barang');
         $jumlahBarang = Barang::where('id_barang', $id_barang)->count();
+        return redirect()->back()->with('success', 'Barang telah digunakan!');
      }
 }

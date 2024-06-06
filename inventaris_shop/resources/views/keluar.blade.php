@@ -229,7 +229,7 @@
                 <li>
                     <i class='bx bx-arrow-from-bottom' style="color: rgb(32, 164, 61);"></i>
                     <span class="info">
-                        <h3>{{ $totalBarang }}</h3>
+                        <h3>{{ $jumlahBarang }}</h3>
                         <p>Terpakai</p>
                     </span>
                 </li>
@@ -336,7 +336,7 @@
                     <h4 class="custom-modal-title">Gunakan Barang</h4>
                     <button type="button" class="btn-close-custom" id="closeUseItemModalButton">&times;</button>
                 </div>
-                <form id="useItemForm" method="POST" action="">
+                <form id="useItemForm" method="POST" action="{{ route('barang.use', ['id_barang' => $barang->id_barang]) }}">
                     <div class="form-group">
                         <label for="useItemID">ID Barang:</label>
                         <input type="number" id="useItemID" name="useItemID" required>

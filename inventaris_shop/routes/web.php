@@ -27,9 +27,7 @@ Route::get('keluar/{id_barang}', [BarangController::class,'edit']);
 Route::post('masuk', [BarangController::class,'store']);
 Route::put('keluar/{id_barang}', [BarangController::class, 'update'])->name('keluar.update');
 Route::delete('keluar/{id_barang}', [BarangController::class, 'destroy'])->name('keluar.destroy');
-Route::put('keluar/{id_barang}', [BarangController::class, 'use'])->name('keluar.use');
-Route::match(['get', 'post'], 'keluar', 'KeluarController@index');
-
+Route::post('keluar/{id_barang}', [BarangController::class, 'use'])->name('barang.use');
 
 Route::get('/dashboard', [BarangController::class ,'index1'])
 ->name('dashboard')->middleware(['auth', 'verified']);
