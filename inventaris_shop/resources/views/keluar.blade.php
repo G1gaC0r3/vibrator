@@ -229,7 +229,7 @@
                 <li>
                     <i class='bx bx-arrow-from-bottom' style="color: rgb(32, 164, 61);"></i>
                     <span class="info">
-                        <h3>{{ $jumlahBarang }}</h3>
+                        <h3>{{ $totalJumlah }}</h3>
                         <p>Terpakai</p>
                     </span>
                 </li>
