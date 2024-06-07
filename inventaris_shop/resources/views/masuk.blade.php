@@ -74,18 +74,22 @@
                 <li>
                     <i class='bx bx-arrow-to-right' style="color: rgb(24, 141, 180);"></i>
                     <span class="info">
-                        <h3>
-                            {{ $totalJumlah }}
-                        </h3>
+                        <h3>{{ $totalJumlah }}</h3>
                         <p>Total Jumlah Seluruh</p>
                     </span>
                 </li>
-                <li><i class='bx bx-arrow-to-left' style="color: rgb(207, 164, 10);"></i>
+                <li>
+                    <i class='bx bx-arrow-to-left' style="color: rgb(207, 164, 10);"></i>
                     <span class="info">
-                        <h3>
-                            {{ $totalBarang }}
-                        </h3>
+                        <h3>{{ $totalBarang }}</h3>
                         <p>Total Barang</p>
+                    </span>
+                </li>
+                <li>
+                    <i class='bx bx-arrow-from-bottom' style="color: rgb(32, 164, 61);"></i>
+                    <span class="info">
+                        <h3>{{ $totalTerpakai }}</h3>
+                        <p> Total Terpakai</p>
                     </span>
                 </li>
             </ul>
@@ -114,6 +118,8 @@
                                 <th>Nama Barang</th>
                                 <th>Jenis Barang</th>
                                 <th>Jumlah</th>
+                                <th>Tersisa</th>
+                                <th>Terpakai</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,6 +129,8 @@
                                     <td>{{ $barang->nama_barang }}</td>
                                     <td>{{ $barang->jenis_barang }}</td>
                                     <td>{{ $barang->jumlah_barang }}</td>
+                                    <td>{{ $barang->tersisa }}</td>
+                                    <td>{{ $barang ->terpakai }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

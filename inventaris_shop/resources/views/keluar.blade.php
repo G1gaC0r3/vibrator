@@ -257,6 +257,7 @@
                                 <th>Jenis Barang</th>
                                 <th>Jumlah</th>
                                 <th>Terpakai</th>
+                                <th>Tersisa</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -268,6 +269,7 @@
                                 <td>{{ $barang->jenis_barang ?? 'Jenis tidak tersedia' }}</td>
                                 <td>{{ $barang->jumlah_barang ?? 'Jumlah tidak tersedia' }}</td>
                                 <td>{{ $barang->terpakai ?? 'Jumlah tidak tersedia' }}</td>
+                                <td>{{ $barang->tersisa }}
                                 <td style="display: flex; flex-direction:column;">
                                     <form method="POST" action="keluar/{{ $barang->id_barang ?? '#' }}" style="display: inline;" class="form">
                                         <button type="button" class="button update-button openCustomModalButton" data-id="{{ $barang->id_barang ?? '' }}">
@@ -336,14 +338,17 @@
                     <h4 class="custom-modal-title">Gunakan Barang</h4>
                     <button type="button" class="btn-close-custom" id="closeUseItemModalButton">&times;</button>
                 </div>
-                <form id="useItemForm" method="POST" action="{{ route('barang.use', ['id_barang' => $barang->id_barang]) }}">
+                <form id="terpakai" method="POST" action="keluar/{{ $barang->id_barang ?? '#'}}">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
-                        <label for="useItemID">ID Barang:</label>
-                        <input type="number" id="useItemID" name="useItemID" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="useItemQuantity">Jumlah Barang:</label>
-                        <input type="number" id="useItemQuantity" name="useItemQuantity" required>
+                        <label for="terpakai">Terpakai:</label>
+                        <input id="terpakai" type="number" class="form-control @error('terpakai') is-invalid @enderror" name="terpakai" value="{{ old('terpakai', $barang->terpakai ?? '#') }}">
+                        @error('terpakai')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary-custom">Submit</button>
                 </form>

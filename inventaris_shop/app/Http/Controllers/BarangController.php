@@ -17,28 +17,44 @@ class BarangController extends Controller
     public function index()
 {
     $barangs = Barang::all();
+    foreach ($barangs as $barang) {
+        $barang->tersisa = $barang->jumlah_barang - $barang->terpakai;
+    }
+
     $totalJumlah = Barang::sum('jumlah_barang');
     $totalBarang = Barang::count('id_barang');
-    return response()->view('masuk', compact('barangs', 'totalJumlah', 'totalBarang'));
+    $totalTerpakai = Barang::sum('terpakai');
+    return response()->view('masuk', compact('barangs', 'totalJumlah', 'totalBarang', 'totalTerpakai'));
 }
 
 public function index1()
 {
     $barangs = Barang::all();
-    $users = User::all(); // Fetch all users from the users table
+    foreach ($barangs as $barang) {
+        $barang->tersisa = $barang->jumlah_barang - $barang->terpakai;
+    }
+
     $totalJumlah = Barang::sum('jumlah_barang');
     $totalBarang = Barang::count('id_barang');
-    return view('dashboard', compact('barangs', 'totalJumlah', 'totalBarang', 'users'));
+    $totalTerpakai = Barang::sum('terpakai');
+    return view('dashboard', compact('barangs', 'totalJumlah', 'totalBarang', 'totalTerpakai'));
    
 }
 
     public function index2()
     {
         $barangs = Barang::all();
+        foreach ($barangs as $barang) {
+            $barang->tersisa = $barang->jumlah_barang - $barang->terpakai;
+        }
+    
         $totalJumlah = Barang::sum('jumlah_barang');
         $totalBarang = Barang::count('id_barang');
-        return view('keluar', compact('barangs', 'totalJumlah', 'totalBarang'));
+        $totalTerpakai = Barang::sum('terpakai');
+        return view('keluar', compact('barangs', 'totalJumlah', 'totalBarang', 'totalTerpakai'));
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -65,6 +81,7 @@ public function index1()
         'nama_barang' => 'required|string|max:255',
         'jenis_barang' => 'required|string|max:255',
         'jumlah_barang' => 'required|integer',
+        'terpakai' => 'nullable|integer'
     ]);
 
     Barang::create($validatedData);
@@ -105,6 +122,7 @@ public function index1()
             'nama_barang' => 'required|string|max:255',
             'jenis_barang' => 'required|string|max:255',
             'jumlah_barang' => 'required|integer',
+            'terpakai' => 'nullable|integer',
         ]);
 
         Barang::where('id_barang', $id)->update($validatedData);
@@ -127,10 +145,26 @@ public function index1()
     
     }
 
-     public function use($id_barang)
-     {
-        $totalJumlah = Barang::sum('jumlah_barang');
-        $jumlahBarang = Barang::where('id_barang', $id_barang)->count();
-        return redirect()->back()->with('success', 'Barang telah digunakan!');
-     }
+    public function pakai(Request $request, $id)
+    {
+        $barang = Barang::findOrFail($id);
+    
+        $validatedData = $request->validate([
+            'terpakai' => [
+                'required',
+                'integer',
+                function ($attribute, $value, $fail) use ($barang) {
+                    if ($value > $barang->jumlah_barang) {
+                        $fail('Tidak bisa melebihi jumlah barang!');
+                    }
+                },
+            ],
+        ]);
+    
+        $barang->update($validatedData);
+    
+        return redirect()->route('keluar')->with('success', 'Barang Di Update!');
+    }
+    
+
 }
