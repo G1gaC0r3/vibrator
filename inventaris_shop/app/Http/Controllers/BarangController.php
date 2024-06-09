@@ -77,7 +77,7 @@ public function index1()
     public function store(Request $request)
 {
     $validatedData = $request->validate([
-        'id_barang' => 'required|int|max:10|unique:barangs',
+        'kode_barang' => 'required|string|max:10|unique:barangs',
         'nama_barang' => 'required|string|max:255',
         'jenis_barang' => 'required|string|max:255',
         'jumlah_barang' => 'required|integer',
@@ -118,15 +118,18 @@ public function index1()
 
     public function update(Request $request, $id_barang)
     {
+
+        $barang = Barang::findOrFail($id_barang);
+
         $validatedData = $request->validate([
             'nama_barang' => 'required|string|max:255',
             'jenis_barang' => 'required|string|max:255',
             'jumlah_barang' => 'required|integer',
         ]);
 
-        Barang::where('id_barang', $id_barang)->update($validatedData);
-   
-        return redirect()->route('keluar')->with('success', 'Barang updated successfully');
+        $barang->update($validatedData);
+
+        return redirect('keluar')->with('success', 'Barang Di Update!');
     }
 
     /**

@@ -264,7 +264,7 @@
                         <tbody>
                             @forelse($barangs as $barang)
                             <tr>
-                                <td>{{ $barang->id_barang ?? 'ID tidak tersedia' }}</td>
+                                <td>{{ $barang->kode_barang ?? 'ID tidak tersedia' }}</td>
                                 <td>{{ $barang->nama_barang ?? 'Nama tidak tersedia' }}</td>
                                 <td>{{ $barang->jenis_barang ?? 'Jenis tidak tersedia' }}</td>
                                 <td>{{ $barang->jumlah_barang ?? 'Jumlah tidak tersedia' }}</td>
@@ -288,7 +288,7 @@
                                             <i class="fa-solid fa-eraser"></i> Delete
                                         </button>
                                     </form>
-                                    <form method="POST" action="keluar/{{ $barang->id_barang ?? '#' }}" style="display: inline;" class="form">
+                                    <form method="POST" action="keluaredit/{{ $barang->id_barang ?? '#' }}" style="display: inline;" class="form">
                                         <button type="button" class="button use-button openUseItemModalButton" data-id="{{ $barang->id_barang ?? '' }}" data-quantity="{{ $barang->jumlah_barang ?? '' }}">
                                             <i class="fa-solid fa-hand"></i> Gunakan
                                         </button>
@@ -404,7 +404,7 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById("use_terpakai").value = terpakai;
             
             // Set the form action
-            document.getElementById("terpakaiForm").action = "keluar/" + barangId;
+            document.getElementById("terpakaiForm").action = "keluaredit/" + barangId;
             
             // Show the modal
             useItemModal.style.display = "block";

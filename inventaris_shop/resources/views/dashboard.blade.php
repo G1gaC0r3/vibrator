@@ -110,7 +110,7 @@
                         <tbody>
                             @foreach($barangs as $barang)
                                 <tr>
-                                    <td>{{ $barang->id_barang }}</td>
+                                    <td>{{ $barang->kode_barang }}</td>
                                     <td>{{ $barang->nama_barang }}</td>
                                     <td>{{ $barang->jenis_barang }}</td>
                                     <td>{{ $barang->jumlah_barang }}</td>

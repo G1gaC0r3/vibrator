@@ -125,7 +125,7 @@
                         <tbody>
                             @foreach($barangs as $barang)
                                 <tr>
-                                    <td>{{ $barang->id_barang }}</td>
+                                    <td>{{ $barang->kode_barang }}</td>
                                     <td>{{ $barang->nama_barang }}</td>
                                     <td>{{ $barang->jenis_barang }}</td>
                                     <td>{{ $barang->jumlah_barang }}</td>
@@ -155,8 +155,8 @@
             <form action="{{ route('masuk') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label for="id_barang">ID Barang</label>
-                    <input type="text" name="id_barang" placeholder="ID Barang" class="form-control" required>
+                    <label for="kode_barang">ID Barang</label>
+                    <input type="text" name="kode_barang" placeholder="ID Barang" class="form-control" required>
                 </div>
                 <div class="form-group">
                     <label for="nama_barang">Nama Barang</label>
