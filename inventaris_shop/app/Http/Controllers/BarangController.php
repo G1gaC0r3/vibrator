@@ -116,18 +116,17 @@ public function index1()
         return view('keluar')->with('barang', $barang);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $id_barang)
     {
         $validatedData = $request->validate([
             'nama_barang' => 'required|string|max:255',
             'jenis_barang' => 'required|string|max:255',
             'jumlah_barang' => 'required|integer',
-            'terpakai' => 'nullable|integer',
         ]);
 
-        Barang::where('id_barang', $id)->update($validatedData);
-
-        return redirect()->route('keluar')->with('success', 'Barang Di Update!');
+        Barang::where('id_barang', $id_barang)->update($validatedData);
+   
+        return redirect()->route('keluar')->with('success', 'Barang updated successfully');
     }
 
     /**
@@ -141,13 +140,12 @@ public function index1()
         $barang = Barang::findOrFail($id_barang);
         $barang->delete();
 
-        return redirect('/keluar')->with('success', 'Barang deleted successfully');
-    
+        return redirect('keluar')->with('success', 'Barang deleted successfully');
     }
 
-    public function pakai(Request $request, $id)
+    public function pakai(Request $request, $id_barang)
     {
-        $barang = Barang::findOrFail($id);
+        $barang = Barang::findOrFail($id_barang);
     
         $validatedData = $request->validate([
             'terpakai' => [
@@ -163,8 +161,6 @@ public function index1()
     
         $barang->update($validatedData);
     
-        return redirect()->route('keluar')->with('success', 'Barang Di Update!');
+        return redirect('keluar')->with('success', 'Barang Di Update!');
     }
-    
-
 }

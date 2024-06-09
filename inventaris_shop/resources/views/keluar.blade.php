@@ -269,10 +269,14 @@
                                 <td>{{ $barang->jenis_barang ?? 'Jenis tidak tersedia' }}</td>
                                 <td>{{ $barang->jumlah_barang ?? 'Jumlah tidak tersedia' }}</td>
                                 <td>{{ $barang->terpakai ?? 'Jumlah tidak tersedia' }}</td>
-                                <td>{{ $barang->tersisa }}
+                                <td>{{ $barang->tersisa ?? 'Jumlah tidak tersedia' }}</td>
                                 <td style="display: flex; flex-direction:column;">
                                     <form method="POST" action="keluar/{{ $barang->id_barang ?? '#' }}" style="display: inline;" class="form">
-                                        <button type="button" class="button update-button openCustomModalButton" data-id="{{ $barang->id_barang ?? '' }}">
+                                        <button type="button" class="button update-button openCustomModalButton" 
+                                                data-id="{{ $barang->id_barang }}"
+                                                data-nama="{{ $barang->nama_barang }}"
+                                                data-jenis="{{ $barang->jenis_barang }}"
+                                                data-jumlah="{{ $barang->jumlah_barang }}">
                                             <i class="fa-solid fa-pencil"></i> Update
                                         </button>
                                     </form>
@@ -293,9 +297,10 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="5">Tidak ada data barang.</td>
+                                <td colspan="7">Tidak ada data barang.</td>
                             </tr>
                             @endforelse
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -310,20 +315,22 @@
                     <h4 class="custom-modal-title">Edit Barang</h4>
                     <button type="button" class="btn-close-custom" id="closeCustomModalButton">&times;</button>
                 </div>
-                <form action="keluar/{{ $barang->id_barang ?? '#' }}" method="POST" enctype="multipart/form-data">
+                <form id="editForm" action="" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    <!-- Tambahkan input tersembunyi untuk menyimpan ID unik -->
+                    <input type="hidden" name="barang_id" id="edit_barang_id">
                     <div class="form-group">
                         <label for="nama_barang">Nama Barang</label>
-                        <input type="text" name="nama_barang" placeholder="Nama Barang" class="form-control" required>
+                        <input type="text" name="nama_barang" id="edit_nama_barang" placeholder="Nama Barang" class="form-control" required>
                     </div>
                     <div class="form-group">
                         <label for="jenis_barang">Jenis Barang</label>
-                        <input type="text" name="jenis_barang" id="jenis_barang" class="form-control" placeholder="Jenis Barang" required>
+                        <input type="text" name="jenis_barang" id="edit_jenis_barang" class="form-control" placeholder="Jenis Barang" required>
                     </div>
                     <div class="form-group">
                         <label for="jumlah_barang">Jumlah Barang</label>
-                        <input type="number" name="jumlah_barang" placeholder="Jumlah Barang" class="form-control" required>
+                        <input type="number" name="jumlah_barang" id="edit_jumlah_barang" placeholder="Jumlah Barang" class="form-control" required>
                     </div>
                     <br>
                     <button type="submit" class="btn btn-primary-custom">Edit</button>
@@ -331,6 +338,7 @@
             </div>
         </div>
     </div>
+
     <div id="useItemModal" class="custom-modal">
         <div class="custom-modal-dialog">
             <div class="custom-modal-content">
@@ -338,12 +346,12 @@
                     <h4 class="custom-modal-title">Gunakan Barang</h4>
                     <button type="button" class="btn-close-custom" id="closeUseItemModalButton">&times;</button>
                 </div>
-                <form id="terpakai" method="POST" action="keluar/{{ $barang->id_barang ?? '#'}}">
+                <form id="terpakaiForm" method="POST" action="">
                     @csrf
                     @method('PUT')
                     <div class="form-group">
                         <label for="terpakai">Terpakai:</label>
-                        <input id="terpakai" type="number" class="form-control @error('terpakai') is-invalid @enderror" name="terpakai" value="{{ old('terpakai', $barang->terpakai ?? '#') }}">
+                        <input id="use_terpakai" type="number" class="form-control @error('terpakai') is-invalid @enderror" name="terpakai" value="">
                         @error('terpakai')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -364,18 +372,43 @@ document.addEventListener('DOMContentLoaded', function() {
     var openUseItemModalButtons = document.querySelectorAll(".openUseItemModalButton");
     var closeCustomModalButton = document.getElementById("closeCustomModalButton");
     var closeUseItemModalButton = document.getElementById("closeUseItemModalButton");
-
+    
     openCustomModalButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
+            var barangId = button.getAttribute("data-id");
+            var namaBarang = button.getAttribute("data-nama");
+            var jenisBarang = button.getAttribute("data-jenis");
+            var jumlahBarang = button.getAttribute("data-jumlah");
+            
+            // Set the values in the form
+            document.getElementById("edit_barang_id").value = barangId;
+            document.getElementById("edit_nama_barang").value = namaBarang;
+            document.getElementById("edit_jenis_barang").value = jenisBarang;
+            document.getElementById("edit_jumlah_barang").value = jumlahBarang;
+            
+            // Set the form action
+            document.getElementById("editForm").action = "keluar/" + barangId;
+            
+            // Show the modal
             customModal.style.display = "block";
-            event.stopPropagation(); // Hentikan event agar tidak menyebar
+            event.stopPropagation();
         });
     });
 
     openUseItemModalButtons.forEach(function(button) {
         button.addEventListener('click', function(event) {
+            var barangId = button.getAttribute("data-id");
+            var terpakai = button.getAttribute("data-quantity");
+            
+            // Set the values in the form
+            document.getElementById("use_terpakai").value = terpakai;
+            
+            // Set the form action
+            document.getElementById("terpakaiForm").action = "keluar/" + barangId;
+            
+            // Show the modal
             useItemModal.style.display = "block";
-            event.stopPropagation(); // Hentikan event agar tidak menyebar
+            event.stopPropagation();
         });
     });
 
@@ -398,8 +431,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-    </script>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="{{asset('js/index.js')}}"></script>
     <script src="{{ asset('js/barchart.js') }}"></script>
@@ -407,6 +438,3 @@ document.addEventListener('DOMContentLoaded', function() {
 </body>
 
 </html>
-</html>
-</html>
-
